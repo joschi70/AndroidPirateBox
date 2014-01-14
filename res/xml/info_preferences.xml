@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <Preference android:key="infoPirateBoxVersion" 
+                android:title="@string/pref_dev_info_piratebox_version_title"
+                android:summary="@string/pref_dev_info_default_summary"/>
+    
+     <Preference android:key="infoPawVersion" 
+                android:title="@string/pref_dev_info_paw_version_title"
+                android:summary="@string/pref_dev_info_default_summary"/>
+     
+     <Preference android:key="infoApIpAddress" 
+                android:title="@string/pref_dev_info_ap_ip_address"
+                android:summary="@string/pref_dev_info_default_summary"/>
+     
+     <Preference android:key="infoLocalPort" 
+                android:title="@string/pref_dev_info_local_port_title"
+                android:summary="@string/pref_dev_info_default_summary"/>
+     
+     <Preference android:key="infoUploads" 
+                android:title="@string/pref_dev_info_uploads_title"
+                android:summary="@string/pref_dev_info_default_summary"/>
+     
+     <Preference android:key="infoMessages" 
+                android:title="@string/pref_dev_info_messages_title"
+                android:summary="@string/pref_dev_info_default_summary"/>
+  
+</PreferenceScreen>

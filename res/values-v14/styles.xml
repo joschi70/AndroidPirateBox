@@ -1,0 +1,18 @@
+<resources>
+   	<style name="PirateBoxTheme" parent="android:style/Theme.Holo.Light">
+		<item name="android:windowNoTitle">false</item>
+		<item name="android:windowIsTranslucent">false</item>    
+	    <item name="android:windowContentOverlay">@null</item>
+	    <item name="android:windowIsFloating">false</item>
+	    <item name="android:actionBarStyle">@style/PirateBoxTheme.ActionBarStyle</item>
+    </style>
+    
+    <style name="PirateBoxTheme.ActionBarStyle" parent="android:style/Widget.Holo.Light.ActionBar">
+           <item name="android:icon">@drawable/ic_launcher</item>
+        <!-- 
+        <item name="android:background">@drawable/actionbar_background</item>
+        <item name="android:titleTextStyle">@style/AppTheme.ActionBar.TitleTextStyle</item>
+        <item name="android:indeterminateProgressStyle">@style/IndeterminateProgress</item>
+        -->
+    </style>
+</resources>

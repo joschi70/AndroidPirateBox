@@ -1,0 +1,18 @@
+Version: 0.3.1 beta
+Changes:
+    - WiFi bugfix
+Version: 0.3 beta
+Changes:
+    - Bug fixes
+    - Responsive design taken from PirateBox 1.0 beta3
+Version: 0.2 beta
+Changes:
+    - Bug Fixes
+    - "Autostart AP" setting
+    - Developer "Content to SD" option
+    - "About PirateBox" preference Activity
+    - AP listener should now also work for API 11 and up
+
+Version: 0.1 beta
+Changes:
+    - Initial version

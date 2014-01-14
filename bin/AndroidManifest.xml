@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.fun2code.android.piratebox"
+    android:versionCode="4"
+    android:versionName="0.3.1 beta" >
+
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14"/>
+    
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    
+    <application
+        android:icon="@drawable/ic_launcher_inv"
+        android:label="@string/app_name"
+        android:theme="@style/PirateBoxTheme"
+        android:allowBackup="true">
+        <activity
+            android:label="@string/app_name"
+            android:name=".PirateBoxActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".PreferencesActivity" android:label="@string/menu_preferences" />
+        <activity android:name=".InfoPreferencesActivity" android:label="@string/pref_dev_piratebox_info_title">
+             <intent-filter>
+                <action android:name=".InfoPreferencesActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".PirateBoxService" />
+         
+        <service android:name=".BootService" />
+        
+        <receiver android:name=".BootReceiver" android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
+        
+    </application>
+
+</manifest>

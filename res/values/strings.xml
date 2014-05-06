@@ -23,6 +23,9 @@
     <string name="pref_wp_ncsi_summary">Respond to Windows Phone NCSI requests</string>
     <string name="pref_ap_auto_start_title">Autostart AP</string>
     <string name="pref_ap_auto_start_summary">Start Access Point automatically, otherwise the AP has to be started manually</string>
+    <string name="pref_ap_ip_title">AP IP Number</string>
+    <string name="pref_ap_ip_summary">Change the Access Point IP Number if necessary</string>
+    <string name="pref_ap_ip_default">192.168.43.1</string>
     <string name="pref_dev_content_sd_title">Content to SD</string>
     <string name="pref_dev_content_sd_summary">Copy configuration and HTML files to SD card (\"piratebox\" folder)</string>
     <string name="pref_dev_piratebox_info_title">PirateBox Info</string>
@@ -30,10 +33,13 @@
     <string name="pref_dev_info_piratebox_version_title">PirateBox Version</string>
     <string name="pref_dev_info_paw_version_title">PAW Server Version</string>
     <string name="pref_dev_info_ap_ip_address">Access Point IP Address</string>
+    <string name="pref_dev_info_ip_address">Local IP Address</string>
     <string name="pref_dev_info_local_port_title">Local Port</string>
     <string name="pref_dev_info_uploads_title">Uploaded Files</string>
     <string name="pref_dev_info_messages_title">Messages</string>
     <string name="pref_dev_info_default_summary">-</string>
+    <string name="pref_dev_restore_dnsmasq_title">Restore \"dnsmasq\" Binary</string>
+    <string name="pref_dev_restore_dnsmasq_summary">Click to restore the original \"dnsmasq\" system binary</string>
     <string name="msg_setting_up_networking">Setting up networking, please wait...</string>
     <string name="msg_ap_up">AccessPoint is up</string>
     <string name="msg_ap_down">AccessPoint is down</string>
@@ -44,6 +50,13 @@
     <string name="msg_piratebox_up">PirateBox is running</string>
     <string name="msg_piratebox_down">PirateBox not running</string>
     <string name="chk_not_rooted">Device not rooted</string>
-    <string name="chk_missing_dnsmasq">Command \'dnsmasq\' not found</string>
-    <string name="chk_missing_iptables">Command \'iptables\' not found</string>
+    <string name="chk_missing_dnsmasq">Command \"dnsmasq\" not found</string>
+    <string name="chk_missing_dnsmasq_backup">Backup for \"dnsmasq\" could not be created</string>
+    <string name="chk_missing_iptables">Command \"iptables\" not found</string>
+    <string name="dialog_title_info">Info</string>
+    <string name="dialog_title_warning">Warning</string>
+    <string name="dialog_title_error">Error</string>
+    <string name="dialog_msg_wrap_error">The \"dnsmasq\" wrappper returned an error. The PirateBox might not work properly!</string>
+    <string name="dialog_msg_dnsmasq_restore_ok">The original \"dnsmasq\" has been restored.</string>
+    <string name="dialog_msg_dnsmasq_restore_error">The original \"dnsmasq\" could NOT be restored!</string>
 </resources>

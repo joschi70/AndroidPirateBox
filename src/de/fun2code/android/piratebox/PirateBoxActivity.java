@@ -6,16 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -31,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import de.fun2code.android.pawserver.PawServerActivity;
 import de.fun2code.android.piratebox.util.NetworkUtil;
+import de.fun2code.android.piratebox.util.NetworkUtil.WrapResult;
 import de.fun2code.android.piratebox.util.ShellUtil;
 
 /**
@@ -156,6 +154,9 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 			btnSwitch.startAnimation(blinkAnimation);
 			txtInfo.setText(R.string.msg_setting_up_networking);
 		}
+		
+		NetworkUtil netUtil = new NetworkUtil(this);
+		netUtil.createDnsMasqBackup();
 		
 		checkPreRequisites();
 	}
@@ -309,10 +310,26 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 		txtInfo.setText(getText(R.string.msg_ap_down));
 		checkStatus();
 	}
+	
+	@Override
+	public void dnsMasqWrapped(WrapResult result) {
+		// Show warning dialogue if the wrapper did not work properly
+		if(result != WrapResult.OK) {
+			new AlertDialog.Builder(this)
+			.setTitle(getText(R.string.dialog_title_warning))
+			.setMessage(R.string.dialog_msg_wrap_error)
+			.setPositiveButton(getText(android.R.string.ok), null)
+			.show();
+		}
+	}
+	
+	@Override
+	public void dnsMasqUnWrapped() {
+		
+	}
 
 	@Override
 	public void networkUp() {
-		System.out.println("networkUp");
 		imgNetwork.setVisibility(View.VISIBLE);
 		txtInfo.setText(getText(R.string.msg_networking_up));
 		checkStatus();
@@ -376,6 +393,7 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 		
 		checks.put(ShellUtil.SU_BIN, getString(R.string.chk_not_rooted));
 		checks.put(NetworkUtil.DNSMASQ_BIN, getString(R.string.chk_missing_dnsmasq));
+		checks.put(NetworkUtil.DNSMASQ_BIN_BACKUP, getString(R.string.chk_missing_dnsmasq_backup));
 		checks.put(NetworkUtil.IPTABLES_BIN, getString(R.string.chk_missing_iptables));
 		
 		ShellUtil shellUtil = new ShellUtil();

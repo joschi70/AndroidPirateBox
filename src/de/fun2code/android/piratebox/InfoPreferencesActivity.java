@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import de.fun2code.android.piratebox.util.NetworkUtil;
 
 /**
  * Activity that displays the info preference screen
@@ -79,7 +80,8 @@ public class InfoPreferencesActivity extends PreferenceActivity {
 		
 		// Show IP address an port
 		if(PirateBoxService.isRunning()) {
-			setStringSummary(Constants.PREF_DEV_INFO_AP_IP_ADDRESS, PirateBoxService.getApIp());
+			//setStringSummary(Constants.PREF_DEV_INFO_AP_IP_ADDRESS, NetworkUtil.getApIp(activity.getApplicationContext()));
+			setStringSummary(Constants.PREF_DEV_INFO_IP_ADDRESS, NetworkUtil.getLocalIpAddress());
 			setStringSummary(Constants.PREF_DEV_INFO_LOCAL_PORT, PirateBoxService.getServerPort());
 		}
 		

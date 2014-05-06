@@ -1,5 +1,7 @@
 package de.fun2code.android.piratebox;
 
+import de.fun2code.android.piratebox.util.NetworkUtil.WrapResult;
+
 /**
  * State changed listener interface
  * 
@@ -48,4 +50,16 @@ public interface StateChangedListener {
 	 * 					stopped, otherwiese {@code false}
 	 */
 	public void serverDown(boolean success);
+	
+	/**
+	 * Called aftre the dnsmasq has been executed
+	 * 
+	 * @param result	{@code WrapResult} result codes
+	 */
+	public void dnsMasqWrapped(WrapResult result);
+	
+	/**
+	 * Called after the dnsmasq backup has been restored
+	 */
+	public void dnsMasqUnWrapped();
 }

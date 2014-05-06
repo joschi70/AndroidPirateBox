@@ -1,14 +1,12 @@
 package de.fun2code.android.piratebox;
 
-import org.paw.util.FileUploadSplit;
-
-import de.fun2code.android.piratebox.util.FileUtil;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import de.fun2code.android.piratebox.util.FileUtil;
 
 /**
  * Boot receiver that listens to {@code android.intent.action.BOOT_COMPLETED}

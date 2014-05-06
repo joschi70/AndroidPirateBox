@@ -1,11 +1,15 @@
 package de.fun2code.android.piratebox;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 import de.fun2code.android.piratebox.util.NetworkUtil;
 import de.fun2code.android.piratebox.util.ShellUtil;
 
@@ -50,6 +54,31 @@ public class PreferencesActivity extends PreferenceActivity {
 	public void onResume() {
 		super.onResume();
 		preferences.registerOnSharedPreferenceChangeListener(prefChangeListener);
+		
+		/*
+		 * Handle the press of the restore dnsmawq backup preference button
+		 */
+		findPreference("restoreDnsMasq").setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				NetworkUtil netUtil = new NetworkUtil(activity.getApplicationContext());
+				boolean res = netUtil.unwrapDnsmasq();
+				
+				int resIdTitle = res ? R.string.dialog_title_info : R.string.dialog_title_error;
+				int resIdMessage = res ? R.string.dialog_msg_dnsmasq_restore_ok : R.string.dialog_msg_dnsmasq_restore_error;
+				
+				new AlertDialog.Builder(activity)
+				.setTitle(resIdTitle)
+				.setMessage(resIdMessage)
+				.setPositiveButton(getText(android.R.string.ok), null)
+				.show();
+				
+				return true;
+			}
+			
+			
+		});
 	}
 	
 	@Override

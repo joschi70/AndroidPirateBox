@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
+import de.fun2code.android.pawserver.util.Utils;
+
 /**
  * Support class to execute shell commands
  * 
@@ -149,4 +151,36 @@ public class ShellUtil {
 
 	}
 	
+	/**
+	 * Remounts /system
+	 * 
+	 * @param options	option to use, nomally {@code rw} of {@code ro}
+	 */
+	public void remountSystem(String options) {
+		String[] cmd = new String[] { "mount -o " + options + ",remount /system" };
+		execRootShell(cmd);
+	}
+	
+	
+	/**
+	 * Wait for a process with the given process name
+	 * 
+	 * @param processName	name of process to wait for
+	 * @param timeout		timeout in millis
+	 * @return				returns the process id or {@code -1} if no process was found
+	 */
+	public int waitForProcess(String processName, long timeout) {
+		long until = System.currentTimeMillis() + timeout;
+		
+		int id;
+		while((id = getProcessPid(processName)) == -1 && System.currentTimeMillis() < until) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return id;
+	}
 }

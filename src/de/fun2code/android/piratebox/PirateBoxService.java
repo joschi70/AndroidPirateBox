@@ -1,8 +1,10 @@
 package de.fun2code.android.piratebox;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,13 +12,13 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
-import android.net.wifi.WifiManager.WifiLock;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import de.fun2code.android.pawserver.PawServerService;
 import de.fun2code.android.pawserver.listener.ServiceListener;
 import de.fun2code.android.piratebox.util.NetworkUtil;
 import de.fun2code.android.piratebox.util.NetworkUtil.IpTablesAction;
+import de.fun2code.android.piratebox.util.NetworkUtil.WrapResult;
 import de.fun2code.android.piratebox.util.ShellUtil;
 
 
@@ -39,7 +41,6 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	
 	private static List<StateChangedListener> listeners = new ArrayList<StateChangedListener>();;
 	private static boolean apRunning, networkRunning, startingUp;
-	private static String apIp;
 	
 	
 	/**
@@ -61,9 +62,18 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	            	// If access point was enabled
 	            	case WIFI_AP_STATE_ENABLED:
 	            	case WifiManager.WIFI_STATE_ENABLED:
-	            		long timeout = 2000;
-	            		apIp = netUtil.getApIp(timeout);
 	            		apRunning = true;
+	            		
+	            		int pid = shellUtil.waitForProcess(NetworkUtil.DNSMASQ_BIN_BACKUP, 4000);
+	            		Log.i(TAG, "Process ID of " + NetworkUtil.DNSMASQ_BIN_BACKUP + ": " + pid);
+	            		
+	            		// Restore dnsmasq
+	            		netUtil.unwrapDnsmasq();
+	            		
+	            		// Inform about unwrap result
+	        			for(StateChangedListener listener : listeners) {
+	            			listener.dnsMasqUnWrapped();
+	            		}
 	            		
 	            		// Restore AP state
 						netUtil.setWifiApConfiguration(orgApConfig);
@@ -89,7 +99,6 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	            	case WifiManager.WIFI_STATE_DISABLED:
 						if (apRunning) {
 							unregisterReceiver(apReceiver);
-							apIp = null;
 							apRunning = false;
 	
 							for(StateChangedListener listener : listeners) {
@@ -136,11 +145,6 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		
 		// If starting the access point is handled by the user
 		if(!autoApStartup) {
-			long timeout = 2000;
-			apIp = netUtil.getApIp(timeout);
-			if(apIp == null) {
-				apIp = "127.0.0.1";
-			}
 			apRunning = true;
 			
 			for(StateChangedListener listener : listeners) {
@@ -157,7 +161,15 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		}
 		else {
 			Log.d(TAG, "Starting AccessPoint...");
+			WrapResult wrapResult = netUtil.wrapDnsmasq(NetworkUtil.getApIp(this));
+			
+			// Inform about wrap result
+			for(StateChangedListener listener : listeners) {
+			    listener.dnsMasqWrapped(wrapResult);
+			}
+								
 			startAp();
+			
 			return START_STICKY;
 		}
 	}
@@ -250,6 +262,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	 * of the access point.
 	 */
 	public void setupDnsmasq() {
+		String apIp = NetworkUtil.getApIp(this);
 		String baseIp = apIp.substring(0, apIp.lastIndexOf("."));
 		
 		if (shellUtil.getProcessPid(NetworkUtil.DNSMASQ_BIN) != -1) {
@@ -274,7 +287,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	 * @param action
 	 */
 	public void doRedirect(IpTablesAction action) {
-		netUtil.redirectPort(action, apIp, NetworkUtil.PORT_HTTP, Integer.valueOf(getServerPort()));
+		netUtil.redirectPort(action, NetworkUtil.getApIp(this), NetworkUtil.PORT_HTTP, Integer.valueOf(getServerPort()));
 	
 		for(StateChangedListener listener : listeners) {
 			if(action == IpTablesAction.IP_TABLES_ADD) {
@@ -335,15 +348,6 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	}
 	
 	/**
-	 * Returns the IP address of the access point
-	 * 
-	 * @return	IP address of access point
-	 */
-	public static String getApIp() {
-		return apIp;
-	}
-	
-	/**
 	 * Registers a StateChangedListener which will be informed if the 
 	 * state of access point, networking or web service changes
 	 * 
@@ -375,7 +379,9 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		intent.putExtra(Constants.INTENT_SERVER_EXTRA_STATE, true);
 		sendBroadcast(intent);
 		
-		setupDnsmasq();
+		// No longer used!!
+		//setupDnsmasq();
+		
 		doRedirect(IpTablesAction.IP_TABLES_ADD);
 		networkRunning = true;
 		startingUp = false;

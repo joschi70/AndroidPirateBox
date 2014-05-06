@@ -17,6 +17,7 @@ public class Constants {
 	public static final String TAG = "PirateBox";
 	public static final String PREF_START_ON_BOOT = "startOnBoot";
 	public static final String PREF_SSID_NAME = "ssidName";
+	public static final String PREF_AP_IP = "apIp";
 	public static final String PREF_STORAGE_DIR = "storageDir";
 	public static final String PREF_IOS_WISPR_SUPPORT = "iosWispr";
 	public static final String PREF_WP_NCSI_SUPPORT = "wpNcsi";
@@ -27,9 +28,13 @@ public class Constants {
 	public static final String PREF_DEV_INFO_PIRATEBOX_VERSION = "infoPirateBoxVersion";
 	public static final String PREF_DEV_INFO_PAW_VERSION = "infoPawVersion";
 	public static final String PREF_DEV_INFO_AP_IP_ADDRESS = "infoApIpAddress";
+	public static final String PREF_DEV_INFO_IP_ADDRESS = "infoIpAddress";
 	public static final String PREF_DEV_INFO_LOCAL_PORT = "infoLocalPort";
 	public static final String PREF_DEV_INFO_UPLOADS = "infoUploads";
 	public static final String PREF_DEV_INFO_MESSAGES = "infoMessages";
+	public static final String PREF_DEV_RESTORE_DNSMASQ = "restoreDnsMasq";
+	
+	public static final String AP_IP_DEFAULT = "192.168.43.1"; // Default AP IP address
 	
 	//public static final String DEV_SWITCH_FILE = Environment.getExternalStorageDirectory().getPath() + "/.piratebox_dev";
 	

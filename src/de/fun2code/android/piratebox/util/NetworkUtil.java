@@ -1,14 +1,27 @@
 package de.fun2code.android.piratebox.util;
 
+import java.io.File;
 import java.lang.reflect.Method;
+import java.net.Inet4Address;
+import java.net.Inet6Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 
-import de.fun2code.android.pawserver.util.Utils;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.preference.PreferenceManager;
+import android.util.Log;
+import de.fun2code.android.pawserver.PawServerActivity;
+import de.fun2code.android.pawserver.util.Utils;
+import de.fun2code.android.piratebox.Constants;
 
 public class NetworkUtil {
+	
 	private Context context;
 	private WifiManager wifiMgr;
 	private ConnectivityManager conMgr;
@@ -17,7 +30,13 @@ public class NetworkUtil {
 	public static int PORT_HTTPS = 443;
 	public static final String WIFI_INTERFACE = "wl0.1";
 	public static String DNSMASQ_BIN = "/system/bin/dnsmasq";
+	public static String DNSMASQ_BIN_BACKUP = DNSMASQ_BIN + ".pb.backup";
 	public static String IPTABLES_BIN = "iptables";
+	
+	public static enum WrapResult {
+		NO_BACKUP,
+		OK
+	}
 	
 	// IP tables actions
 	public enum IpTablesAction {
@@ -198,4 +217,137 @@ public class NetworkUtil {
 		  return shellUtil.execRootShell(iptablesCmds);
 		}
 	
+	/**
+	 * Wraps the /system/bin/dnsmasq command with a shell script that calls
+	 * the backup dnsmasq file with --address parameter
+	 * 
+	 * @param apIp	Acess Point IP address to use
+	 * @return		On success {@code WrapResult.OK} is returned, otherwise there was an error
+	 */
+	public WrapResult wrapDnsmasq(String apIp) {
+		// Check if backup exists
+		if(!new File(NetworkUtil.DNSMASQ_BIN_BACKUP).exists()) {
+			return WrapResult.NO_BACKUP;
+		}
+		
+		ShellUtil shellUtil = new ShellUtil();
+		shellUtil.remountSystem("rw");
+		
+		String[] cmd = new String[] { "echo '#!/system/bin/sh' > " + NetworkUtil.DNSMASQ_BIN,   "echo 'exec " + NetworkUtil.DNSMASQ_BIN_BACKUP + " --address=/#/"
+					+ apIp + " $*' >> " + NetworkUtil.DNSMASQ_BIN};
+		shellUtil.execRootShell(cmd);
+		
+		shellUtil.remountSystem("ro");
+		
+		return WrapResult.OK;
+	}
+	
+	/**
+	 * Restores the original /system/bin/dnsmasq from backup
+	 */
+	public boolean unwrapDnsmasq() {
+		if(!new File(NetworkUtil.DNSMASQ_BIN_BACKUP).exists()) {
+			return false;
+		}
+		
+		ShellUtil shellUtil = new ShellUtil();
+		shellUtil.remountSystem("rw");
+		
+		String[] cmd = new String[] {"cp -pr " + NetworkUtil.DNSMASQ_BIN_BACKUP + " " + NetworkUtil.DNSMASQ_BIN};
+		shellUtil.execRootShell(cmd);
+		
+		shellUtil.remountSystem("ro");
+		
+		return true;
+	}
+	
+	/**
+	 * Creates a backup of /system/bin/dnsmasq if necessary
+	 */
+	public boolean createDnsMasqBackup() {
+		if(!new File(NetworkUtil.DNSMASQ_BIN_BACKUP).exists()) {
+			ShellUtil shellUtil = new ShellUtil();
+			shellUtil.remountSystem("rw");
+			
+			String[] cmd = new String[] {"cp -pr " + NetworkUtil.DNSMASQ_BIN + " " + NetworkUtil.DNSMASQ_BIN_BACKUP};
+			shellUtil.execRootShell(cmd);
+			
+			shellUtil.remountSystem("ro");
+		}
+		
+		return new File(NetworkUtil.DNSMASQ_BIN_BACKUP).exists();
+	}
+	
+	/**
+	 * Returns the IP address of the access point
+	 * 
+	 * @return	IP address of access point
+	 */
+	public static String getApIp(Context context) {
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+		return preferences.getString(Constants.PREF_AP_IP, Constants.AP_IP_DEFAULT);
+	}
+	
+	/**
+	 * Returns the current IP Address
+	 * 
+	 * @return IP address
+	 */
+	public static String getLocalIpAddress() {
+		String ipv4 = null;
+		String ipv6 = null;
+		
+		try {
+			for (Enumeration<NetworkInterface> en = NetworkInterface
+					.getNetworkInterfaces(); en.hasMoreElements();) {
+				NetworkInterface intf = en.nextElement();
+				
+				/*
+				 * Skip inactive interfaces.
+				 */
+				try {
+					Method upMethod = intf.getClass().getMethod("isUp", new Class[] {});
+					
+					if(upMethod != null) {
+						Boolean isUp = (Boolean) upMethod.invoke(intf, new Object[] {});
+
+						if(!isUp) {
+							continue;
+						}
+					}
+				}
+				catch(Exception e) {
+					/*
+					 *  A NoSuchMethodException may occur.
+					 *  isUp() is only available since API level 9.
+					 */
+				}
+				
+				boolean ipFound = false;
+				
+				for (Enumeration<InetAddress> enumIpAddr = intf
+						.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+					InetAddress inetAddress = enumIpAddr.nextElement();
+					if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+						ipv4 = inetAddress.getHostAddress().toString();
+						ipFound = true;
+					}
+					else if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet6Address) {
+						ipv6 = inetAddress.getHostAddress().toString();
+						ipFound = true;
+					}
+				}
+				
+				// Wlan interface has priority. Break if found and IP available.
+				if(intf.getName().toLowerCase().startsWith("wlan") && ipFound) {
+					break;
+				}
+			}
+		} catch (SocketException ex) {
+			Log.e(PawServerActivity.TAG, ex.toString());
+		}
+		
+		// IPv4 has priority
+		return ipv4 != null ? ipv4  : ipv6;
+	}
 }

@@ -9,8 +9,8 @@
                 android:title="@string/pref_dev_info_paw_version_title"
                 android:summary="@string/pref_dev_info_default_summary"/>
      
-     <Preference android:key="infoApIpAddress" 
-                android:title="@string/pref_dev_info_ap_ip_address"
+     <Preference android:key="infoIpAddress" 
+                android:title="@string/pref_dev_info_ip_address"
                 android:summary="@string/pref_dev_info_default_summary"/>
      
      <Preference android:key="infoLocalPort" 

@@ -34,6 +34,14 @@
             android:key="autoApStartup"
             android:summary="@string/pref_ap_auto_start_summary"
             android:title="@string/pref_ap_auto_start_title" />
+        
+        <EditTextPreference
+	        android:defaultValue="@string/pref_ap_ip_default"
+	        android:key="apIp"
+	        android:password="false"
+	        android:singleLine="true"
+	        android:summary="@string/pref_ap_ip_summary"
+	        android:title="@string/pref_ap_ip_title" />
      </PreferenceCategory>
         
      <PreferenceCategory
@@ -57,6 +65,10 @@
             android:key="devContentSd"
             android:summary="@string/pref_dev_content_sd_summary"
             android:title="@string/pref_dev_content_sd_title" />
+        
+        <Preference android:key="restoreDnsMasq" 
+                android:title="@string/pref_dev_restore_dnsmasq_title"
+                android:summary="@string/pref_dev_restore_dnsmasq_summary"/>
      </PreferenceCategory>
      
      <PreferenceCategory

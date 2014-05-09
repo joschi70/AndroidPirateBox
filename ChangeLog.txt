@@ -1,5 +1,7 @@
 Version: 0.4.0 beta
     - Introduced "dnsmasq" wrapper. Should now work with Android 4.x devices.
+    - New preference options added: AP IP Number and Restore "dnsmasq" Binary
+    - Simple widget added
 
 Version: 0.3.1 beta
 Changes:

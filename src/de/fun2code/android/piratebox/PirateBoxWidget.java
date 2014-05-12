@@ -19,19 +19,18 @@ public class PirateBoxWidget extends AppWidgetProvider {
         int[] widgetIds = manager.getAppWidgetIds(new ComponentName(context, PirateBoxWidget.class));
    
         if(intent.getAction().equals(WIDGET_INTENT_CLICKED)) {
-        	// Set intermediate image
-        	RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-            views.setImageViewResource(R.id.widgetCanvas, R.drawable.widget_limbo);
-            manager.updateAppWidget(widgetIds, views);
-        	
         	Intent serviceIntent = new Intent(context, PirateBoxService.class);
         	
         	boolean serverRunning = PirateBoxService.isRunning();
+        	boolean startingUp = PirateBoxService.isStartingUp();
         	
-        	if(!serverRunning) {
+        	// Only start if not running an not starting up
+        	if(!serverRunning && !startingUp) {
+        		showIntermediateImage(context);
         		context.startService(serviceIntent);
         	}
         	else {
+        		showIntermediateImage(context);
         		context.stopService(serviceIntent);
         	}
         }
@@ -40,6 +39,21 @@ public class PirateBoxWidget extends AppWidgetProvider {
         }
         
         
+	}
+	
+	/**
+	 * Shows the intermediate image
+	 * 
+	 * @param context	Context to use
+	 */
+	private void showIntermediateImage(Context context) {
+		AppWidgetManager manager = AppWidgetManager.getInstance(context);
+        int[] widgetIds = manager.getAppWidgetIds(new ComponentName(context, PirateBoxWidget.class));
+		
+		// Set intermediate image
+    	RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+        views.setImageViewResource(R.id.widgetCanvas, R.drawable.widget_limbo);
+        manager.updateAppWidget(widgetIds, views);
 	}
 	
 	@Override

@@ -1,3 +1,6 @@
+Version: 0.4.2 beta
+    - Tapping widget twice no longer breaks tethering on next start
+
 Version: 0.4.1 beta
     - Widget images updated
 

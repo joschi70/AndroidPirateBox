@@ -1,3 +1,9 @@
+Version: 0.4.3 beta
+    - Port forwarding now also works if AP auto start is disabled
+    - On upload files with the same name are no longer overwritten
+      Instead a number (e.g. foo-1.png) is appended
+    - Droopy emulation added (file upload on port 8080)
+
 Version: 0.4.2 beta
     - Tapping widget twice no longer breaks tethering on next start
 

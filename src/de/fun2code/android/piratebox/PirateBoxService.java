@@ -38,6 +38,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	private PirateBoxService service;
 	private SharedPreferences preferences;
 	private boolean autoApStartup = true;
+	private boolean emulateDroopy = true;
 	
 	private static List<StateChangedListener> listeners = new ArrayList<StateChangedListener>();;
 	private static boolean apRunning, networkRunning, startingUp;
@@ -142,6 +143,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		autoApStartup = preferences.getBoolean(Constants.PREF_AUTO_AP_STARTUP, true);
+		emulateDroopy = preferences.getBoolean(Constants.PREF_EMULATE_DROOPY, true);
 		
 		// If starting the access point is handled by the user
 		if(!autoApStartup) {
@@ -287,7 +289,14 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	 * @param action
 	 */
 	public void doRedirect(IpTablesAction action) {
+		// Redirect port 80
 		netUtil.redirectPort(action, NetworkUtil.getApIp(this), NetworkUtil.PORT_HTTP, Integer.valueOf(getServerPort()));
+		
+		// Redirect port 8080 (Droopy support)
+		if(emulateDroopy) {
+			netUtil.redirectPort(action, NetworkUtil.getApIp(this), NetworkUtil.PORT_DROOPY, Integer.valueOf(getServerPort()));
+		}
+		
 	
 		for(StateChangedListener listener : listeners) {
 			if(action == IpTablesAction.IP_TABLES_ADD) {
@@ -381,7 +390,6 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		
 		// No longer used!!
 		//setupDnsmasq();
-		
 		doRedirect(IpTablesAction.IP_TABLES_ADD);
 		networkRunning = true;
 		startingUp = false;
@@ -398,6 +406,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		intent.putExtra(Constants.INTENT_SERVER_EXTRA_STATE, false);
 		sendBroadcast(intent);
 		
+		unregisterServiceListener(this);	
 	}
 	
 }

@@ -28,6 +28,7 @@ public class NetworkUtil {
 	
 	public static int PORT_HTTP = 80;
 	public static int PORT_HTTPS = 443;
+	public static int PORT_DROOPY = 8080;
 	public static final String WIFI_INTERFACE = "wl0.1";
 	public static String DNSMASQ_BIN = "/system/bin/dnsmasq";
 	public static String DNSMASQ_BIN_BACKUP = DNSMASQ_BIN + ".pb.backup";
@@ -285,7 +286,11 @@ public class NetworkUtil {
 	 */
 	public static String getApIp(Context context) {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-		return preferences.getString(Constants.PREF_AP_IP, Constants.AP_IP_DEFAULT);
+		boolean autoApStartup = preferences.getBoolean(Constants.PREF_AUTO_AP_STARTUP, true);
+		String apIp =  preferences.getString(Constants.PREF_AP_IP, Constants.AP_IP_DEFAULT);
+		
+		// If AP auto start is enabled return AP IP, otherwise return current WiFi IP
+		return autoApStartup ? apIp : getLocalIpAddress();
 	}
 	
 	/**

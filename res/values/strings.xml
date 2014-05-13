@@ -40,6 +40,8 @@
     <string name="pref_dev_info_default_summary">-</string>
     <string name="pref_dev_restore_dnsmasq_title">Restore \"dnsmasq\" Binary</string>
     <string name="pref_dev_restore_dnsmasq_summary">Click to restore the original \"dnsmasq\" system binary</string>
+    <string name="pref_emulate_droopy_title">Emulate Droopy</string>
+    <string name="pref_emulate_droopy_summary">Enable file uploads on port 8080</string>
     <string name="msg_setting_up_networking">Setting up networking, please wait...</string>
     <string name="msg_ap_up">AccessPoint is up</string>
     <string name="msg_ap_down">AccessPoint is down</string>

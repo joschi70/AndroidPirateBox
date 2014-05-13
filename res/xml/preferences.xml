@@ -34,6 +34,11 @@
             android:key="autoApStartup"
             android:summary="@string/pref_ap_auto_start_summary"
             android:title="@string/pref_ap_auto_start_title" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="emulateDroopy"
+            android:summary="@string/pref_emulate_droopy_summary"
+            android:title="@string/pref_emulate_droopy_title" />
         
         <EditTextPreference
 	        android:defaultValue="@string/pref_ap_ip_default"

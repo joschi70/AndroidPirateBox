@@ -39,10 +39,10 @@ public class Constants {
 	
 	//public static final String DEV_SWITCH_FILE = Environment.getExternalStorageDirectory().getPath() + "/.piratebox_dev";
 	
-	public static final String BROADCAST_INTENT_SERVER = "de.fun2code.android.piratebox.broadcast.intent.server";
+	public static final String BROADCAST_INTENT_SERVER = "de.fun2code.android.piratebox.broadcast.intent.SERVER";
 	public static final String INTENT_SERVER_EXTRA_STATE = "SERVER_STATE";
 	
-	public static final String BROADCAST_INTENT_AP = "de.fun2code.android.piratebox.broadcast.intent.ap";
+	public static final String BROADCAST_INTENT_AP = "de.fun2code.android.piratebox.broadcast.intent.AP";
 	public static final String INTENT_AP_EXTRA_STATE = "AP_STATE";
 	
 	public static final String BROADCAST_INTENT_NETWORK = "de.fun2code.android.piratebox.broadcast.intent.NETWORK";

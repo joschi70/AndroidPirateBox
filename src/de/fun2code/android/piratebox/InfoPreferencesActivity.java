@@ -21,6 +21,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import de.fun2code.android.piratebox.util.NetworkUtil;
+import de.fun2code.android.piratebox.util.PirateUtil;
 
 /**
  * Activity that displays the info preference screen
@@ -151,20 +152,7 @@ public class InfoPreferencesActivity extends PreferenceActivity {
 		new Thread() {
 			@Override
 			public void run() {
-				String storageDir = preferences.getString(Constants.PREF_STORAGE_DIR, activity.getResources().getString(R.string.pref_storage_dir_default));
-				File storageDirFile = new File(storageDir + "/uploads");
-				
-				uploads = 0;
-				
-				if(storageDirFile.isDirectory()) {
-					for(File file : storageDirFile.listFiles()) {
-						if(file.isFile()) {
-							uploads++;
-						}
-					}
-				}
-				
-				
+				uploads = PirateUtil.calculateUploads(activity.getApplicationContext());
 				updateUploads();
 			}
 		}.start();
@@ -178,37 +166,7 @@ public class InfoPreferencesActivity extends PreferenceActivity {
 		new Thread() {
 			@Override
 			public void run() {
-				String storageDir = preferences.getString(Constants.PREF_STORAGE_DIR, activity.getResources().getString(R.string.pref_storage_dir_default));
-				File chatFile = new File(storageDir + "/chat/data.bso");
-				
-				messages = 0;
-				
-				if(chatFile.exists()) {
-					BufferedReader br = null;
-					
-					try {
-						DataInputStream in = new DataInputStream(new FileInputStream(chatFile));
-						br = new BufferedReader(new InputStreamReader(in));
-						String line;
-						
-						while ((line = br.readLine()) != null)   {
-						  messages++;
-						}
-					}
-					catch(IOException e) {
-						Log.e(Constants.TAG, "Unable to count messages");
-					}
-					finally {
-						if(br != null) {
-							try {
-								br.close();
-							} catch (IOException e) {
-								// Game over, ignore
-							}
-						}
-					}
-				}
-				
+				messages = PirateUtil.calculateMessages(activity.getApplicationContext());
 				updateMessages();
 			}
 		}.start();

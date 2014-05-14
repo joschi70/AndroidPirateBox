@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import de.fun2code.android.pawserver.PawServerActivity;
 import de.fun2code.android.piratebox.util.NetworkUtil;
+import de.fun2code.android.piratebox.util.PirateUtil;
 import de.fun2code.android.piratebox.util.NetworkUtil.WrapResult;
 import de.fun2code.android.piratebox.util.ShellUtil;
 
@@ -54,7 +55,6 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		INSTALL_DIR = Constants.getInstallDir(this.getApplicationContext());
 		

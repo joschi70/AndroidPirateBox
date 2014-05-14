@@ -40,21 +40,27 @@ public class Constants {
 	//public static final String DEV_SWITCH_FILE = Environment.getExternalStorageDirectory().getPath() + "/.piratebox_dev";
 	
 	public static final String BROADCAST_INTENT_SERVER = "de.fun2code.android.piratebox.broadcast.intent.server";
-	public static final String INTENT_SERVER_EXTRA_STATE = "state";
+	public static final String INTENT_SERVER_EXTRA_STATE = "SERVER_STATE";
 	
 	public static final String BROADCAST_INTENT_AP = "de.fun2code.android.piratebox.broadcast.intent.ap";
-	public static final String INTENT_AP_EXTRA_STATE = "state";
+	public static final String INTENT_AP_EXTRA_STATE = "AP_STATE";
 	
-	public static final String BROADCAST_INTENT_NETWORK = "de.fun2code.android.piratebox.broadcast.intent.network";
-	public static final String INTENT_NETWORK_EXTRA_STATE = "state";
+	public static final String BROADCAST_INTENT_NETWORK = "de.fun2code.android.piratebox.broadcast.intent.NETWORK";
+	public static final String INTENT_NETWORK_EXTRA_STATE = "NETWORK_STATE";
 	
-	public static final String BROADCAST_INTENT_SHOUT = "de.fun2code.android.piratebox.broadcast.intent.shout";
-	public static final String INTENT_SHOUT_EXTRA_NAME = "name";
-	public static final String INTENT_SHOUT_EXTRA_TEXT = "text";
+	public static final String BROADCAST_INTENT_SHOUT = "de.fun2code.android.piratebox.broadcast.intent.SHOUT";
+	public static final String INTENT_SHOUT_EXTRA_NAME = "SHOUT_NAME";
+	public static final String INTENT_SHOUT_EXTRA_TEXT = "SHOUT_TEXT";
+	public static final String INTENT_SHOUT_EXTRA_NUMBER = "SHOUT_NUMBER";
+	public static final String INTENT_SHOUT_EXTRA_DIR = "SHOUT_DIR";
 	
-	public static final String BROADCAST_INTENT_UPLOAD = "de.fun2code.android.piratebox.broadcast.intent.upload";
-	public static final String INTENT_UPLOAD_EXTRA_FILE = "file";
+	public static final String BROADCAST_INTENT_UPLOAD = "de.fun2code.android.piratebox.broadcast.intent.UPLOAD";
+	public static final String INTENT_UPLOAD_EXTRA_FILE = "UPLOAD_FILE";
+	public static final String INTENT_UPLOAD_EXTRA_NUMBER = "UPLOAD_NUMBER";
+	public static final String INTENT_UPLOAD_EXTRA_DIR = "UPLOAD_DIR";
 	
+	public static final String BROADCAST_INTENT_STATUS_REQUEST = "de.fun2code.android.piratebox.broadcast.intent.STATUS_REQUEST";
+	public static final String BROADCAST_INTENT_STATUS_RESULT = "de.fun2code.android.piratebox.broadcast.intent.STATUS_RESULT";
 	
 	public static String getInstallDir(Context context) {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);

@@ -27,7 +27,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -59,6 +58,15 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="de.fun2code.android.pawserver.widget.intent.update" />
                 <action android:name="de.fun2code.android.piratebox.widget.intent.clicked" />
+            </intent-filter>
+        </receiver>
+        
+        <receiver android:name=".receiver.StatusRequestReceiver" >
+            <intent-filter>
+                <action android:name="de.fun2code.android.piratebox.broadcast.intent.STATUS_REQUEST" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="de.fun2code.android.piratebox.broadcast.intent.STATUS_RESULT" />
             </intent-filter>
         </receiver>
         

@@ -83,6 +83,25 @@
             </intent-filter>
         </receiver>
         
+                <!-- Locale plug-in -->
+        <!-- This is the "edit" Activity. The mdpi icon should be 32x32. The hdpi 
+            icon should be 48x48. Locale will scale the icons if necessary, but providing 
+            pre-scaled versions will improve quality and performance. -->
+        <activity android:name=".plugin.locale.EditActivity"
+            android:label="@string/app_name" android:icon="@drawable/ic_launcher_2">
+            <!-- this Intent filter allows the plug-in to be discovered by Locale -->
+            <intent-filter>
+                <action android:name="com.twofortyfouram.locale.intent.action.EDIT_SETTING" />
+            </intent-filter>
+        </activity>
+        <!-- This is the "fire" BroadcastReceiver -->
+        <receiver android:name=".plugin.locale.FireReceiver">
+            <!-- this Intent filter allows the plug-in to be fired -->
+            <intent-filter>
+                <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
+            </intent-filter>
+        </receiver>
+        
     </application>
 
 </manifest>

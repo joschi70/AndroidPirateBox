@@ -61,6 +61,19 @@
             </intent-filter>
         </receiver>
         
+        <receiver android:name=".widget.InfoWidget" android:label="@string/widget_info_label">
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_configuration" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="de.fun2code.android.piratebox.infowidget.intent.clicked" />
+                <action android:name="de.fun2code.android.piratebox.broadcast.intent.STATUS_RESULT" />
+                <action android:name="de.fun2code.android.piratebox.broadcast.intent.SERVER" />
+                <action android:name="de.fun2code.android.piratebox.broadcast.intent.UPLOAD" />
+                <action android:name="de.fun2code.android.piratebox.broadcast.intent.SHOUT" />
+            </intent-filter>
+        </receiver>
+        
         <receiver android:name=".receiver.StatusRequestReceiver" >
             <intent-filter>
                 <action android:name="de.fun2code.android.piratebox.broadcast.intent.STATUS_REQUEST" />

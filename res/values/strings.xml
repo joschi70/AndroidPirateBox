@@ -64,4 +64,6 @@
     <string name="widget_info_label">PirateBox Info</string>
     <string name="widget_info_shouts">Shouts</string>
     <string name="widget_info_uploads">Uploads</string>
+    <string name="locale_on">ON</string>
+    <string name="locale_off">OFF</string>
 </resources>

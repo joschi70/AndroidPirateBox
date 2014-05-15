@@ -51,7 +51,7 @@
             </intent-filter>
         </receiver>
         
-        <receiver android:name=".PirateBoxWidget">
+        <receiver android:name="de.fun2code.android.piratebox.widget.PirateBoxWidget">
             <meta-data android:name="android.appwidget.provider"
                 android:resource="@xml/widget_configuration" />
             <intent-filter>

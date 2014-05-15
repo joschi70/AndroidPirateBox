@@ -1,5 +1,10 @@
-package de.fun2code.android.piratebox;
+package de.fun2code.android.piratebox.widget;
 
+import de.fun2code.android.piratebox.PirateBoxService;
+import de.fun2code.android.piratebox.R;
+import de.fun2code.android.piratebox.R.drawable;
+import de.fun2code.android.piratebox.R.id;
+import de.fun2code.android.piratebox.R.layout;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;

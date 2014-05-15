@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/LinearLayout01" android:layout_height="wrap_content" xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:paddingTop="5sp">
+<TableLayout 
+	android:id="@+id/frame" android:layout_width="fill_parent"
+	android:stretchColumns="1" android:layout_height="wrap_content">
+	<TableRow>     
+    <ImageView android:id="@+id/ImageView01" android:src="@drawable/ic_launcher_2" android:layout_height="fill_parent" android:layout_width="fill_parent"></ImageView><TextView android:id="@+id/TextView01" android:layout_height="fill_parent" android:text="@string/app_name" android:textStyle="bold" android:gravity="center_vertical" android:textColor="#000000" android:paddingLeft="10sp"></TextView>
+		<ToggleButton android:text="@+id/ToggleButton01"
+			android:textOff="@string/locale_off"
+			android:textOn="@string/locale_on" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:id="@+id/LocaleToggleButton"></ToggleButton>
+	
+
+</TableRow>
+
+	
+
+</TableLayout>
+</LinearLayout>

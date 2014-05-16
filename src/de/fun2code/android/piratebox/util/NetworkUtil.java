@@ -179,7 +179,7 @@ public class NetworkUtil {
 	}
 	
 	/**
-	 * Turns mobile data on or aff
+	 * Turns mobile data on or off
 	 * 
 	 * @param enable	{@code true} to enable mobile data, otherwise {@code false}
 	 * @return			{@code true} if the operation succeeded

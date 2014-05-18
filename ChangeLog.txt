@@ -1,3 +1,7 @@
+Version: -
+    - Updated CSS to work better with IE
+    - New detects if WiFi is enabled externally and shuts down the PirateBox without restoring previous WiFi sate
+
 Version: 0.4.4 beta
     - Other apps can now request the status of the PirateBox via broadcast
     - New info widget displaying upload and shout count

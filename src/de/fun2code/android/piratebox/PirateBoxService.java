@@ -63,35 +63,37 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	            	// If access point was enabled
 	            	case WIFI_AP_STATE_ENABLED:
 	            	case WifiManager.WIFI_STATE_ENABLED:
-	            		apRunning = true;
-	            		
-	            		int pid = shellUtil.waitForProcess(NetworkUtil.DNSMASQ_BIN_BACKUP, 4000);
-	            		Log.i(TAG, "Process ID of " + NetworkUtil.DNSMASQ_BIN_BACKUP + ": " + pid);
-	            		
-	            		// Restore dnsmasq
-	            		netUtil.unwrapDnsmasq();
-	            		
-	            		// Inform about unwrap result
-	        			for(StateChangedListener listener : listeners) {
-	            			listener.dnsMasqUnWrapped();
+	            		if(!apRunning) {
+		            		apRunning = true;
+		            		
+		            		int pid = shellUtil.waitForProcess(NetworkUtil.DNSMASQ_BIN_BACKUP, 4000);
+		            		Log.i(TAG, "Process ID of " + NetworkUtil.DNSMASQ_BIN_BACKUP + ": " + pid);
+		            		
+		            		// Restore dnsmasq
+		            		netUtil.unwrapDnsmasq();
+		            		
+		            		// Inform about unwrap result
+		        			for(StateChangedListener listener : listeners) {
+		            			listener.dnsMasqUnWrapped();
+		            		}
+		            		
+		            		// Restore AP state
+							netUtil.setWifiApConfiguration(orgApConfig);
+		            		
+		            		for(StateChangedListener listener : listeners) {
+		            			listener.apEnabled(autoApStartup);
+		            		}
+		            		
+		            		Intent apUpIntent = new Intent(Constants.BROADCAST_INTENT_AP);
+		            		apUpIntent.putExtra(Constants.INTENT_AP_EXTRA_STATE, true);
+		            		sendBroadcast(apUpIntent);
+		            		
+		            		Intent serviceIntent = new Intent(service,
+		            				PirateBoxService.class);
+	
+		            		startService(serviceIntent);
 	            		}
-	            		
-	            		// Restore AP state
-						netUtil.setWifiApConfiguration(orgApConfig);
-	            		
-	            		for(StateChangedListener listener : listeners) {
-	            			listener.apEnabled(autoApStartup);
-	            		}
-	            		
-	            		Intent apUpIntent = new Intent(Constants.BROADCAST_INTENT_AP);
-	            		apUpIntent.putExtra(Constants.INTENT_AP_EXTRA_STATE, true);
-	            		sendBroadcast(apUpIntent);
-	            		
-	            		Intent serviceIntent = new Intent(service,
-	            				PirateBoxService.class);
-
-	            		startService(serviceIntent);
-	            		
+	            			            		
 	            		break;
 	            	// If access point was disabled
 	            	case WIFI_AP_STATE_DISABLING:
@@ -109,6 +111,14 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 							Intent apDownIntent = new Intent(Constants.BROADCAST_INTENT_AP);
 							apDownIntent.putExtra(Constants.INTENT_AP_EXTRA_STATE, false);
 		            		sendBroadcast(apDownIntent);
+		            		
+		            		/*
+		            		 *  If server is running, stop it
+		            		 *  AP might have been stopped by external (user or app)
+		            		 */
+		            		if(PirateBoxService.isRunning()) {
+		            			service.stopSelf();
+		            		}
 													
 						}
 	            		break;
@@ -215,8 +225,20 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	 * Stops the access point
 	 */
 	public void stopAp() {
+		boolean restoreWiFi = true;
+		
+		// If AP has been stop from external (user/app), do not restore WiFi state
+		if(!apRunning) {
+			restoreWiFi = false;
+			Log.i(TAG, "AP stopped from external ... do not restore WiFi");
+		}
+		
 		netUtil.setWifiApEnabled(null, false);
-		netUtil.setWifiEnabled(orgWifiState);
+		
+		if(restoreWiFi) {
+			netUtil.setWifiEnabled(orgWifiState);
+		}
+		
 		netUtil.setMobileDataEnabled(orgMobileDataState);
 	}
 	

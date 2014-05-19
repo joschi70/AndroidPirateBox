@@ -84,107 +84,6 @@ public class InfoWidget extends AppWidgetProvider {
 		//views.setTextViewText(R.id.textStatus, serverStatus ? "up" : "down");
 		views.setTextViewText(R.id.textUploads, String.valueOf(uploads));
 		views.setTextViewText(R.id.textShouts, String.valueOf(shouts));
-
-//		Location location = CacheStumblerWidgetService.location;
-//		CacheInfo cache = CacheStumblerWidgetService.cache;
-//
-//		if (cache != null && location != null) {
-//			views.setTextViewText(R.id.textCacheName,
-//					Html.fromHtml(cache.getName()));
-//
-//			views.setTextViewText(R.id.textType, cache.getType());
-//
-//			views.setTextViewText(R.id.textAccuracy,
-//					(int) Math.round(location.getAccuracy()) + "m");
-//			views.setTextViewText(R.id.textDistance,
-//					(int) Math.round(CacheStumblerWidgetService.cacheDistance)
-//							+ "m");
-//			views.setTextViewText(R.id.textProvider, location.getProvider());
-//
-//			views.setTextViewText(R.id.textDifficultyTerrain,
-//					cache.getDifficulty() + "/" + cache.getTerrain());
-//
-//			float bearing = CacheStumblerWidgetService.cacheBearing;
-//			
-//			// Hide progessbar
-//			views.setViewVisibility(R.id.progressBarWrapper, View.GONE);
-//
-//			if (bearing != -1
-//					&& CacheStumblerWidgetService.cacheDistance > location
-//							.getAccuracy()) {
-//
-//				Options options = new BitmapFactory.Options();
-//				// do not scale
-//				options.inScaled = false;
-//				Bitmap bitmap = BitmapFactory.decodeResource(
-//						context.getResources(), R.drawable.direction_small,
-//						options);
-//				Matrix matrix = new Matrix();
-//				// matrix.postRotate(bearing * -1);
-//				matrix.postRotate(bearing);
-//				bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-//						bitmap.getHeight(), matrix, true);
-//
-//				views.setImageViewBitmap(R.id.imageDirection, bitmap);
-//			} else {
-//				views.setImageViewResource(R.id.imageDirection,
-//						R.drawable.na_large);
-//			}
-//			
-//			// Show image
-//			views.setViewVisibility(R.id.imageDirection,
-//					View.VISIBLE);
-//			
-//			views.setViewVisibility(R.id.linearLayoutLoading, View.GONE);
-//
-//			views.setViewVisibility(R.id.linearLayoutTitle, View.VISIBLE);
-//			views.setViewVisibility(R.id.linearLayoutInfoLine1, View.VISIBLE);
-//			views.setViewVisibility(R.id.linearLayoutInfoLine2, View.VISIBLE);
-//
-//			Intent intent = new Intent(context,
-//					CacheStumblerWidgetActivity.class);
-//			PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
-//					intent, 0);
-//			views.setOnClickPendingIntent(R.id.main, pendingIntent);
-//
-//		}
-//		// Show no value
-//		else {
-//			// Hide image
-//			views.setImageViewResource(R.id.imageDirection, R.drawable.na_large);
-//			views.setViewVisibility(R.id.imageDirection, View.GONE);
-//
-//			// Show progessbar
-//			views.setViewVisibility(R.id.progressBarWrapper, View.VISIBLE);
-//			
-//			views.setViewVisibility(R.id.linearLayoutTitle, View.GONE);
-//			views.setViewVisibility(R.id.linearLayoutInfoLine1, View.GONE);
-//			views.setViewVisibility(R.id.linearLayoutInfoLine2, View.GONE);
-//			
-//			views.setViewVisibility(R.id.linearLayoutLoading, View.VISIBLE);
-//
-//			/*
-//			 * Disable the onClick, by using an Intent that will trigger noting
-//			 */
-//			Intent intent = new Intent(context, InfoWidget.class);
-//			PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
-//					intent, 0);
-//			views.setOnClickPendingIntent(R.id.main, pendingIntent);
-//		}
-//
-//		// Check if we have to display special icons
-//		if (cache != null
-//				&& location != null
-//				&& CacheStumblerWidgetService.cacheDistance <= location
-//						.getAccuracy()
-//				&& location.getAccuracy() <= MIN_ACCURACY) {
-//			views.setImageViewResource(R.id.imageDirection,
-//					R.drawable.circle_large);
-//		} else if (cache != null && location != null 
-//				&& CacheStumblerWidgetService.cacheDistance <= location
-//						.getAccuracy()) {
-//			views.setImageViewResource(R.id.imageDirection, R.drawable.na_large);
-//		}
 		
 		Intent msg = new Intent(WIDGET_INTENT_CLICKED);
         PendingIntent intent = PendingIntent.getBroadcast(context, -1 /*not used*/, msg, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -196,27 +95,13 @@ public class InfoWidget extends AppWidgetProvider {
 	@Override
 	public void onDisabled(Context context) {
 		super.onDisabled(context);
-
-//		Intent serviceIntent = new Intent(context,
-//				CacheStumblerWidgetService.class);
-//		context.stopService(serviceIntent);
 	}
 
 	@Override
 	public void onEnabled(Context context) {
 		super.onEnabled(context);
 		
-
-//		Intent serviceIntent = new Intent(context,
-//				CacheStumblerWidgetService.class);
-//		context.startService(serviceIntent);
-		/*
-		 * // Init currentLocation = getBestLocation();
-		 * 
-		 * AppWidgetManager manager = AppWidgetManager.getInstance(ctx); int[]
-		 * widgetIds = manager.getAppWidgetIds(new ComponentName(ctx,
-		 * CacheStumblerWidget.class)); showWidget(ctx, manager, widgetIds);
-		 */
+		context.sendBroadcast(new Intent(BROADCAST_INTENT_STATUS_REQUEST));
 	}
 
 }

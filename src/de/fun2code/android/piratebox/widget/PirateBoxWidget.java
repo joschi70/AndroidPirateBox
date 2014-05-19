@@ -34,7 +34,8 @@ public class PirateBoxWidget extends AppWidgetProvider {
         		showIntermediateImage(context);
         		context.startService(serviceIntent);
         	}
-        	else {
+        	// Only stop service, if service is running
+        	else if(serverRunning) {
         		showIntermediateImage(context);
         		context.stopService(serviceIntent);
         	}

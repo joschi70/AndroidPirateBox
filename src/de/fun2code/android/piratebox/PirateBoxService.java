@@ -32,7 +32,7 @@ import de.fun2code.android.piratebox.util.ShellUtil;
 public class PirateBoxService extends PawServerService implements ServiceListener {
 	private WifiConfiguration orgApConfig;
 	private boolean orgWifiState;
-	private boolean orgMobileDataState;
+	//private boolean orgMobileDataState; // Not needed
 	private NetworkUtil netUtil;
 	private ShellUtil shellUtil;
 	private PirateBoxService service;
@@ -138,7 +138,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		
 		// Save original WiFi state, mobile data state and access point configuration 
 		orgWifiState = netUtil.isWifiEnabled();
-		orgMobileDataState = netUtil.getMobileDataEnabled();
+		//orgMobileDataState = netUtil.getMobileDataEnabled(); // Not needed
 		orgApConfig = netUtil.getWifiApConfiguration();
 		
 		/*
@@ -210,7 +210,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	public void startAp() {	
 		startingUp = true;
 		netUtil.setWifiEnabled(false);
-		netUtil.setMobileDataEnabled(true); // Has to be enabled
+		//netUtil.setMobileDataEnabled(true); // Not needed
 		netUtil.setWifiApEnabled(null, false);
 		
 		IntentFilter filter = new IntentFilter("android.net.wifi.WIFI_AP_STATE_CHANGED");
@@ -239,7 +239,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 			netUtil.setWifiEnabled(orgWifiState);
 		}
 		
-		netUtil.setMobileDataEnabled(orgMobileDataState);
+		//netUtil.setMobileDataEnabled(orgMobileDataState); // Not needed
 	}
 	
 	

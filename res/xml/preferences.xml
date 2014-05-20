@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:piratebox="http://fun2code.de/apk/res/piratebox">
 
     <CheckBoxPreference
         android:defaultValue="false"
@@ -47,6 +48,15 @@
 	        android:singleLine="true"
 	        android:summary="@string/pref_ap_ip_summary"
 	        android:title="@string/pref_ap_ip_title" />
+        
+        <de.fun2code.android.piratebox.preference.CustomServerSettingEditTextPreference
+            android:title="@string/pref_upload_size_title"
+            android:summary="@string/pref_upload_size_summary"
+            android:singleLine="true"
+            android:password="false"
+            android:numeric="integer"
+            android:defaultValue="209715200"
+            piratebox:setting="maxPost"/>
      </PreferenceCategory>
         
      <PreferenceCategory

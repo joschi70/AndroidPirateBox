@@ -25,6 +25,8 @@
     <string name="pref_ap_auto_start_summary">Start Access Point automatically, otherwise the AP has to be started manually</string>
     <string name="pref_ap_ip_title">AP IP Number</string>
     <string name="pref_ap_ip_summary">Change the Access Point IP Number if necessary</string>
+    <string name="pref_upload_size_title">Upload Size</string>
+    <string name="pref_upload_size_summary">The upload size limit in bytes.\nTo take effect the PirateBox has to be restarted.</string>
     <string name="pref_ap_ip_default">192.168.43.1</string>
     <string name="pref_dev_content_sd_title">Content to SD</string>
     <string name="pref_dev_content_sd_summary">Copy configuration and HTML files to SD card (\"piratebox\" folder)</string>

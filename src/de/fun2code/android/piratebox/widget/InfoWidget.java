@@ -56,10 +56,15 @@ public class InfoWidget extends AppWidgetProvider {
 				.equals(BROADCAST_INTENT_SHOUT)) {
 			shouts++;
 		}
-		else if (intent.getAction()
-				.equals(WIDGET_INTENT_CLICKED)){
+		else if(intent.getAction()
+				.equals(WIDGET_INTENT_CLICKED) || 
+				intent.getAction()
+				.equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)) {
+			// Send broadcast to request info
 			context.sendBroadcast(new Intent(BROADCAST_INTENT_STATUS_REQUEST));
 		}
+		
+		
 		showWidget(context, manager, widgetIds);
 
 	}

@@ -1,10 +1,8 @@
 package de.fun2code.android.piratebox;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -42,7 +40,6 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	
 	private static List<StateChangedListener> listeners = new ArrayList<StateChangedListener>();;
 	private static boolean apRunning, networkRunning, startingUp;
-	
 	
 	/**
 	 * Broadcast receiver which receives access point state change notifications
@@ -266,8 +263,8 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		isRuntime = false;
 		serverConfig = Constants.getInstallDir(this) + "/conf/server.xml";
 		pawHome = Constants.getInstallDir(this) + "/";
-		useWakeLock = false;
-		useWifiLock = true;
+		useWakeLock = preferences.getBoolean(Constants.PREF_KEEP_DEVICE_ON, false);
+		useWifiLock = preferences.getBoolean(Constants.PREF_KEEP_DEVICE_ON, false);
 		hideNotificationIcon = false;
 		execAutostartScripts = false;
 		showUrlInNotification = false;
@@ -410,8 +407,6 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		intent.putExtra(Constants.INTENT_SERVER_EXTRA_STATE, true);
 		sendBroadcast(intent);
 		
-		// No longer used!!
-		//setupDnsmasq();
 		doRedirect(IpTablesAction.IP_TABLES_ADD);
 		networkRunning = true;
 		startingUp = false;
@@ -428,7 +423,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		intent.putExtra(Constants.INTENT_SERVER_EXTRA_STATE, false);
 		sendBroadcast(intent);
 		
-		unregisterServiceListener(this);	
+		unregisterServiceListener(this);
 	}
 	
 }

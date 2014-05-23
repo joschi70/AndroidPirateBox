@@ -1,3 +1,6 @@
+Version: 0.4.6 beta
+    - Preference option "Keep Device On" added
+    
 Version: 0.4.5 beta
     - Updated CSS to work better with IE
     - New detects if WiFi is enabled externally and shuts down the PirateBox without restoring previous WiFi sate

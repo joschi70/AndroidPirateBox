@@ -41,6 +41,7 @@
     <string name="pref_dev_info_local_port_title">Local Port</string>
     <string name="pref_dev_info_uploads_title">Uploaded Files</string>
     <string name="pref_dev_info_messages_title">Messages</string>
+    <string name="pref_dev_info_connections_title">Total Connections</string>
     <string name="pref_dev_info_default_summary">-</string>
     <string name="pref_dev_restore_dnsmasq_title">Restore \"dnsmasq\" Binary</string>
     <string name="pref_dev_restore_dnsmasq_summary">Click to restore the original \"dnsmasq\" system binary</string>

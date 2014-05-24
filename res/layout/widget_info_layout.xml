@@ -29,26 +29,30 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/piratebox_text" />
-<!--  
-        <TextView
-            android:id="@+id/titleStatus"
+ 
+
+                <TextView
+            android:id="@+id/titleConnections"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PirateBox Status"
+            android:text="@string/widget_info_connections"
             android:gravity="center"
-            android:background="#40ff0000"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:visibility="gone"/>
+            android:background="#aaff0000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
         <TextView
-            android:id="@+id/textStatus"
+            android:id="@+id/textConnections"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="-"
+            android:text="@string/pref_dev_info_default_summary"
             android:gravity="center"
-            android:paddingBottom="10dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:visibility="gone"/>
--->
+            android:background="#80ff0000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
         <TextView
             android:id="@+id/titleUploads"
             android:layout_width="match_parent"
@@ -63,7 +67,7 @@
             android:id="@+id/textUploads"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="-"
+            android:text="@string/pref_dev_info_default_summary"
             android:gravity="center"
             android:background="#80ff0000"
             android:layout_marginLeft="10dp"
@@ -85,7 +89,7 @@
             android:id="@+id/textShouts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="-"
+            android:text="@string/pref_dev_info_default_summary"
             android:gravity="center"
             android:background="#80ff0000"
             android:layout_marginLeft="10dp"

@@ -67,6 +67,7 @@
     <string name="dialog_msg_dnsmasq_restore_ok">The original \"dnsmasq\" has been restored.</string>
     <string name="dialog_msg_dnsmasq_restore_error">The original \"dnsmasq\" could NOT be restored!</string>
     <string name="widget_info_label">PirateBox Info</string>
+    <string name="widget_info_connections">Connections</string>
     <string name="widget_info_shouts">Shouts</string>
     <string name="widget_info_uploads">Uploads</string>
     <string name="locale_on">ON</string>

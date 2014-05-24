@@ -71,6 +71,7 @@
                 <action android:name="de.fun2code.android.piratebox.broadcast.intent.SERVER" />
                 <action android:name="de.fun2code.android.piratebox.broadcast.intent.UPLOAD" />
                 <action android:name="de.fun2code.android.piratebox.broadcast.intent.SHOUT" />
+                <action android:name="de.fun2code.android.piratebox.broadcast.intent.CONNECTION" />
             </intent-filter>
         </receiver>
         

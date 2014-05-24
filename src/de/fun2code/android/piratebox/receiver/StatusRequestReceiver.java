@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import de.fun2code.android.piratebox.Constants;
 import de.fun2code.android.piratebox.PirateBoxService;
 import de.fun2code.android.piratebox.R;
+import de.fun2code.android.piratebox.handler.ConnectionCountHandler;
 import de.fun2code.android.piratebox.util.PirateUtil;
 
 /**
@@ -52,6 +53,10 @@ public class StatusRequestReceiver extends BroadcastReceiver {
 					PirateUtil.calculateUploads(context));
 			resultIntent.putExtra(Constants.INTENT_SHOUT_EXTRA_NUMBER,
 					PirateUtil.calculateMessages(context));
+			resultIntent.putExtra(Constants.INTENT_CONNECTION_EXTRA_NUMBER,
+					ConnectionCountHandler.getConnectionCount());
+			resultIntent.putExtra(Constants.INTENT_SESSION_EXTRA_NUMBER,
+					ConnectionCountHandler.getSessionCount());
 			
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 

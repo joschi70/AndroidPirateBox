@@ -12,16 +12,9 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        >
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@drawable/appwidget_bg"
         >
-        
-        <ImageView
+     <ImageView
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
@@ -29,9 +22,13 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/piratebox_text" />
- 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:gravity="center_vertical"
+        android:orientation="vertical" >     
 
-                <TextView
+        <TextView
             android:id="@+id/titleConnections"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

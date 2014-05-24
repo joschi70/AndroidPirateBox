@@ -24,5 +24,9 @@
      <Preference android:key="infoMessages" 
                 android:title="@string/pref_dev_info_messages_title"
                 android:summary="@string/pref_dev_info_default_summary"/>
+     
+     <Preference android:key="infoConnections" 
+                android:title="@string/pref_dev_info_connections_title"
+                android:summary="@string/pref_dev_info_default_summary"/>
   
 </PreferenceScreen>

@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import de.fun2code.android.piratebox.handler.ConnectionCountHandler;
 import de.fun2code.android.piratebox.util.NetworkUtil;
 import de.fun2code.android.piratebox.util.PirateUtil;
 
@@ -35,6 +36,7 @@ public class InfoPreferencesActivity extends PreferenceActivity {
 	
 	private int uploads = 0;
 	private int messages = 0;
+	private int connections = 0;
 	
 	/**
 	 * Broadcast receiver that listens for upload/shoud broadcasts
@@ -52,6 +54,10 @@ public class InfoPreferencesActivity extends PreferenceActivity {
 	        // Calculate shouts
 	        else if(action.equals(Constants.BROADCAST_INTENT_SHOUT)) {
 	        	calculateMessages();
+	        }
+	        // Calculate connections
+	        else if(action.equals(Constants.BROADCAST_INTENT_CONNECTION)) {
+	        	calculateConnections();
 	        }
  	    }
 	};
@@ -84,15 +90,18 @@ public class InfoPreferencesActivity extends PreferenceActivity {
 			//setStringSummary(Constants.PREF_DEV_INFO_AP_IP_ADDRESS, NetworkUtil.getApIp(activity.getApplicationContext()));
 			setStringSummary(Constants.PREF_DEV_INFO_IP_ADDRESS, NetworkUtil.getLocalIpAddress());
 			setStringSummary(Constants.PREF_DEV_INFO_LOCAL_PORT, PirateBoxService.getServerPort());
+			calculateConnections();
 		}
 		
-		// Calculate uploads/shouts
+		// Calculate uploads/shouts/connections
 		calculateUploads();
 		calculateMessages();
 		
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(Constants.BROADCAST_INTENT_UPLOAD);
 		filter.addAction(Constants.BROADCAST_INTENT_SHOUT);
+		filter.addAction(Constants.BROADCAST_INTENT_CONNECTION);
+		filter.addAction(Constants.BROADCAST_INTENT_SESSION);
 		registerReceiver(infoReceiver, filter);
 	}
 	
@@ -145,6 +154,19 @@ public class InfoPreferencesActivity extends PreferenceActivity {
 	}
 	
 	/**
+	 * Updates the total connection count
+	 */
+	private void updateConnections() {
+		activity.runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				setStringSummary(Constants.PREF_DEV_INFO_CONNECTIONS, String.valueOf(connections));	
+			}
+		});
+	}
+	
+	/**
 	 * Calculates the number of uploads by counting the files inside the
 	 * uploads directory
 	 */
@@ -168,6 +190,20 @@ public class InfoPreferencesActivity extends PreferenceActivity {
 			public void run() {
 				messages = PirateUtil.calculateMessages(activity.getApplicationContext());
 				updateMessages();
+			}
+		}.start();
+	}
+	
+	/**
+	 * Calculates the total connection count
+	 * This is done by querying the ConnectionCountHandler
+	 */
+	private synchronized void calculateConnections() {
+		new Thread() {
+			@Override
+			public void run() {
+				connections = ConnectionCountHandler.getConnectionCount();
+				updateConnections();
 			}
 		}.start();
 	}

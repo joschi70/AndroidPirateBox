@@ -32,6 +32,7 @@ public class Constants {
 	public static final String PREF_DEV_INFO_LOCAL_PORT = "infoLocalPort";
 	public static final String PREF_DEV_INFO_UPLOADS = "infoUploads";
 	public static final String PREF_DEV_INFO_MESSAGES = "infoMessages";
+	public static final String PREF_DEV_INFO_CONNECTIONS = "infoConnections";
 	public static final String PREF_DEV_RESTORE_DNSMASQ = "restoreDnsMasq";
 	public static final String PREF_EMULATE_DROOPY = "emulateDroopy";
 	public static final String PREF_KEEP_DEVICE_ON = "keepDeviceOn";
@@ -59,6 +60,12 @@ public class Constants {
 	public static final String INTENT_UPLOAD_EXTRA_FILE = "UPLOAD_FILE";
 	public static final String INTENT_UPLOAD_EXTRA_NUMBER = "UPLOAD_NUMBER";
 	public static final String INTENT_UPLOAD_EXTRA_DIR = "UPLOAD_DIR";
+	
+	public static final String BROADCAST_INTENT_CONNECTION = "de.fun2code.android.piratebox.broadcast.intent.CONNECTION";
+	public static final String INTENT_CONNECTION_EXTRA_NUMBER = "CONNECTION_NUMBER";
+	
+	public static final String BROADCAST_INTENT_SESSION = "de.fun2code.android.piratebox.broadcast.intent.SESSION";
+	public static final String INTENT_SESSION_EXTRA_NUMBER = "SESSION_NUMBER";
 	
 	public static final String BROADCAST_INTENT_STATUS_REQUEST = "de.fun2code.android.piratebox.broadcast.intent.STATUS_REQUEST";
 	public static final String BROADCAST_INTENT_STATUS_RESULT = "de.fun2code.android.piratebox.broadcast.intent.STATUS_RESULT";

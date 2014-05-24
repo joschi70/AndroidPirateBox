@@ -1,5 +1,6 @@
 Version: 0.4.7 beta
     - Connection counter added to Info Preference
+    - Info Widget shows connection counter
 
 Version: 0.4.6 beta
     - Preference option "Keep Device On" added

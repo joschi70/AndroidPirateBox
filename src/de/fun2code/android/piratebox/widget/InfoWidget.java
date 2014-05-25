@@ -33,6 +33,9 @@ public class InfoWidget extends AppWidgetProvider {
 		if(intent.getAction()
 				.equals(Constants.BROADCAST_INTENT_SERVER)) {
 			serverRunning = intent.getBooleanExtra(Constants.INTENT_SERVER_EXTRA_STATE, false);
+			if(!serverRunning) {
+				uploads = shouts = connections = 0;
+			}
 		}
 		else if(intent.getAction()
 				.equals(Constants.BROADCAST_INTENT_STATUS_RESULT)) {

@@ -21,10 +21,12 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/piratebox_text" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:orientation="vertical" >     
+        android:layout_height="match_parent"
+        android:gravity="right"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/titleConnections"
@@ -89,8 +91,15 @@
             android:background="#80ff0000"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="5dp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@android:drawable/stat_notify_sync" />
         
     </LinearLayout>
     </LinearLayout>

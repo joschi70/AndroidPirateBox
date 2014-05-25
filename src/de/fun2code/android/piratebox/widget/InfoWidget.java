@@ -16,7 +16,7 @@ public class InfoWidget extends AppWidgetProvider {
 	
 	private final String WIDGET_INTENT_CLICKED = "de.fun2code.android.piratebox.infowidget.intent.clicked";
 	
-	private static boolean serverStatus = false;
+	private static boolean serverRunning = false;
 	private static int uploads = 0;
 	private static int shouts = 0;
 	private static int connections = 0;
@@ -32,11 +32,11 @@ public class InfoWidget extends AppWidgetProvider {
 		//Toast.makeText(context, intent.getAction(), Toast.LENGTH_SHORT).show();
 		if(intent.getAction()
 				.equals(Constants.BROADCAST_INTENT_SERVER)) {
-			serverStatus = intent.getBooleanExtra(Constants.INTENT_SERVER_EXTRA_STATE, false);
+			serverRunning = intent.getBooleanExtra(Constants.INTENT_SERVER_EXTRA_STATE, false);
 		}
 		else if(intent.getAction()
 				.equals(Constants.BROADCAST_INTENT_STATUS_RESULT)) {
-			serverStatus = intent.getBooleanExtra(Constants.INTENT_SERVER_EXTRA_STATE, false);
+			serverRunning = intent.getBooleanExtra(Constants.INTENT_SERVER_EXTRA_STATE, false);
 			uploads = intent.getIntExtra(Constants.INTENT_UPLOAD_EXTRA_NUMBER, 0);
 			shouts = intent.getIntExtra(Constants.INTENT_SHOUT_EXTRA_NUMBER, 0);
 			connections = intent.getIntExtra(Constants.INTENT_CONNECTION_EXTRA_NUMBER, 0);
@@ -83,10 +83,11 @@ public class InfoWidget extends AppWidgetProvider {
 		RemoteViews views = new RemoteViews(context.getPackageName(),
 				R.layout.widget_info_layout);
 		
-		//views.setTextViewText(R.id.textStatus, serverStatus ? "up" : "down");
-		views.setTextViewText(R.id.textUploads, String.valueOf(uploads));
-		views.setTextViewText(R.id.textShouts, String.valueOf(shouts));
-		views.setTextViewText(R.id.textConnections, String.valueOf(connections));
+		CharSequence noValue = context.getText(R.string.pref_dev_info_default_summary);
+		
+		views.setTextViewText(R.id.textUploads, serverRunning ? String.valueOf(uploads) : noValue);
+		views.setTextViewText(R.id.textShouts, serverRunning ? String.valueOf(shouts) : noValue);
+		views.setTextViewText(R.id.textConnections, serverRunning ? String.valueOf(connections) : noValue);
 		
 		Intent msg = new Intent(WIDGET_INTENT_CLICKED);
         PendingIntent intent = PendingIntent.getBroadcast(context, -1 /*not used*/, msg, PendingIntent.FLAG_UPDATE_CURRENT);

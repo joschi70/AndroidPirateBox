@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 import de.fun2code.android.piratebox.Constants;
 import de.fun2code.android.piratebox.R;
 
@@ -29,12 +30,17 @@ public class InfoWidget extends AppWidgetProvider {
 		AppWidgetManager manager = AppWidgetManager.getInstance(context);
 		int[] widgetIds = manager.getAppWidgetIds(new ComponentName(context,
 				InfoWidget.class));
-		//Toast.makeText(context, intent.getAction(), Toast.LENGTH_SHORT).show();
+		Toast.makeText(context, intent.getAction(), Toast.LENGTH_SHORT).show();
 		if(intent.getAction()
 				.equals(Constants.BROADCAST_INTENT_SERVER)) {
 			serverRunning = intent.getBooleanExtra(Constants.INTENT_SERVER_EXTRA_STATE, false);
 			if(!serverRunning) {
 				uploads = shouts = connections = 0;
+				showWidget(context, manager, widgetIds);
+			}
+			else {
+				// Send broadcast to request info
+				context.sendBroadcast(new Intent(Constants.BROADCAST_INTENT_STATUS_REQUEST));
 			}
 		}
 		else if(intent.getAction()
@@ -43,18 +49,22 @@ public class InfoWidget extends AppWidgetProvider {
 			uploads = intent.getIntExtra(Constants.INTENT_UPLOAD_EXTRA_NUMBER, 0);
 			shouts = intent.getIntExtra(Constants.INTENT_SHOUT_EXTRA_NUMBER, 0);
 			connections = intent.getIntExtra(Constants.INTENT_CONNECTION_EXTRA_NUMBER, 0);
+			showWidget(context, manager, widgetIds);
 		}
 		else if(intent.getAction()
 				.equals(Constants.BROADCAST_INTENT_UPLOAD)) {
 			uploads++;
+			showWidget(context, manager, widgetIds);
 		}
 		else if(intent.getAction()
 				.equals(Constants.BROADCAST_INTENT_SHOUT)) {
 			shouts++;
+			showWidget(context, manager, widgetIds);
 		}
 		else if(intent.getAction()
 				.equals(Constants.BROADCAST_INTENT_CONNECTION)) {
 			connections++;
+			showWidget(context, manager, widgetIds);
 		}
 		else if(intent.getAction()
 				.equals(WIDGET_INTENT_CLICKED) || 
@@ -63,9 +73,6 @@ public class InfoWidget extends AppWidgetProvider {
 			// Send broadcast to request info
 			context.sendBroadcast(new Intent(Constants.BROADCAST_INTENT_STATUS_REQUEST));
 		}
-		
-		
-		showWidget(context, manager, widgetIds);
 
 	}
 

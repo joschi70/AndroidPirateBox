@@ -30,7 +30,7 @@ public class InfoWidget extends AppWidgetProvider {
 		AppWidgetManager manager = AppWidgetManager.getInstance(context);
 		int[] widgetIds = manager.getAppWidgetIds(new ComponentName(context,
 				InfoWidget.class));
-		Toast.makeText(context, intent.getAction(), Toast.LENGTH_SHORT).show();
+		//Toast.makeText(context, intent.getAction(), Toast.LENGTH_SHORT).show();
 		if(intent.getAction()
 				.equals(Constants.BROADCAST_INTENT_SERVER)) {
 			serverRunning = intent.getBooleanExtra(Constants.INTENT_SERVER_EXTRA_STATE, false);

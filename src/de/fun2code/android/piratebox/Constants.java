@@ -38,6 +38,7 @@ public class Constants {
 	public static final String PREF_EMULATE_DROOPY = "emulateDroopy";
 	public static final String PREF_KEEP_DEVICE_ON = "keepDeviceOn";
 	public static final String PREF_ENABLE_STATISTICS = "enableStatistics";
+	public static final String PREF_CLEAR_STATISTICS = "clearStatistics";
 	
 	public static final String AP_IP_DEFAULT = "192.168.43.1"; // Default AP IP address
 	public static final String NAT_TABLE_NAME = "nat";

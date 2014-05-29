@@ -10,6 +10,8 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
+import de.fun2code.android.piratebox.database.DatabaseHandler;
+import de.fun2code.android.piratebox.handler.ConnectionCountHandler;
 import de.fun2code.android.piratebox.util.NetworkUtil;
 import de.fun2code.android.piratebox.util.ShellUtil;
 
@@ -101,8 +103,35 @@ public class PreferencesActivity extends PreferenceActivity {
 				
 				return true;
 			}
-			
-			
+				
+		});
+		
+		/*
+		 * Handle the press of the clear statistics preference button
+		 */
+		findPreference(Constants.PREF_CLEAR_STATISTICS).setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				DatabaseHandler dbHandler = new DatabaseHandler(activity);
+				dbHandler.clearTables();
+				
+				if(PirateBoxService.isRunning()) {
+					ConnectionCountHandler.clearConnectionCount();
+				}
+				
+				int resIdTitle = R.string.dialog_title_info;
+				int resIdMessage = R.string.dialog_msg_clear_statistics;
+				
+				new AlertDialog.Builder(activity)
+				.setTitle(resIdTitle)
+				.setMessage(resIdMessage)
+				.setPositiveButton(getText(android.R.string.ok), null)
+				.show();
+				
+				return true;
+			}
+				
 		});
 	}
 	

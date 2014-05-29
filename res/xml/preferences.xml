@@ -24,6 +24,18 @@
         android:title="@string/pref_storage_dir_title" />
 
     <PreferenceCategory
+        android:title="@string/pref_statistics_title" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enableStatistics"
+            android:summary="@string/pref_enable_statistics_summary"
+            android:title="@string/pref_enable_statistics_title" />
+        <Preference android:key="clearStatistics" 
+                android:title="@string/pref_clear_statistics_title"
+                android:summary="@string/pref_clear_statistics_summary"/>
+    </PreferenceCategory>
+    
+    <PreferenceCategory
         android:title="@string/pref_advanced_settings_title" >
         <CheckBoxPreference
             android:defaultValue="true"
@@ -45,11 +57,6 @@
             android:key="keepDeviceOn"
             android:summary="@string/pref_keep_device_on_summary"
             android:title="@string/pref_keep_device_on_title" />
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="enableStatistics"
-            android:summary="@string/pref_enable_statistics_summary"
-            android:title="@string/pref_enable_statistics_title" />
         
         <EditTextPreference
 	        android:defaultValue="@string/pref_ap_ip_default"

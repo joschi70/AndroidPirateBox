@@ -12,6 +12,7 @@
     <string name="pref_ssid_name_default">PirateBox - Share Freely</string>
     <string name="pref_storage_dir_default">/sdcard/pb_store</string>
     <string name="pref_advanced_settings_title">Advanced Settings</string>
+    <string name="pref_statistics_title">Statistics</string>
     <string name="pref_device_options_title">Device Options</string>
     <string name="pref_dev_options_title">Developer Options</string>
     <string name="pref_info_title">Info</string>
@@ -50,7 +51,9 @@
     <string name="pref_emulate_droopy_title">Emulate Droopy</string>
     <string name="pref_emulate_droopy_summary">Enable file uploads on port 8080</string>   
     <string name="pref_enable_statistics_title">Enable Statistics</string>
-    <string name="pref_enable_statistics_summary">Store visitor and download statistics to database</string>  
+    <string name="pref_enable_statistics_summary">Store visitor and download statistics to database</string>
+    <string name="pref_clear_statistics_title">Clear Statistics</string>
+    <string name="pref_clear_statistics_summary">Deletes all statistic database entries</string>
     <string name="msg_setting_up_networking">Setting up networking, please wait...</string>
     <string name="msg_ap_up">AccessPoint is up</string>
     <string name="msg_ap_down">AccessPoint is down</string>
@@ -71,6 +74,9 @@
     <string name="dialog_msg_dnsmasq_restore_ok">The original \"dnsmasq\" has been restored.</string>
     <string name="dialog_msg_dnsmasq_restore_error">The original \"dnsmasq\" could NOT be restored!</string>
     <string name="dialog_msg_network_reset">NAT table has been flushed!\nAll network redirects should be deleted.</string>
+    
+    <string name="dialog_msg_clear_statistics">Statistic data has been deleted!</string>
+    
     <string name="widget_info_label">PirateBox Info</string>
     <string name="widget_info_connections">Connects</string>
     <string name="widget_info_shouts">Shouts</string>

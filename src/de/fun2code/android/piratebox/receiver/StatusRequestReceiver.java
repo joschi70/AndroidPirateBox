@@ -55,8 +55,6 @@ public class StatusRequestReceiver extends BroadcastReceiver {
 					PirateUtil.calculateMessages(context));
 			resultIntent.putExtra(Constants.INTENT_CONNECTION_EXTRA_NUMBER,
 					ConnectionCountHandler.getConnectionCount());
-			resultIntent.putExtra(Constants.INTENT_SESSION_EXTRA_NUMBER,
-					ConnectionCountHandler.getSessionCount());
 			
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 

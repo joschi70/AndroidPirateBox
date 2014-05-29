@@ -149,5 +149,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		
 		return downloads;
 	}
+	
+	/**
+	 * Deletes all database table entries
+	 */
+	public void clearTables() {
+		SQLiteDatabase db = this.getWritableDatabase();
+		
+		db.execSQL("DELETE FROM " + Constants.STATS_TABLE_VISITORS);
+		db.execSQL("DELETE FROM " + Constants.STATS_TABLE_DOWNLOADS);
+		
+		db.close();
+	}
 
 }

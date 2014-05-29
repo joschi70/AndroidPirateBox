@@ -216,7 +216,20 @@ public class NetworkUtil {
 
 		  ShellUtil shellUtil = new ShellUtil();
 		  return shellUtil.execRootShell(iptablesCmds);
-		}
+	}
+	
+	/**
+	 * Flushes the iptable with the given table name
+	 * 
+	 * @param table
+	 */
+	public void flushIpTable(String table) {
+		 String[] cmds = new String[] {
+				  IPTABLES_BIN + " -F -t " + table };
+		 ShellUtil shellUtil = new ShellUtil();
+		 shellUtil.execRootShell(cmds);
+		 
+	}
 	
 	/**
 	 * Wraps the /system/bin/dnsmasq command with a shell script that calls

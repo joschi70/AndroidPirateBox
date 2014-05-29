@@ -89,6 +89,10 @@
         <Preference android:key="restoreDnsMasq" 
                 android:title="@string/pref_dev_restore_dnsmasq_title"
                 android:summary="@string/pref_dev_restore_dnsmasq_summary"/>
+        
+        <Preference android:key="resetNetworking" 
+                android:title="@string/pref_dev_reset_networking_title"
+                android:summary="@string/pref_dev_reset_networking_summary"/>
      </PreferenceCategory>
      
      <PreferenceCategory

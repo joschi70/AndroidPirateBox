@@ -58,7 +58,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		/*
 		 * Handle the press of the restore dnsmawq backup preference button
 		 */
-		findPreference("restoreDnsMasq").setOnPreferenceClickListener(new OnPreferenceClickListener() {
+		findPreference(Constants.PREF_DEV_RESTORE_DNSMASQ).setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
@@ -67,6 +67,31 @@ public class PreferencesActivity extends PreferenceActivity {
 				
 				int resIdTitle = res ? R.string.dialog_title_info : R.string.dialog_title_error;
 				int resIdMessage = res ? R.string.dialog_msg_dnsmasq_restore_ok : R.string.dialog_msg_dnsmasq_restore_error;
+				
+				new AlertDialog.Builder(activity)
+				.setTitle(resIdTitle)
+				.setMessage(resIdMessage)
+				.setPositiveButton(getText(android.R.string.ok), null)
+				.show();
+				
+				return true;
+			}
+			
+			
+		});
+		
+		/*
+		 * Handle the press of the restore networking preference button
+		 */
+		findPreference(Constants.PREF_DEV_RESET_NETWORKING).setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				NetworkUtil netUtil = new NetworkUtil(activity.getApplicationContext());
+				netUtil.flushIpTable(Constants.NAT_TABLE_NAME);
+				
+				int resIdTitle = R.string.dialog_title_info;
+				int resIdMessage = R.string.dialog_msg_network_reset;
 				
 				new AlertDialog.Builder(activity)
 				.setTitle(resIdTitle)

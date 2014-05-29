@@ -45,6 +45,8 @@
     <string name="pref_dev_info_default_summary">-</string>
     <string name="pref_dev_restore_dnsmasq_title">Restore \"dnsmasq\" Binary</string>
     <string name="pref_dev_restore_dnsmasq_summary">Click to restore the original \"dnsmasq\" system binary</string>
+    <string name="pref_dev_reset_networking_title">Reset Networking</string>
+    <string name="pref_dev_reset_networking_summary">Flush NAT table to reset network redirects</string>  
     <string name="pref_emulate_droopy_title">Emulate Droopy</string>
     <string name="pref_emulate_droopy_summary">Enable file uploads on port 8080</string>
     <string name="msg_setting_up_networking">Setting up networking, please wait...</string>
@@ -66,6 +68,7 @@
     <string name="dialog_msg_wrap_error">The \"dnsmasq\" wrappper returned an error. The PirateBox might not work properly!</string>
     <string name="dialog_msg_dnsmasq_restore_ok">The original \"dnsmasq\" has been restored.</string>
     <string name="dialog_msg_dnsmasq_restore_error">The original \"dnsmasq\" could NOT be restored!</string>
+    <string name="dialog_msg_network_reset">NAT table has been flushed!\nAll network redirects should be deleted.</string>
     <string name="widget_info_label">PirateBox Info</string>
     <string name="widget_info_connections">Connects</string>
     <string name="widget_info_shouts">Shouts</string>

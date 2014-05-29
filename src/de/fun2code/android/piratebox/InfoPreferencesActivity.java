@@ -101,7 +101,6 @@ public class InfoPreferencesActivity extends PreferenceActivity {
 		filter.addAction(Constants.BROADCAST_INTENT_UPLOAD);
 		filter.addAction(Constants.BROADCAST_INTENT_SHOUT);
 		filter.addAction(Constants.BROADCAST_INTENT_CONNECTION);
-		filter.addAction(Constants.BROADCAST_INTENT_SESSION);
 		registerReceiver(infoReceiver, filter);
 	}
 	

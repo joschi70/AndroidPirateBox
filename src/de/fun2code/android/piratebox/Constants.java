@@ -73,9 +73,6 @@ public class Constants {
 	public static final String BROADCAST_INTENT_CONNECTION = "de.fun2code.android.piratebox.broadcast.intent.CONNECTION";
 	public static final String INTENT_CONNECTION_EXTRA_NUMBER = "CONNECTION_NUMBER";
 	
-	public static final String BROADCAST_INTENT_SESSION = "de.fun2code.android.piratebox.broadcast.intent.SESSION";
-	public static final String INTENT_SESSION_EXTRA_NUMBER = "SESSION_NUMBER";
-	
 	public static final String BROADCAST_INTENT_STATUS_REQUEST = "de.fun2code.android.piratebox.broadcast.intent.STATUS_REQUEST";
 	public static final String BROADCAST_INTENT_STATUS_RESULT = "de.fun2code.android.piratebox.broadcast.intent.STATUS_RESULT";
 	

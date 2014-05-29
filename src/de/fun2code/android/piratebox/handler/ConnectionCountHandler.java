@@ -18,6 +18,7 @@ import sunlabs.brazil.server.Request;
 import sunlabs.brazil.server.Server;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.IntentSender.SendIntentException;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import de.fun2code.android.piratebox.Constants;
@@ -77,10 +78,6 @@ public class ConnectionCountHandler implements Handler {
 		 */
 		if(sha1 != null && !sha1Hashes.contains(sha1)) {
 			sha1Hashes.add(sha1);
-			// Send new session broadcast
-			Intent intentSession = new Intent(Constants.BROADCAST_INTENT_CONNECTION);
-			intentSession.putExtra(Constants.INTENT_CONNECTION_EXTRA_NUMBER, sha1Hashes.size());
-			PirateBoxService.getService().sendBroadcast(intentSession);
 			
 			String mac = getMacAddress(request);
 			
@@ -89,9 +86,7 @@ public class ConnectionCountHandler implements Handler {
 			 */
 			if(mac != null && !macAddresses.contains(mac)) {
 				macAddresses.add(mac);
-				Intent intentConnection = new Intent(Constants.BROADCAST_INTENT_SESSION);
-				intentConnection.putExtra(Constants.INTENT_SESSION_EXTRA_NUMBER, macAddresses.size());
-				PirateBoxService.getService().sendBroadcast(intentConnection);
+				sendConnectionBroadcast();
 			}
 			
 			/*
@@ -191,13 +186,16 @@ public class ConnectionCountHandler implements Handler {
 		return macAddresses.size();
 	}
 	
-	/**
-	 * Returns the current total session count
-	 * 
-	 * @return		number of total sessions
-	 */
-	public static int getSessionCount() {
-		return sha1Hashes.size();
+	public static void clearConnectionCount() {
+		sha1Hashes.clear();
+		macAddresses.clear();
+		sendConnectionBroadcast();
+	}
+	
+	private static void sendConnectionBroadcast() {
+		Intent intentConnection = new Intent(Constants.BROADCAST_INTENT_CONNECTION);
+		intentConnection.putExtra(Constants.INTENT_CONNECTION_EXTRA_NUMBER, macAddresses.size());
+		PirateBoxService.getService().sendBroadcast(intentConnection);
 	}
 
 }

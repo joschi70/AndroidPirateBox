@@ -17,9 +17,12 @@ import sunlabs.brazil.server.Handler;
 import sunlabs.brazil.server.Request;
 import sunlabs.brazil.server.Server;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import de.fun2code.android.piratebox.Constants;
 import de.fun2code.android.piratebox.PirateBoxService;
+import de.fun2code.android.piratebox.database.DatabaseHandler;
 
 
 /**
@@ -39,19 +42,34 @@ public class ConnectionCountHandler implements Handler {
 	
 	private static Set<String> sha1Hashes = new HashSet<String>();
 	private static Set<String> macAddresses = new HashSet<String>();
+	private DatabaseHandler db;
+	private SharedPreferences prefs;
 
 	@Override
 	public boolean init(Server server, String prefix) {
 		this.prefix = prefix;
 		sha1Hashes.clear();
 		macAddresses.clear();
+		try {
+			// Init database
+			db = new DatabaseHandler(PirateBoxService.getService());
+			
+			// Get preferences
+			prefs = PreferenceManager.getDefaultSharedPreferences(PirateBoxService.getService());
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 		
 		return true;
 	}
 
 	@Override
 	public boolean respond(Request request) throws IOException {
-		String sha1 = getSha1Hash(request);
+		
+		String day = new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(new Date());
+		String sha1 = getSha1Hash(request, day);
 
 		/*
 		 * If cookie is not in list of cookies the file /proc/net/arp
@@ -76,7 +94,12 @@ public class ConnectionCountHandler implements Handler {
 				PirateBoxService.getService().sendBroadcast(intentConnection);
 			}
 			
-			// TODO: Write data to db
+			/*
+			 * Write visitor data to db if statistics are eanabled
+			 */
+			if(prefs.getBoolean(Constants.PREF_ENABLE_STATISTICS, true)) {
+				db.insertVisitor(day, sha1);
+			}
 		}
 		return false;
 	}
@@ -92,12 +115,11 @@ public class ConnectionCountHandler implements Handler {
 	 * @param request
 	 * @return
 	 */
-	private String getSha1Hash(Request request) {
+	private String getSha1Hash(Request request, String day) {
 		String remoteAddr = request.getSocket().getInetAddress().getHostAddress();
 		String userAgent = request.headers.get("User-Agent");
-		String date = new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(new Date());
 		
-		return sha1(remoteAddr + userAgent + date);
+		return sha1(remoteAddr + userAgent + day);
 	}
 	
 	/**

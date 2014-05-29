@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import de.fun2code.android.piratebox.Constants;
 import de.fun2code.android.piratebox.PirateBoxService;
 import de.fun2code.android.piratebox.R;
+import de.fun2code.android.piratebox.database.DatabaseHandler;
 
 /**
  * Handler that delivers files from the storage directory if
@@ -29,6 +30,8 @@ public class StorageHandler implements Handler {
 	private String storageDir;
 	private String urlPrefix;
 	private Server server;
+	private DatabaseHandler db;
+	private SharedPreferences prefs;
 	
 	private final static String MIME_OCTET_STREAM = "application/octet-stream";
 	
@@ -37,6 +40,12 @@ public class StorageHandler implements Handler {
 		this.server = server;
 		
 		try {
+			// Init database
+			db = new DatabaseHandler(PirateBoxService.getService());
+			
+			// Get preferences
+			prefs = PreferenceManager.getDefaultSharedPreferences(PirateBoxService.getService());
+		
 			/*
 			 * Read the storage location and get the URL prefix
 			 */
@@ -87,6 +96,13 @@ public class StorageHandler implements Handler {
 
 			request.sendResponse(fis, (int)file.length(), mime, 200);
 			fis.close();
+			
+			/*
+			 * Write url to db if statistics are eanabled
+			 */
+			if(prefs.getBoolean(Constants.PREF_ENABLE_STATISTICS, true)) {
+				db.insertUrl(request.url);
+			}
 		}
 		catch(Exception e) {
 			return false;

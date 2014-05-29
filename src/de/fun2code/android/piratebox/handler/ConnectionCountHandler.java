@@ -186,12 +186,22 @@ public class ConnectionCountHandler implements Handler {
 		return macAddresses.size();
 	}
 	
+	/**
+	 * Clears the connection counter
+	 */
 	public static void clearConnectionCount() {
 		sha1Hashes.clear();
 		macAddresses.clear();
-		sendConnectionBroadcast();
+		
+		// Send a status request broadcast to inform listeners of new status
+		Intent intentRequest = new Intent(Constants.BROADCAST_INTENT_STATUS_REQUEST);
+		PirateBoxService.getService().sendBroadcast(intentRequest);
 	}
 	
+	/**
+	 * Sends a {@literal de.fun2code.android.piratebox.broadcast.intent.CONNECTION}
+	 * broadcast
+	 */
 	private static void sendConnectionBroadcast() {
 		Intent intentConnection = new Intent(Constants.BROADCAST_INTENT_CONNECTION);
 		intentConnection.putExtra(Constants.INTENT_CONNECTION_EXTRA_NUMBER, macAddresses.size());

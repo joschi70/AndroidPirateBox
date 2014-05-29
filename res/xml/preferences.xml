@@ -45,6 +45,11 @@
             android:key="keepDeviceOn"
             android:summary="@string/pref_keep_device_on_summary"
             android:title="@string/pref_keep_device_on_title" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enableStatistics"
+            android:summary="@string/pref_enable_statistics_summary"
+            android:title="@string/pref_enable_statistics_title" />
         
         <EditTextPreference
 	        android:defaultValue="@string/pref_ap_ip_default"

@@ -48,7 +48,9 @@
     <string name="pref_dev_reset_networking_title">Reset Networking</string>
     <string name="pref_dev_reset_networking_summary">Flush NAT table to reset network redirects</string>  
     <string name="pref_emulate_droopy_title">Emulate Droopy</string>
-    <string name="pref_emulate_droopy_summary">Enable file uploads on port 8080</string>
+    <string name="pref_emulate_droopy_summary">Enable file uploads on port 8080</string>   
+    <string name="pref_enable_statistics_title">Enable Statistics</string>
+    <string name="pref_enable_statistics_summary">Store visitor and download statistics to database</string>  
     <string name="msg_setting_up_networking">Setting up networking, please wait...</string>
     <string name="msg_ap_up">AccessPoint is up</string>
     <string name="msg_ap_down">AccessPoint is down</string>

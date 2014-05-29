@@ -37,9 +37,16 @@ public class Constants {
 	public static final String PREF_DEV_RESET_NETWORKING = "resetNetworking";
 	public static final String PREF_EMULATE_DROOPY = "emulateDroopy";
 	public static final String PREF_KEEP_DEVICE_ON = "keepDeviceOn";
+	public static final String PREF_ENABLE_STATISTICS = "enableStatistics";
 	
 	public static final String AP_IP_DEFAULT = "192.168.43.1"; // Default AP IP address
 	public static final String NAT_TABLE_NAME = "nat";
+	
+	// Database constants
+	public static final String STATS_DATABASE_NAME = "statistics";
+	public static final int STATS_DATABASE_VERSION = 1;
+	public static final String STATS_TABLE_VISITORS = "vc_statistics";
+	public static final String STATS_TABLE_DOWNLOADS = "dl_statistics";
 	
 	//public static final String DEV_SWITCH_FILE = Environment.getExternalStorageDirectory().getPath() + "/.piratebox_dev";
 	

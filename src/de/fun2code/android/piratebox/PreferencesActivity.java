@@ -2,6 +2,8 @@ package de.fun2code.android.piratebox;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface.OnClickListener;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 import de.fun2code.android.piratebox.database.DatabaseHandler;
 import de.fun2code.android.piratebox.handler.ConnectionCountHandler;
+import de.fun2code.android.piratebox.util.DialogUtil;
 import de.fun2code.android.piratebox.util.NetworkUtil;
 import de.fun2code.android.piratebox.util.ShellUtil;
 
@@ -69,13 +72,7 @@ public class PreferencesActivity extends PreferenceActivity {
 				
 				int resIdTitle = res ? R.string.dialog_title_info : R.string.dialog_title_error;
 				int resIdMessage = res ? R.string.dialog_msg_dnsmasq_restore_ok : R.string.dialog_msg_dnsmasq_restore_error;
-				
-				new AlertDialog.Builder(activity)
-				.setTitle(resIdTitle)
-				.setMessage(resIdMessage)
-				.setPositiveButton(getText(android.R.string.ok), null)
-				.show();
-				
+				DialogUtil.showDialog(activity, resIdTitle, resIdMessage);
 				return true;
 			}
 			
@@ -94,13 +91,7 @@ public class PreferencesActivity extends PreferenceActivity {
 				
 				int resIdTitle = R.string.dialog_title_info;
 				int resIdMessage = R.string.dialog_msg_network_reset;
-				
-				new AlertDialog.Builder(activity)
-				.setTitle(resIdTitle)
-				.setMessage(resIdMessage)
-				.setPositiveButton(getText(android.R.string.ok), null)
-				.show();
-				
+				DialogUtil.showDialog(activity, resIdTitle, resIdMessage);
 				return true;
 			}
 				
@@ -113,21 +104,22 @@ public class PreferencesActivity extends PreferenceActivity {
 
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				DatabaseHandler dbHandler = new DatabaseHandler(activity);
-				dbHandler.clearTables();
+				OnClickListener posListener = new OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						DatabaseHandler dbHandler = new DatabaseHandler(activity);
+						dbHandler.clearTables();
+						
+						if(PirateBoxService.isRunning()) {
+							ConnectionCountHandler.clearConnectionCount();
+						}
+						DialogUtil.showDialog(activity, R.string.dialog_title_info, R.string.dialog_msg_clear_statistics);
+					}
+				};
 				
-				if(PirateBoxService.isRunning()) {
-					ConnectionCountHandler.clearConnectionCount();
-				}
-				
-				int resIdTitle = R.string.dialog_title_info;
-				int resIdMessage = R.string.dialog_msg_clear_statistics;
-				
-				new AlertDialog.Builder(activity)
-				.setTitle(resIdTitle)
-				.setMessage(resIdMessage)
-				.setPositiveButton(getText(android.R.string.ok), null)
-				.show();
+				DialogUtil.showDialog(activity, R.string.dialog_title_confirm, R.string.dialog_qst_clear_statistics, 
+						android.R.string.yes, android.R.string.no, posListener, null);
 				
 				return true;
 			}

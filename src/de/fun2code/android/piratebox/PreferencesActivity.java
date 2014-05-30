@@ -70,9 +70,10 @@ public class PreferencesActivity extends PreferenceActivity {
 				NetworkUtil netUtil = new NetworkUtil(activity.getApplicationContext());
 				boolean res = netUtil.unwrapDnsmasq();
 				
-				int resIdTitle = res ? R.string.dialog_title_info : R.string.dialog_title_error;
 				int resIdMessage = res ? R.string.dialog_msg_dnsmasq_restore_ok : R.string.dialog_msg_dnsmasq_restore_error;
-				DialogUtil.showDialog(activity, resIdTitle, resIdMessage);
+				
+				Toast.makeText(activity.getApplicationContext(), resIdMessage, 
+						Toast.LENGTH_SHORT).show();
 				return true;
 			}
 			
@@ -89,9 +90,8 @@ public class PreferencesActivity extends PreferenceActivity {
 				NetworkUtil netUtil = new NetworkUtil(activity.getApplicationContext());
 				netUtil.flushIpTable(Constants.NAT_TABLE_NAME);
 				
-				int resIdTitle = R.string.dialog_title_info;
-				int resIdMessage = R.string.dialog_msg_network_reset;
-				DialogUtil.showDialog(activity, resIdTitle, resIdMessage);
+				Toast.makeText(activity.getApplicationContext(), R.string.dialog_msg_network_reset, 
+						Toast.LENGTH_SHORT).show();
 				return true;
 			}
 				
@@ -114,7 +114,9 @@ public class PreferencesActivity extends PreferenceActivity {
 						if(PirateBoxService.isRunning()) {
 							ConnectionCountHandler.clearConnectionCount();
 						}
-						DialogUtil.showDialog(activity, R.string.dialog_title_info, R.string.dialog_msg_clear_statistics);
+						
+						Toast.makeText(activity.getApplicationContext(), R.string.dialog_msg_clear_statistics, 
+								Toast.LENGTH_SHORT).show();
 					}
 				};
 				

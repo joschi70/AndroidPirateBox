@@ -69,14 +69,14 @@
     <string name="chk_missing_iptables">Command \"iptables\" not found</string>
     <string name="dialog_title_info">Info</string>
     <string name="dialog_title_warning">Warning</string>
+    <string name="dialog_title_confirm">Confirm</string>
     <string name="dialog_title_error">Error</string>
     <string name="dialog_msg_wrap_error">The \"dnsmasq\" wrappper returned an error. The PirateBox might not work properly!</string>
     <string name="dialog_msg_dnsmasq_restore_ok">The original \"dnsmasq\" has been restored.</string>
     <string name="dialog_msg_dnsmasq_restore_error">The original \"dnsmasq\" could NOT be restored!</string>
     <string name="dialog_msg_network_reset">NAT table has been flushed!\nAll network redirects should be deleted.</string>
-    
-    <string name="dialog_msg_clear_statistics">Statistic data has been deleted!</string>
-    
+    <string name="dialog_qst_clear_statistics">Really clear statistis?</string>  
+    <string name="dialog_msg_clear_statistics">Statistics have been deleted!</string>   
     <string name="widget_info_label">PirateBox Info</string>
     <string name="widget_info_connections">Connects</string>
     <string name="widget_info_shouts">Shouts</string>

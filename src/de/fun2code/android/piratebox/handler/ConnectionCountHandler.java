@@ -202,7 +202,7 @@ public class ConnectionCountHandler implements Handler {
 	 * Sends a {@literal de.fun2code.android.piratebox.broadcast.intent.CONNECTION}
 	 * broadcast
 	 */
-	private static void sendConnectionBroadcast() {
+	private void sendConnectionBroadcast() {
 		Intent intentConnection = new Intent(Constants.BROADCAST_INTENT_CONNECTION);
 		intentConnection.putExtra(Constants.INTENT_CONNECTION_EXTRA_NUMBER, macAddresses.size());
 		PirateBoxService.getService().sendBroadcast(intentConnection);

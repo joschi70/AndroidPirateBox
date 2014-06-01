@@ -1,3 +1,11 @@
+Version: 0.4.8 beta
+    - Connection counter uses LibraryBox schematic (REMOTE_ADDRESS + USER_AGENT_STRING + DATE)
+    - User new StorageHandler when delivering files from storage directory
+    - New "Reset Networking" preference which resets all networking redirects
+    - Statistics are now supported and stored in database.
+      Statistics preference was added and statistics appear on main page.
+    - Preference to clear statistic data
+
 Version: 0.4.7 beta
     - Connection counter added to Info Preference
     - Info Widget shows connection counter

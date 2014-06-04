@@ -1,7 +1,10 @@
 package de.fun2code.android.piratebox;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.paw.server.PawServer;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,11 +15,13 @@ import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 import de.fun2code.android.pawserver.PawServerService;
 import de.fun2code.android.pawserver.listener.ServiceListener;
 import de.fun2code.android.piratebox.util.NetworkUtil;
 import de.fun2code.android.piratebox.util.NetworkUtil.IpTablesAction;
 import de.fun2code.android.piratebox.util.NetworkUtil.WrapResult;
+import de.fun2code.android.piratebox.util.ServerConfigUtil;
 import de.fun2code.android.piratebox.util.ShellUtil;
 
 
@@ -273,6 +278,24 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		appName = getString(R.string.app_name);
 		activityClass = "de.fun2code.android.piratebox.PirateBoxActivity";
 		notificationDrawableId = R.drawable.ic_notification;
+		
+		// Set default mayPost value
+		PawServer.DEFAULT_MAX_POST = Constants.DEFAULT_MAX_POST;
+		
+		/*
+		 * Check if maxPost setting is valid
+		 */
+		String maxPost = ServerConfigUtil.getServerSetting("maxPost", this);
+		if(maxPost.length() > 0) {
+			try {
+        		Integer.decode(maxPost).intValue();
+        	}
+        	catch(NumberFormatException e) {
+        		String msg = new MessageFormat(
+        			     getString(R.string.msg_max_post_invalid)).format(new Object[] { Constants.DEFAULT_MAX_POST / 1024 / 1024 });
+        		 Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        	}
+		}
 		
 		Log.i(TAG, "Home directory: " + Constants.getInstallDir(this));
 	}

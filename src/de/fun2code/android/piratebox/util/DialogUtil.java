@@ -64,12 +64,15 @@ public class DialogUtil {
 	 * @param negativeListener		listener for negative button
 	 */
 	public static void showInputDialog(Context context, CharSequence title,
-			CharSequence body, EditText input, int iconId,
+			CharSequence body, EditText input, Integer iconId,
 			DialogInterface.OnClickListener positiveListener,
 			DialogInterface.OnClickListener negativeListener) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 				builder.setTitle(title);
-				builder.setIcon(iconId);
+				
+				if(iconId != null) {
+					builder.setIcon(iconId);
+				}
 				builder.setMessage(body);
 				builder.setView(input);
 

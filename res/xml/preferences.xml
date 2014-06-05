@@ -15,11 +15,7 @@
         android:singleLine="true"
         android:summary="@string/pref_ssid_name_summary"
         android:title="@string/pref_ssid_name_title" />
-    <EditTextPreference
-        android:defaultValue="@string/pref_storage_dir_default"
-        android:key="storageDir"
-        android:password="false"
-        android:singleLine="true"
+    <Preference android:key="storageDir" 
         android:summary="@string/pref_storage_dir_summary"
         android:title="@string/pref_storage_dir_title" />
 

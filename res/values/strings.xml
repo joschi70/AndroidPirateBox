@@ -3,6 +3,7 @@
     <string name="app_name">PirateBox</string>
     <string name="notification_message">PirateBox is running...</string>
     <string name="menu_preferences">Settings</string>
+    <string name="create_directory">Create Directory</string>
     <string name="pref_start_on_boot_title">Start On Boot</string>
     <string name="pref_start_on_boot_summary">Startup PirateBox on device boot</string>
     <string name="pref_ssid_name_title">SSID Name</string>
@@ -77,7 +78,10 @@
     <string name="dialog_msg_dnsmasq_restore_error">The original \"dnsmasq\" could NOT be restored!</string>
     <string name="dialog_msg_network_reset">NAT table has been flushed.\nAll network redirects should be deleted.</string>
     <string name="dialog_qst_clear_statistics">This will delete all statistic data.\nReally clear statistis?</string>  
-    <string name="dialog_msg_clear_statistics">All statistics have been deleted.</string>   
+    <string name="dialog_msg_clear_statistics">All statistics have been deleted.</string>
+    <string name="dialog_title_choose_directory">Choose Directory</string>
+    <string name="dialog_title_create_directory">Create Directory</string>
+    <string name="dialog_label_name">Name:</string> 
     <string name="widget_info_label">PirateBox Info</string>
     <string name="widget_info_connections">Connects</string>
     <string name="widget_info_shouts">Shouts</string>

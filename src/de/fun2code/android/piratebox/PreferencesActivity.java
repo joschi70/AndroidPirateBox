@@ -150,7 +150,7 @@ public class PreferencesActivity extends PreferenceActivity {
 				};
 				
 				
-				DirectoryDialog dirDialog = new DirectoryDialog(activity, true);
+				DirectoryDialog dirDialog = new DirectoryDialog(activity, R.style.PirateBoxTheme, true);
 				String dir = preferences.getString(Constants.PREF_STORAGE_DIR, activity.getString(R.string.pref_storage_dir_default));
 				dir = new File(dir).exists() && new File(dir).isDirectory() ? dir : "/";
 				dirDialog.setCurrentDirectory(dir);

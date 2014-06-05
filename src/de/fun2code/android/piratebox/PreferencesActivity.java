@@ -134,6 +134,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		
 		/*
 		 * Handle the press of the storage directory preference button
+		 * Storage directory is now selectable via directory chooser
 		 */
 		findPreference(Constants.PREF_STORAGE_DIR).setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
@@ -148,7 +149,6 @@ public class PreferencesActivity extends PreferenceActivity {
 						edit.commit();
 					}
 				};
-				
 				
 				DirectoryDialog dirDialog = new DirectoryDialog(activity, R.style.PirateBoxTheme, true);
 				String dir = preferences.getString(Constants.PREF_STORAGE_DIR, activity.getString(R.string.pref_storage_dir_default));

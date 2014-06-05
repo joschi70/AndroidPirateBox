@@ -396,6 +396,7 @@ public class DirectoryDialog extends Dialog implements OnItemClickListener,
 	private void createDirectory() {
 		final EditText dirName = new EditText(context);
 		dirName.setSingleLine(true);
+		dirName.setHint(R.string.dialog_label_directory_name);
 		handler.post(new Runnable() {
 			@Override
 			public void run() {
@@ -422,7 +423,7 @@ public class DirectoryDialog extends Dialog implements OnItemClickListener,
 
 				DialogUtil.showInputDialog(context,
 						context.getText(R.string.dialog_title_create_directory),
-						context.getText(R.string.dialog_label_name), dirName,
+						null, dirName,
 						R.drawable.directory, positiveListener,
 						negativeListener);
 			}

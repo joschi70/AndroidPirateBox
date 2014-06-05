@@ -73,7 +73,11 @@ public class DialogUtil {
 				if(iconId != null) {
 					builder.setIcon(iconId);
 				}
-				builder.setMessage(body);
+				
+				if(body != null) {
+					builder.setMessage(body);
+				}	
+					
 				builder.setView(input);
 
 				builder.setPositiveButton(context.getText(android.R.string.ok),

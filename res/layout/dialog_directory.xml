@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10sp"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/createDirectory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:layout_gravity="center"
+            android:text="@string/create_directory" />
+
+        <LinearLayout
+            android:id="@+id/buttons2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp" >
+
+            <Button
+                android:id="@+id/directory_dialog_cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@android:string/cancel" >
+            </Button>
+
+            <Button
+                android:id="@+id/directory_dialog_ok"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@android:string/ok" >
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/listAndProgress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/buttons"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10sp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/currentDirectory"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="" />
+
+        <ListView
+            android:id="@+id/directory_list"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent" >
+        </ListView>
+
+        <ProgressBar
+            android:id="@+id/devices_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
+        </ProgressBar>
+    </LinearLayout>
+
+</RelativeLayout>

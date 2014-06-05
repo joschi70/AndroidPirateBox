@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/LinearLayout01"
+	android:layout_width="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+	android:paddingLeft="10sp" android:paddingRight="10sp"
+	android:layout_height="wrap_content" android:orientation="vertical"
+	android:paddingTop="2sp">
+	<LinearLayout android:id="@+id/LinearLayout02"
+		android:layout_width="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+		android:paddingLeft="10sp" android:paddingRight="10sp"
+		android:layout_height="fill_parent" android:orientation="horizontal"
+		android:paddingTop="2sp">
+		<ImageView android:layout_height="wrap_content" android:id="@+id/fileImageType"
+			android:layout_width="wrap_content" android:src="@drawable/directory"></ImageView>
+		<LinearLayout android:id="@+id/LinearLayout02" android:paddingLeft="20sp"
+		android:layout_height="wrap_content" android:layout_width="fill_parent" android:orientation="vertical" android:layout_gravity="center_horizontal">
+		<TextView android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:id="@+id/textName"
+			android:text="Name" android:textSize="16sp"
+			android:textStyle="normal"></TextView>
+		<TextView android:id="@+id/textInfo"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textStyle="normal" android:text="Info" android:textSize="12sp"></TextView>
+	</LinearLayout>
+	</LinearLayout>
+	
+</LinearLayout>

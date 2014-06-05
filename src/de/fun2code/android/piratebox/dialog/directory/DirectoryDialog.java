@@ -395,6 +395,7 @@ public class DirectoryDialog extends Dialog implements OnItemClickListener,
 	 */
 	private void createDirectory() {
 		final EditText dirName = new EditText(context);
+		dirName.setSingleLine(true);
 		handler.post(new Runnable() {
 			@Override
 			public void run() {

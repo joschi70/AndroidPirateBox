@@ -31,7 +31,8 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".PreferencesActivity" android:label="@string/menu_preferences" />
+        <activity android:name=".PreferencesActivity" android:label="@string/menu_preferences" 
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity android:name=".InfoPreferencesActivity" android:label="@string/pref_dev_piratebox_info_title">
              <intent-filter>
                 <action android:name=".InfoPreferencesActivity" />

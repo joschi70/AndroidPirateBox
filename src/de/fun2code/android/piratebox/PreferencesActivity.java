@@ -1,10 +1,12 @@
 package de.fun2code.android.piratebox;
 
+import java.io.File;
+
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface.OnClickListener;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -13,6 +15,8 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 import de.fun2code.android.piratebox.database.DatabaseHandler;
+import de.fun2code.android.piratebox.dialog.directory.DirectoryDialog;
+import de.fun2code.android.piratebox.dialog.directory.DirectorySelectListener;
 import de.fun2code.android.piratebox.handler.ConnectionCountHandler;
 import de.fun2code.android.piratebox.util.DialogUtil;
 import de.fun2code.android.piratebox.util.NetworkUtil;
@@ -126,6 +130,39 @@ public class PreferencesActivity extends PreferenceActivity {
 				return true;
 			}
 				
+		});
+		
+		/*
+		 * Handle the press of the storage directory preference button
+		 */
+		findPreference(Constants.PREF_STORAGE_DIR).setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				DirectorySelectListener dirListener = new DirectorySelectListener() {
+					
+					@Override
+					public void onDirectorySelected(String directory) {
+						Editor edit = preferences.edit();
+						edit.putString(Constants.PREF_STORAGE_DIR, directory);
+						edit.commit();
+					}
+				};
+				
+				
+				DirectoryDialog dirDialog = new DirectoryDialog(activity, true);
+				String dir = preferences.getString(Constants.PREF_STORAGE_DIR, activity.getString(R.string.pref_storage_dir_default));
+				dir = new File(dir).exists() && new File(dir).isDirectory() ? dir : "/";
+				dirDialog.setCurrentDirectory(dir);
+				dirDialog.setTitle(R.string.dialog_title_choose_directory);
+				dirDialog.setOnDirectorySelectListener(dirListener);
+				dirDialog.showOnlyWritableDirs(true);
+				dirDialog.show();
+				
+				return true;
+			}
+			
+			
 		});
 	}
 	

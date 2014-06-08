@@ -404,7 +404,7 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 		}
 		
 		if(message.length() > 0) {
-			message = "Unsupported device!\n" + message;
+			message = activity.getText(R.string.chk_unsopported_device) + "\n" + message;
 			supportedDevice = false;
 			btnSwitch.setVisibility(View.GONE);
 			txtInfo.setTextColor(Color.RED);

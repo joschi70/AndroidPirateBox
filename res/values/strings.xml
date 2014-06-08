@@ -65,7 +65,7 @@
     <string name="msg_piratebox_up">PirateBox is running</string>
     <string name="msg_piratebox_down">PirateBox not running</string>
     <string name="msg_max_post_invalid">Invalid upload size! Will be set to {0} MB.</string>
-    <string name="chk_unsopported_device">Unsupported device!</string>
+    <string name="chk_unsupported_device">Unsupported device!</string>
     <string name="chk_not_rooted">Device not rooted</string>
     <string name="chk_missing_dnsmasq">Command \"dnsmasq\" not found</string>
     <string name="chk_missing_dnsmasq_backup">Backup for \"dnsmasq\" could not be created</string>

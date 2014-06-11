@@ -1,3 +1,10 @@
+Version: 0.4.9 beta
+    - Check upload size (max. 2GB) so that the server does not crash on startup.
+      If the size is invalid the default of 200 MB is used.
+    - Updated to PAW server version 0.93 beta
+    - Storage directory preference uses a directory chooser dialog.
+      Only writable directories are displayed.
+
 Version: 0.4.8 beta
     - Connection counter uses LibraryBox schematic (REMOTE_ADDRESS + USER_AGENT_STRING + DATE)
     - User new StorageHandler when delivering files from storage directory

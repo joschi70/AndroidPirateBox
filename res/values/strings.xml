@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PirateBox</string>
-    <string name="notification_message">PirateBox is running...</string>
+    <string name="notification_message">PirateBox is running&#8230;</string>
     <string name="menu_preferences">Settings</string>
     <string name="create_directory">Create Directory</string>
     <string name="pref_start_on_boot_title">Start On Boot</string>
@@ -44,6 +44,7 @@
     <string name="pref_dev_info_uploads_title">Uploaded Files</string>
     <string name="pref_dev_info_messages_title">Messages</string>
     <string name="pref_dev_info_connections_title">Total Connections</string>
+    <string name="pref_dev_info_max_upload_size_title">Maximum Upload Size</string>
     <string name="pref_dev_info_default_summary">-</string>
     <string name="pref_dev_restore_dnsmasq_title">Restore \"dnsmasq\" Binary</string>
     <string name="pref_dev_restore_dnsmasq_summary">Click to restore the original \"dnsmasq\" system binary</string>
@@ -55,7 +56,7 @@
     <string name="pref_enable_statistics_summary">Store visitor and download statistics to database</string>
     <string name="pref_clear_statistics_title">Clear Statistics</string>
     <string name="pref_clear_statistics_summary">Deletes all statistic database entries</string>
-    <string name="msg_setting_up_networking">Setting up networking, please wait...</string>
+    <string name="msg_setting_up_networking">Setting up networking, please wait&#8230;</string>
     <string name="msg_ap_up">AccessPoint is up</string>
     <string name="msg_ap_down">AccessPoint is down</string>
     <string name="msg_networking_up">Networking is up</string>

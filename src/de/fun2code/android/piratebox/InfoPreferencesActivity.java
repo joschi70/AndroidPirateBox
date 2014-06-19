@@ -1,12 +1,5 @@
 package de.fun2code.android.piratebox;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import org.paw.server.PawServer;
 
 import android.app.Activity;
@@ -19,6 +12,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.text.format.Formatter;
 import android.util.Log;
 import de.fun2code.android.piratebox.handler.ConnectionCountHandler;
 import de.fun2code.android.piratebox.util.NetworkUtil;
@@ -90,6 +84,7 @@ public class InfoPreferencesActivity extends PreferenceActivity {
 			//setStringSummary(Constants.PREF_DEV_INFO_AP_IP_ADDRESS, NetworkUtil.getApIp(activity.getApplicationContext()));
 			setStringSummary(Constants.PREF_DEV_INFO_IP_ADDRESS, NetworkUtil.getLocalIpAddress());
 			setStringSummary(Constants.PREF_DEV_INFO_LOCAL_PORT, PirateBoxService.getServerPort());
+			setStringSummary(Constants.PREF_DEV_INFO_MAX_UPLOAD_SIZE, Formatter.formatFileSize(this, PirateBoxService.getService().getPawServer().server.maxPost));
 			calculateConnections();
 		}
 		

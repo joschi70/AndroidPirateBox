@@ -33,6 +33,7 @@ public class Constants {
 	public static final String PREF_DEV_INFO_UPLOADS = "infoUploads";
 	public static final String PREF_DEV_INFO_MESSAGES = "infoMessages";
 	public static final String PREF_DEV_INFO_CONNECTIONS = "infoConnections";
+	public static final String PREF_DEV_INFO_MAX_UPLOAD_SIZE = "infoMaxUploadSize";
 	public static final String PREF_DEV_RESTORE_DNSMASQ = "restoreDnsMasq";
 	public static final String PREF_DEV_RESET_NETWORKING = "resetNetworking";
 	public static final String PREF_EMULATE_DROOPY = "emulateDroopy";

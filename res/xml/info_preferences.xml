@@ -28,5 +28,9 @@
      <Preference android:key="infoConnections" 
                 android:title="@string/pref_dev_info_connections_title"
                 android:summary="@string/pref_dev_info_default_summary"/>
+     
+     <Preference android:key="infoMaxUploadSize" 
+                android:title="@string/pref_dev_info_max_upload_size_title"
+                android:summary="@string/pref_dev_info_default_summary"/>
   
 </PreferenceScreen>

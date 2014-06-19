@@ -15,6 +15,10 @@ import de.fun2code.android.piratebox.R;
  *
  */
 public class PirateBoxFileHandler extends org.paw.handler.PirateBoxFileHandler {
+	/*
+	 *  Regular expression taken from:
+	 *  http://www.mkyong.com/regular-expressions/domain-name-regular-expression-example/
+	 */
 	private static final String DOMAIN_NAME_PATTERN = "^[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
 	@Override

@@ -29,11 +29,14 @@
     <string name="pref_ap_ip_summary">Change the Access Point IP Number if necessary</string>
     <string name="pref_upload_size_title">Upload Size</string>
     <string name="pref_upload_size_summary">The upload size limit in bytes up to 2GB.\nTo take effect the PirateBox has to be restarted.</string>
+    <string name="pref_domain_name_title">Domain Name</string>
+    <string name="pref_domain_name_summary">Domain name used if pages are not found</string>
+    <string name="pref_domain_name_default">pirate.box</string>
     <string name="pref_keep_device_on_title">Keep Device On</string>
     <string name="pref_keep_device_on_summary">Forces the device to stay on.\nTo take effect the PirateBox has to be restarted.</string>
     <string name="pref_ap_ip_default">192.168.43.1</string>
     <string name="pref_dev_content_sd_title">Content to SD</string>
-    <string name="pref_dev_content_sd_summary">Copy configuration and HTML files to SD card (\"piratebox\" folder)</string>
+    <string name="pref_dev_content_sd_summary">Copy configuration and HTML files to SD card (\"piratebox\" folder) and use it at runtime</string>
     <string name="pref_dev_piratebox_info_title">PirateBox Info</string>
     <string name="pref_dev_piratebox_info_summary">Information about this PirateBox</string>
     <string name="pref_dev_info_piratebox_version_title">PirateBox Version</string>

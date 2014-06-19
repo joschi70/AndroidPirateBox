@@ -62,6 +62,14 @@
 	        android:summary="@string/pref_ap_ip_summary"
 	        android:title="@string/pref_ap_ip_title" />
         
+        <EditTextPreference
+            android:defaultValue="@string/pref_domain_name_default"
+            android:key="domainName"
+            android:password="false"
+            android:singleLine="true"
+            android:summary="@string/pref_domain_name_summary"
+            android:title="@string/pref_domain_name_title" />
+        
         <de.fun2code.android.piratebox.preference.CustomServerSettingEditTextPreference
             android:title="@string/pref_upload_size_title"
             android:summary="@string/pref_upload_size_summary"

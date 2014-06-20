@@ -15,7 +15,6 @@ package de.fun2code.android.piratebox.plugin.locale;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.ToggleButton;
 import de.fun2code.android.piratebox.R;
 import de.fun2code.android.piratebox.plugin.locale.bundle.BundleScrubber;
@@ -108,7 +107,7 @@ public final class EditActivity extends AbstractPluginActivity
      */
     /* package */static String generateBlurb(final Context context, final String message)
     {
-        final int maxBlurbLength =
+        final int maxBlurbLength = 
                 context.getResources().getInteger(R.integer.twofortyfouram_locale_maximum_blurb_length);
 
         if (message.length() > maxBlurbLength)

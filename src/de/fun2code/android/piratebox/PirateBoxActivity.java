@@ -371,11 +371,13 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 		switch (status) {
 		case 3 * View.VISIBLE:
 			txtInfo.setText(getText(R.string.msg_piratebox_up));
+			btnSwitch.setImageResource(R.drawable.switch_on);
 			btnSwitch.clearAnimation();
 			btnSwitch.setEnabled(true);
 			break;
 		case 3 * View.INVISIBLE:
 			txtInfo.setText(getText(R.string.msg_piratebox_down));
+			btnSwitch.setImageResource(R.drawable.switch_off);
 			btnSwitch.setEnabled(true);
 			break;
 		}

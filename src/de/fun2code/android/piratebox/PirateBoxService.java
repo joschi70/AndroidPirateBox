@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 import de.fun2code.android.pawserver.PawServerService;
@@ -292,7 +293,8 @@ public class PirateBoxService extends PawServerService implements ServiceListene
         	}
         	catch(NumberFormatException e) {
         		String msg = new MessageFormat(
-        			     getString(R.string.msg_max_post_invalid)).format(new Object[] { Constants.DEFAULT_MAX_POST / 1024 / 1024 });
+        			     getString(R.string.msg_max_post_invalid)).format(new Object[] { 
+        			    		 Formatter.formatFileSize(this, Constants.DEFAULT_MAX_POST) });
         		 Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
         	}
 		}

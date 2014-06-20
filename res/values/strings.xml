@@ -36,7 +36,7 @@
     <string name="pref_keep_device_on_summary">Forces the device to stay on.\nTo take effect the PirateBox has to be restarted.</string>
     <string name="pref_ap_ip_default">192.168.43.1</string>
     <string name="pref_dev_content_sd_title">Content to SD</string>
-    <string name="pref_dev_content_sd_summary">Copy configuration and HTML files to SD card (\"piratebox\" folder) and use it at runtime</string>
+    <string name="pref_dev_content_sd_summary">Copy configuration and HTML files to SD card (\"piratebox\" folder) and use at runtime</string>
     <string name="pref_dev_piratebox_info_title">PirateBox Info</string>
     <string name="pref_dev_piratebox_info_summary">Information about this PirateBox</string>
     <string name="pref_dev_info_piratebox_version_title">PirateBox Version</string>

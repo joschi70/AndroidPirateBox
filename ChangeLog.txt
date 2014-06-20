@@ -1,3 +1,11 @@
+Version: 0.5.0 beta
+    - Fixed typo in index.html (issue #6)
+    - Fixed max upload size default value bug
+    - Show maximum upload size in info preference
+    - Maximum file upload size displayed on main HTML page
+    - Preference option to specify default domain name
+    - Integrated locale-api (library project no longer needed)
+    
 Version: 0.4.9 beta
     - Check upload size (max. 2GB) so that the server does not crash on startup.
       If the size is invalid the default of 200 MB is used.

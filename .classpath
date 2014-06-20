@@ -8,6 +8,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/jdom-android.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/paw-server.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/android-support-v4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/locale-api.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>

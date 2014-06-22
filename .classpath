@@ -2,15 +2,15 @@
 <classpath>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry exported="true" kind="lib" path="lib/brazil.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/bsh-2.0b4.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/commons-codec.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jdom-android.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/paw-server.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/android-support-v4.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/locale-api.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry exported="true" kind="lib" path="libs/android-support-v4.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/brazil.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/bsh-2.0b4.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-codec.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/jdom-android.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/locale-api.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/paw-server.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

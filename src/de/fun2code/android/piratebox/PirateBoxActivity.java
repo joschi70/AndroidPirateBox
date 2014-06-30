@@ -181,6 +181,14 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
+		
+		/*
+		 * Set INSTALL_DIR to null to force a new check if the
+		 * Activity is restarted.
+		 * This might be necessary if user has toggled the "Content to SD"
+		 * setting.
+		 */
+		Constants.resetInstallDir();
 	}
 	
 	@Override

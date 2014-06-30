@@ -81,6 +81,12 @@ public class Constants {
 	public static final String BROADCAST_INTENT_STATUS_REQUEST = "de.fun2code.android.piratebox.broadcast.intent.STATUS_REQUEST";
 	public static final String BROADCAST_INTENT_STATUS_RESULT = "de.fun2code.android.piratebox.broadcast.intent.STATUS_RESULT";
 	
+	/**
+	 * Returns the directory PirateBox will be installed to
+	 * 
+	 * @param context	{@code Context} to use
+	 * @return			PirateBox installation directory
+	 */
 	public static String getInstallDir(Context context) {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 		
@@ -97,5 +103,12 @@ public class Constants {
 		}
 		
 		return INSTALL_DIR;
+	}
+	
+	/**
+	 * Resets the installation directory
+	 */
+	public static void resetInstallDir() {
+		INSTALL_DIR = null;
 	}
 }

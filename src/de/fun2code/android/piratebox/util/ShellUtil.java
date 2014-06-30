@@ -1,11 +1,16 @@
 package de.fun2code.android.piratebox.util;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
+import android.util.Log;
 import de.fun2code.android.pawserver.util.Utils;
+import de.fun2code.android.piratebox.Constants;
 
 /**
  * Support class to execute shell commands
@@ -16,6 +21,8 @@ import de.fun2code.android.pawserver.util.Utils;
 public class ShellUtil {
 	public static String SH_BIN = "sh";
 	public static String SU_BIN = "su";
+	public static String MOUNT_BIN = "mount";
+	public static String SYSTEM_MOUNT_POINT = "/system";
 	
 	/**
 	 * Execute shell command with norma shell
@@ -152,12 +159,21 @@ public class ShellUtil {
 	}
 	
 	/**
-	 * Remounts /system
+	 * Remounts /system ({@code SYSTEM_MOUNT_POINT})
 	 * 
 	 * @param options	option to use, nomally {@code rw} of {@code ro}
 	 */
 	public void remountSystem(String options) {
-		String[] cmd = new String[] { "mount -o " + options + ",remount /system" };
+		/*
+		 * Try to get device name, if not found try without.
+		 * This might fix issue #5.
+		 */
+		String device = getMountDeviceName(SYSTEM_MOUNT_POINT);
+		device = device != null ? device : "";
+		
+		Log.i(Constants.TAG, "Device for " + SYSTEM_MOUNT_POINT + ": " + device);
+		
+		String[] cmd = new String[] { "mount -o " + options + ",remount " + device + " " + SYSTEM_MOUNT_POINT};
 		execRootShell(cmd);
 	}
 	
@@ -182,5 +198,47 @@ public class ShellUtil {
 		}
 		
 		return id;
+	}
+	
+	/**
+	 * Returns the device for the given file system mount point
+	 * 
+	 * @param fileSystem	file system to retrieve device
+	 * @return				name of device, may be {@code null} if device was
+	 * 						not found
+	 */
+	public String getMountDeviceName(String fileSystem) {
+		String device = null;
+		BufferedReader bis = null;
+		
+		try {
+			Process proc = Runtime.getRuntime().exec(MOUNT_BIN);
+			//BufferedInputStream bis = new BufferedInputStream(new InputStreamReader(proc.getInputStream()));
+			InputStreamReader isr = new InputStreamReader(proc.getInputStream());
+			bis = new BufferedReader(isr);
+			
+			String line;
+			while( (line = bis.readLine()) != null ) {
+			  if(line.matches("^/dev/.*?\\s+" + fileSystem + "\\s+.*$")) { 
+				  device = line.split("\\s+")[0];
+				  break;
+			  }
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			device = null;
+		}
+		finally {
+			if(bis != null) {
+				try {
+					bis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return device;
 	}
 }

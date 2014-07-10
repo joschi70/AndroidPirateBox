@@ -15,6 +15,7 @@
         android:singleLine="true"
         android:summary="@string/pref_ssid_name_summary"
         android:title="@string/pref_ssid_name_title" />
+    
     <Preference android:key="storageDir" 
         android:summary="@string/pref_storage_dir_summary"
         android:title="@string/pref_storage_dir_title" />

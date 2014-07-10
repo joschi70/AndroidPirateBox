@@ -93,4 +93,5 @@
     <string name="widget_info_uploads">Uploads</string>
     <string name="locale_on">ON</string>
     <string name="locale_off">OFF</string>
+    <string name="warning_dir_not_writable">Warning: Directory is not writable!</string>
 </resources>

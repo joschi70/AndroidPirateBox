@@ -144,9 +144,20 @@ public class PreferencesActivity extends PreferenceActivity {
 					
 					@Override
 					public void onDirectorySelected(String directory) {
-						Editor edit = preferences.edit();
-						edit.putString(Constants.PREF_STORAGE_DIR, directory);
-						edit.commit();
+						if(directory != null) {
+							Editor edit = preferences.edit();
+							edit.putString(Constants.PREF_STORAGE_DIR, directory);
+							edit.commit();
+							
+							/*
+							 * Check if directory is writable, if not
+							 * show warning message.
+							 */
+							if(!new File(directory).canWrite()) {
+								Toast.makeText(activity, R.string.warning_dir_not_writable,
+										Toast.LENGTH_LONG).show();
+							}
+						}
 					}
 				};
 				
@@ -156,7 +167,11 @@ public class PreferencesActivity extends PreferenceActivity {
 				dirDialog.setCurrentDirectory(dir);
 				dirDialog.setTitle(R.string.dialog_title_choose_directory);
 				dirDialog.setOnDirectorySelectListener(dirListener);
-				dirDialog.showOnlyWritableDirs(true);
+				/*
+				 * Don't only show writable directories show them all.
+				 * Otherwise /mnt directories will not be displayed.
+				 */
+				dirDialog.showOnlyWritableDirs(false);
 				dirDialog.show();
 				
 				return true;

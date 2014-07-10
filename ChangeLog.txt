@@ -1,3 +1,7 @@
+Version: 0.5.1.1 beta
+    - Bug fix release...
+    - Fixed Storage Directory selection bug
+
 Version: 0.5.1 beta:
     - Improved re-mount of file system to fix dnsmasq backup (issue #5) 
     - Fixed "Content to SD" handling on app startup

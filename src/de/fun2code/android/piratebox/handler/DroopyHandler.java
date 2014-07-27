@@ -34,8 +34,16 @@ public class DroopyHandler implements Handler {
 	public boolean respond(Request request) throws IOException {
 		String contentType = request.headers.get("Content-Type");
 		
-		if(contentType != null &&preferences.getBoolean(Constants.PREF_EMULATE_DROOPY, true)
-				&& contentType.toLowerCase(Locale.US).contains("multipart")) {
+		/*
+		 * Check if URL is base URL (empty or "/")
+		 * Only handle these URLs.
+		 */
+		boolean isBaseUrl = request.url.matches("^[/]{0,1}$");
+		
+		
+		if(contentType != null && preferences.getBoolean(Constants.PREF_EMULATE_DROOPY, true)
+				&& contentType.toLowerCase(Locale.US).contains("multipart") &&
+				isBaseUrl) {
 			/*
 			 * Rewrite current and original url.
 			 */

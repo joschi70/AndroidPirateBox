@@ -19,6 +19,12 @@
     <Preference android:key="storageDir" 
         android:summary="@string/pref_storage_dir_summary"
         android:title="@string/pref_storage_dir_title" />
+    
+    <de.fun2code.android.piratebox.preference.CustomI18nListPreference
+        android:key="webI18n" 
+        android:summary="@string/pref_web_i18n_summary"
+        android:title="@string/pref_web_i18n_title"
+        android:defaultValue="en" />
 
     <PreferenceCategory
         android:title="@string/pref_statistics_title" >

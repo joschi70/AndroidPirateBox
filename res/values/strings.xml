@@ -9,7 +9,9 @@
     <string name="pref_ssid_name_title">SSID Name</string>
     <string name="pref_ssid_name_summary">Specify the PirateBox SSID name</string>
     <string name="pref_storage_dir_title">Storage Directory</string>
-    <string name="pref_storage_dir_summary">Storage directory for upload and shoutbox data</string>
+    <string name="pref_storage_dir_summary">Storage directory for upload and shoutbox data</string>   
+    <string name="pref_web_i18n_title">Web Interface Language</string>
+    <string name="pref_web_i18n_summary">Language used for the web interface\nTo take effect the PirateBox has to be restarted.</string>   
     <string name="pref_ssid_name_default">PirateBox - Share Freely</string>
     <string name="pref_storage_dir_default">/sdcard/pb_store</string>
     <string name="pref_advanced_settings_title">Advanced Settings</string>
@@ -28,12 +30,12 @@
     <string name="pref_ap_ip_title">AP IP Number</string>
     <string name="pref_ap_ip_summary">Change the Access Point IP Number if necessary</string>
     <string name="pref_upload_size_title">Upload Size</string>
-    <string name="pref_upload_size_summary">The upload size limit in bytes up to 2GB.\nTo take effect the PirateBox has to be restarted.</string>
+    <string name="pref_upload_size_summary">The upload size limit in bytes up to 2GB\nTo take effect the PirateBox has to be restarted.</string>
     <string name="pref_domain_name_title">Domain Name</string>
     <string name="pref_domain_name_summary">Domain name used if pages are not found</string>
     <string name="pref_domain_name_default">pirate.box</string>
     <string name="pref_keep_device_on_title">Keep Device On</string>
-    <string name="pref_keep_device_on_summary">Forces the device to stay on.\nTo take effect the PirateBox has to be restarted.</string>
+    <string name="pref_keep_device_on_summary">Forces the device to stay on\nTo take effect the PirateBox has to be restarted.</string>
     <string name="pref_ap_ip_default">192.168.43.1</string>
     <string name="pref_dev_content_sd_title">Content to SD</string>
     <string name="pref_dev_content_sd_summary">Copy configuration and HTML files to SD card (\"piratebox\" folder) and use at runtime</string>

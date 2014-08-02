@@ -20,6 +20,7 @@ public class Constants {
 	public static final String PREF_AP_IP = "apIp";
 	public static final String PREF_DOMAIN_NAME = "domainName";
 	public static final String PREF_STORAGE_DIR = "storageDir";
+	public static final String PREF_WEB_I18N = "webI18n";
 	public static final String PREF_IOS_WISPR_SUPPORT = "iosWispr";
 	public static final String PREF_WP_NCSI_SUPPORT = "wpNcsi";
 	public static final String PREF_VERSION = "version";

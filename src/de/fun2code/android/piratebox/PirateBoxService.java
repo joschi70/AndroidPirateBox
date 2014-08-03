@@ -13,6 +13,9 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.net.wifi.WifiManager.WifiLock;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
 import android.text.format.Formatter;
 import android.util.Log;
@@ -189,6 +192,20 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		}
 	}
 
+	@Override
+	public WakeLock getWakeLock() {
+		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+				Constants.TAG);
+		
+		return wl;
+	}
+
+
+	@Override
+	public WifiLock getWifiLock() {
+		return super.getWifiLock();
+	}
 
 
 	@Override

@@ -21,8 +21,6 @@ public class CustomI18nListPreference extends ListPreference {
 	public CustomI18nListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		
-		//setEntries(new CharSequence[] { "English", "German"});
-		//setEntryValues(new CharSequence[] { "en", "de"});
 		String i18nDir = Constants.getInstallDir(context) + "/html/i18n";
 		
 		File[] i18nFiles = new File(i18nDir).listFiles(new FilenameFilter() {

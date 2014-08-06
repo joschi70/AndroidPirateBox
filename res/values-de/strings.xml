@@ -89,7 +89,7 @@
     <string name="dialog_title_choose_directory">Verzeichnis wählen</string>
     <string name="dialog_title_create_directory">Verzeichnis erzeugen</string>
     <string name="dialog_label_directory_name">Vezeichnis Name</string> 
-    <string name="widget_info_label">PirateBox Inforamtionen</string>
+    <string name="widget_info_label">PirateBox Inforamtion</string>
     <string name="widget_info_connections">Verbindungen</string>
     <string name="widget_info_shouts">Shouts</string>
     <string name="widget_info_uploads">Uploads</string>

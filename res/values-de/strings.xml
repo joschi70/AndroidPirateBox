@@ -20,7 +20,7 @@
     <string name="pref_dev_options_title">Entwickler Optionen</string>
     <string name="pref_info_title">Information</string>
     <string name="pref_enable_updates_title">Aktualisierungen zulassen</string>
-    <string name="pref_enable_updates_summary">Bei einer neuen App Version werden die Konfiguration und die HTML Dateien erneuer</string>
+    <string name="pref_enable_updates_summary">Bei einer neuen App Version werden die Konfiguration und die HTML Dateien erneuert</string>
     <string name="pref_ios_wispr_title">iOS WISPr Unterstützung</string>
     <string name="pref_ios_wispr_summary">Aktiviert die Unterstützung für iOS WISPr Anfragen</string>
     <string name="pref_wp_ncsi_title">WP NCSI Unterstützung</string>
@@ -32,13 +32,13 @@
     <string name="pref_upload_size_title">Upload Größe</string>
     <string name="pref_upload_size_summary">Die maximale Upload Größe in bytes, bis zu 2GB\nEin Neustart der PirateBox ist erforderlich.</string>
     <string name="pref_domain_name_title">Domain Name</string>
-    <string name="pref_domain_name_summary">Domain der für nicht gefundene Seiten verwendet wird</string>
+    <string name="pref_domain_name_summary">Domain Name, der für nicht gefundene Seiten verwendet wird</string>
     <string name="pref_domain_name_default">pirate.box</string>
     <string name="pref_keep_device_on_title">Gerät an lassen</string>
-    <string name="pref_keep_device_on_summary">Zwingt das Gerät an zu bleiben\nTEin Neustart der PirateBox ist erforderlich.</string>
+    <string name="pref_keep_device_on_summary">Zwingt das Gerät an zu bleiben\nEin Neustart der PirateBox ist erforderlich.</string>
     <string name="pref_ap_ip_default">192.168.43.1</string>
     <string name="pref_dev_content_sd_title">Inhalt auf SD Karte</string>
-    <string name="pref_dev_content_sd_summary">Kopiert den Inhalt auf die SD Karte (\"piratebox\" folder) und benutzt diesen zur Laufzeit</string>
+    <string name="pref_dev_content_sd_summary">Kopiert den Inhalt auf die SD Karte (\"piratebox\" Ordner) und benutzt diesen zur Laufzeit</string>
     <string name="pref_dev_piratebox_info_title">PirateBox Information</string>
     <string name="pref_dev_piratebox_info_summary">Informationen über diese PirateBox</string>
     <string name="pref_dev_info_piratebox_version_title">PirateBox Version</string>
@@ -51,8 +51,8 @@
     <string name="pref_dev_info_connections_title">Verbindungen insgesamt</string>
     <string name="pref_dev_info_max_upload_size_title">Maximale Upload Größe</string>
     <string name="pref_dev_info_default_summary">-</string>
-    <string name="pref_dev_restore_dnsmasq_title">Wiederherstellung der \"dnsmasq\" Binärdatei</string>
-    <string name="pref_dev_restore_dnsmasq_summary">Hier klicken um die \"dnsmasq\" System Datei wieder herzustellen</string>
+    <string name="pref_dev_restore_dnsmasq_title">Wiederherstellung von \"dnsmasq\"</string>
+    <string name="pref_dev_restore_dnsmasq_summary">Hier klicken, um die \"dnsmasq\" System Datei wieder herzustellen</string>
     <string name="pref_dev_reset_networking_title">Netzwerk zurücksetzen</string>
     <string name="pref_dev_reset_networking_summary">Leeren der NAT Tabelle, um das Netzwerk zurückzusetzen</string>  
     <string name="pref_emulate_droopy_title">Droopy Emulation</string>
@@ -89,7 +89,7 @@
     <string name="dialog_title_choose_directory">Verzeichnis wählen</string>
     <string name="dialog_title_create_directory">Verzeichnis erzeugen</string>
     <string name="dialog_label_directory_name">Vezeichnis Name</string> 
-    <string name="widget_info_label">PirateBox Inforamtion</string>
+    <string name="widget_info_label">PirateBox Inforamtionen</string>
     <string name="widget_info_connections">Verbindungen</string>
     <string name="widget_info_shouts">Shouts</string>
     <string name="widget_info_uploads">Uploads</string>

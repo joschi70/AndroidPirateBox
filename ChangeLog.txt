@@ -1,3 +1,13 @@
+Version: 0.5.2 beta
+    - File upload page (fup.xhtml) simplified
+    - Higher resolution PirateBox main screen logo
+    - Droopy emulation URL handling improved
+    - Added i18n web interface support
+    - If "Keep Device On" is selected a less restrictive WakeLock is used
+    - I18n support for web interface
+    - Web interface translation added: German
+    - App translation added: German
+
 Version: 0.5.1.1 beta
     - Bug fix release...
     - Fixed Storage Directory selection bug

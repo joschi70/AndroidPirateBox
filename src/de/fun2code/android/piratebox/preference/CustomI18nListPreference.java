@@ -29,21 +29,29 @@ public class CustomI18nListPreference extends ListPreference {
 			}
 		});
 		
-		Arrays.sort(i18nFiles);
 		
-		List<CharSequence> entriesList = new ArrayList<CharSequence>();
-		List<CharSequence> valuesList = new ArrayList<CharSequence>();
-		
-		for(File file : i18nFiles) {
-			String lang = file.getName().replaceAll("^.*_([a-z]{2})\\.properties$", "$1");
-			String langDisp = new Locale(lang).getDisplayLanguage(Locale.getDefault());
+		if(i18nFiles != null) {
+			Arrays.sort(i18nFiles);
 			
-			entriesList.add(langDisp);
-			valuesList.add(lang);
+			List<CharSequence> entriesList = new ArrayList<CharSequence>();
+			List<CharSequence> valuesList = new ArrayList<CharSequence>();
+			
+			for(File file : i18nFiles) {
+				String lang = file.getName().replaceAll("^.*_([a-z]{2})\\.properties$", "$1");
+				String langDisp = new Locale(lang).getDisplayLanguage(Locale.getDefault());
+				
+				entriesList.add(langDisp);
+				valuesList.add(lang);
+			}
+			
+			setEntries(entriesList.toArray(new CharSequence[entriesList.size()]));
+			setEntryValues(valuesList.toArray(new CharSequence[valuesList.size()]));
+		}
+		else {
+			setEntries(new CharSequence[0]);
+			setEntryValues(new CharSequence[0]);
 		}
 		
-		setEntries(entriesList.toArray(new CharSequence[entriesList.size()]));
-		setEntryValues(valuesList.toArray(new CharSequence[valuesList.size()]));
 	}
 
 }

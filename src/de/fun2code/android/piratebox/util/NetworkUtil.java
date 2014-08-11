@@ -33,6 +33,7 @@ public class NetworkUtil {
 	public static String DNSMASQ_BIN = "/system/bin/dnsmasq";
 	public static String DNSMASQ_BIN_BACKUP = DNSMASQ_BIN + ".pb.backup";
 	public static String IPTABLES_BIN = "iptables";
+	public static String IPTABLES_CHAIN_FORWARD = "FORWARD";
 	
 	public static enum WrapResult {
 		NO_BACKUP,
@@ -367,5 +368,31 @@ public class NetworkUtil {
 		
 		// IPv4 has priority
 		return ipv4 != null ? ipv4  : ipv6;
+	}
+	
+	/**
+	 * Sets the specified {@literal iptables} chain to {@literal DROP}
+	 * 
+	 * @param chain iptables chain to use
+	 */
+	public static void dropChain(String chain) {
+		if(chain != null) {
+			ShellUtil shellUtil = new ShellUtil();
+			String[] cmd = new String[] {IPTABLES_BIN + " -P " + chain + " DROP"};
+			shellUtil.execRootShell(cmd);
+		}
+	}
+	
+	/**
+	 * Sets the specified {@literal iptables} chain to {@literal ACCEPT}
+	 * 
+	 * @param chain iptables chain to use
+	 */
+	public static void acceptChain(String chain) {
+		if(chain != null) {
+			ShellUtil shellUtil = new ShellUtil();
+			String[] cmd = new String[] {IPTABLES_BIN + " -P " + chain + " ACCEPT"};
+			shellUtil.execRootShell(cmd);
+		}
 	}
 }

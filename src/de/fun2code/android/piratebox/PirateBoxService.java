@@ -379,6 +379,9 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	public void teardownNetworking() {
 		shellUtil.killProcessByName(NetworkUtil.DNSMASQ_BIN);
 		
+		// Set iptables FORWARD chain to DROP to avoid Internet usage
+		NetworkUtil.acceptChain(NetworkUtil.IPTABLES_CHAIN_FORWARD);
+		
 		doRedirect(IpTablesAction.IP_TABLES_DELETE);
 		for(StateChangedListener listener : listeners) {
 			listener.networkDown();
@@ -450,6 +453,10 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		sendBroadcast(intent);
 		
 		doRedirect(IpTablesAction.IP_TABLES_ADD);
+		
+		// Set iptables FORWARD chain to ACCEPT
+		NetworkUtil.dropChain(NetworkUtil.IPTABLES_CHAIN_FORWARD);
+		
 		networkRunning = true;
 		startingUp = false;
 	}

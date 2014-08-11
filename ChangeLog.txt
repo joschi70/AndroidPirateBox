@@ -1,3 +1,5 @@
+Version: 0.5.2.1 beta
+    - Security fix: DROP iptables FORWARD chain to avail Internet usage
 Version: 0.5.2 beta
     - File upload page (fup.xhtml) simplified
     - Higher resolution PirateBox main screen logo

@@ -41,8 +41,6 @@
         </activity>
 
         <service android:name=".PirateBoxService" />
-         
-        <service android:name=".BootService" />
         
         <receiver android:name=".BootReceiver" android:enabled="true"
             android:exported="false">

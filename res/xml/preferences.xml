@@ -84,6 +84,7 @@
             android:password="false"
             android:numeric="integer"
             android:defaultValue="209715200"
+            piratebox:numericDivider="1048576"
             piratebox:setting="maxPost"/>
      </PreferenceCategory>
         

@@ -29,8 +29,8 @@
     <string name="pref_ap_auto_start_summary">Start Access Point automatically, otherwise the AP has to be started manually</string>
     <string name="pref_ap_ip_title">AP IP Number</string>
     <string name="pref_ap_ip_summary">Change the Access Point IP Number if necessary</string>
-    <string name="pref_upload_size_title">Upload Size</string>
-    <string name="pref_upload_size_summary">The upload size limit in bytes up to 2GB\nTo take effect the PirateBox has to be restarted.</string>
+    <string name="pref_upload_size_title">Upload Size in MB</string>
+    <string name="pref_upload_size_summary">The upload size limit in MB up to 2GB\nTo take effect the PirateBox has to be restarted.</string>
     <string name="pref_domain_name_title">Domain Name</string>
     <string name="pref_domain_name_summary">Domain name used if pages are not found</string>
     <string name="pref_domain_name_default">pirate.box</string>

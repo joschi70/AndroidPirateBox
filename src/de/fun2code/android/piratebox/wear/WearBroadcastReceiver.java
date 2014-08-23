@@ -3,6 +3,7 @@ package de.fun2code.android.piratebox.wear;
 import java.io.File;
 import java.text.MessageFormat;
 
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -19,8 +20,8 @@ import de.fun2code.android.piratebox.R;
 
 public class WearBroadcastReceiver extends BroadcastReceiver {
 	
-	private static final String NOTIFICATION_GROUP_UPLOAD = "GROUP_PB_UPLOAD";
-	private static final String NOTIFICATION_GROUP_SHOUT = "GROUP_PB_SHOUT";
+	private static final String NOTIFICATION_PB_GROUP = "GROUP_PIRATE_BOX";
+	private static int summaryId = (int) System.currentTimeMillis();
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -43,6 +44,8 @@ public class WearBroadcastReceiver extends BroadcastReceiver {
 		PendingIntent appPendingIntent = PendingIntent.getActivity(context, 0, appIntent, 0);
 		
 		NotificationCompat.Builder notificationBuilder = null;
+		String title = "";
+		String message = "";
 		
 		if (intent.getAction().equals(Constants.BROADCAST_INTENT_UPLOAD)) {
 			String file = intent.getExtras().getString(
@@ -58,34 +61,54 @@ public class WearBroadcastReceiver extends BroadcastReceiver {
 			
 			PendingIntent openPendingIntent = PendingIntent.getActivity(context, 0, openIntent, 0);
 						
-			String actionTitle = context.getResources().getString(R.string.wear_notification_upload_open_file);
-			String title = context.getResources().getString(R.string.wear_notification_upload_title);
+			String actionTitle = context.getString(R.string.wear_notification_upload_open_file);
+			title = context.getString(R.string.wear_notification_upload_title);
+			message = new File(file).getName();
 			
 			notificationBuilder = new NotificationCompat.Builder(context)
 	        .setContentIntent(appPendingIntent)
 	        .addAction(android.R.drawable.ic_menu_set_as, actionTitle,
 	        				openPendingIntent)
-	        .setGroup(NOTIFICATION_GROUP_UPLOAD)
+	        .setGroup(NOTIFICATION_PB_GROUP)
 	        .setContentTitle(title)
-	        .setContentText(new File(file).getName());
+	        .setContentText(message);
 		}
 		else if(intent.getAction().equals(Constants.BROADCAST_INTENT_SHOUT)) {
-			String title = new MessageFormat(context.getResources().getString(R.string.wear_notification_shout_title)).
+			title = new MessageFormat(context.getString(R.string.wear_notification_shout_title)).
 				format(new Object[] { intent.getExtras().getString(Constants.INTENT_SHOUT_EXTRA_NAME) });
+			message = intent.getExtras().getString(Constants.INTENT_SHOUT_EXTRA_TEXT);
 			
 			notificationBuilder = new NotificationCompat.Builder(context)
 	        .setContentIntent(appPendingIntent)
-	        .setGroup(NOTIFICATION_GROUP_SHOUT)
+	        .setGroup(NOTIFICATION_PB_GROUP)
 	        .setContentTitle(title)
-	        .setContentText(intent.getExtras().getString(Constants.INTENT_SHOUT_EXTRA_TEXT));
+	        .setContentText(message);
 		}
 
-		if(notificationBuilder != null) {
+		if(notificationBuilder != null) {	
 			// Get an instance of the NotificationManager service
 			NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-	
+			
 			// Build the notification and issues it with notification manager.
 			notificationManager.notify(notificationId, notificationBuilder.build());
+			
+			/*
+			 *  Summary builder is needed for vibration support
+			 *  For more details see:
+			 *  http://stackoverflow.com/questions/24807402/android-wear-setvibrate-does-not-work-if-setgroup-called
+			 */
+			NotificationCompat.Builder summaryBuilder = new     
+				        NotificationCompat.Builder(context)
+				        .setGroup(NOTIFICATION_PB_GROUP)
+				        .setGroupSummary(true)
+				        .setContentTitle(context.getString(R.string.app_name))
+				        .setContentText(context.getString(R.string.wear_notifications_available))
+				        .setSmallIcon(R.drawable.ic_notification)
+				        .setVibrate(new long[] {0, 1000, 50, 2000} );
+			 Notification notification = summaryBuilder.build();
+			 notification.defaults |= Notification.DEFAULT_VIBRATE;
+			 
+			 notificationManager.notify(summaryId, notification);		 
 		}
 
 	}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PirateBox</string>
-    <string name="notification_message">PirateBox ist gestartet&#8230;</string>
+    <string name="notification_message">PirateBox ist gestartet &#8230;</string>
     <string name="menu_preferences">Einstellungen</string>
     <string name="create_directory">Verzeichnis erstellen</string>
     <string name="pref_start_on_boot_title">Beim Booten starten</string>
@@ -99,6 +99,7 @@
     <string name="wear.notification_upload_title">Datei Upload</string>
     <string name="wear.notification_upload_open_file">Datei öffnen</string>
     <string name="wear.notification_shout_title">Shout von {0}</string>
+    <string name="wear.notifications_available">Nachrichten auf Android Wear verfügbar</string>
     <string name="pref_wear_title">Android Wear</string>
     <string name="pref_wear_notifications_title">Wear Benachrichtigungen</string>
     <string name="pref_wear_notifications_summary">Android Wear Benachrichtigungen für Uploads und Shouts aktivieren</string>

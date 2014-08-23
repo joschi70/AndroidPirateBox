@@ -101,7 +101,7 @@ public class WearBroadcastReceiver extends BroadcastReceiver {
 				        NotificationCompat.Builder(context)
 				        .setGroup(NOTIFICATION_PB_GROUP)
 				        .setGroupSummary(true)
-				        .setContentTitle(context.getString(R.string.app_name))
+				        .setContentTitle(context.getString(R.string.wear_summary_notification_title))
 				        .setContentText(context.getString(R.string.wear_notifications_available))
 				        .setSmallIcon(R.drawable.ic_notification)
 				        .setVibrate(new long[] {0, 1000, 50, 2000} );

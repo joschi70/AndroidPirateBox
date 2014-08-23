@@ -96,10 +96,11 @@
     <string name="locale_on">ON</string>
     <string name="locale_off">OFF</string>
     <string name="warning_dir_not_writable">Warning: Directory is not writable!</string>
-    <string name="wear.notification_upload_title">File Upload</string>
-    <string name="wear.notification_upload_open_file">Open File</string>
-    <string name="wear.notification_shout_title">Shout from {0}</string>
-    <string name="wear.notifications_available">Notifications available on Android Wear</string>
+    <string name="wear_notification_upload_title">File Upload</string>
+    <string name="wear_notification_upload_open_file">Open File</string>
+    <string name="wear_notification_shout_title">Shout from {0}</string>
+    <string name="wear_notifications_available">Notifications available on Android Wear</string>
+    <string name="wear_summary_notification_title">PirateBox &#8634; Wear</string>
     <string name="pref_wear_title">Android Wear</string>
     <string name="pref_wear_notifications_title">Wear Notifications</string>
     <string name="pref_wear_notifications_summary">Enable Android Wear notifications for uploads and shouts</string>

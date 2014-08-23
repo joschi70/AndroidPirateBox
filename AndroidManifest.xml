@@ -83,6 +83,13 @@
             </intent-filter>
         </receiver>
         
+        <receiver android:name=".wear.WearBroadcastReceiver">
+            <intent-filter>
+                <action android:name="de.fun2code.android.piratebox.broadcast.intent.UPLOAD" />
+                <action android:name="de.fun2code.android.piratebox.broadcast.intent.SHOUT" />
+            </intent-filter>
+        </receiver>
+        
                 <!-- Locale plug-in -->
         <!-- This is the "edit" Activity. The mdpi icon should be 32x32. The hdpi 
             icon should be 48x48. Locale will scale the icons if necessary, but providing 

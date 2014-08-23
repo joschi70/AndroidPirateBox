@@ -39,6 +39,15 @@
     </PreferenceCategory>
     
     <PreferenceCategory
+        android:title="@string/pref_wear_title" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="wearNotifications"
+            android:summary="@string/pref_wear_notifications_summary"
+            android:title="@string/pref_wear_notifications_title" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory
         android:title="@string/pref_advanced_settings_title" >
         <CheckBoxPreference
             android:defaultValue="true"

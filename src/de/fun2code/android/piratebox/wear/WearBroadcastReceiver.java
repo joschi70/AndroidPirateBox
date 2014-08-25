@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 import de.fun2code.android.piratebox.Constants;
 import de.fun2code.android.piratebox.PirateBoxActivity;
@@ -20,6 +21,7 @@ import de.fun2code.android.piratebox.R;
 
 public class WearBroadcastReceiver extends BroadcastReceiver {
 	
+	private static final String TAG = "PirateBoxWear";
 	private static final String NOTIFICATION_PB_GROUP = "GROUP_PIRATE_BOX";
 	private static int summaryId = (int) System.currentTimeMillis();
 
@@ -103,12 +105,17 @@ public class WearBroadcastReceiver extends BroadcastReceiver {
 				        .setGroupSummary(true)
 				        .setContentTitle(context.getString(R.string.wear_summary_notification_title))
 				        .setContentText(context.getString(R.string.wear_notifications_available))
-				        .setSmallIcon(R.drawable.ic_notification)
+				        .setSmallIcon(R.drawable.ic_notification_wear)
 				        .setVibrate(new long[] {0, 1000, 50, 2000} );
 			 Notification notification = summaryBuilder.build();
 			 notification.defaults |= Notification.DEFAULT_VIBRATE;
 			 
-			 notificationManager.notify(summaryId, notification);		 
+			 try {
+				 notificationManager.notify(summaryId, notification);
+			 }
+			 catch(Exception e) {
+				 Log.e(TAG, "Unable to send Wear notification: " + e);
+			 }
 		}
 
 	}

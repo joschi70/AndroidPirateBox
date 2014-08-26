@@ -1,5 +1,12 @@
+Version: 0.5.3 beta
+    - Unit of file upload size preference changed to MB
+    - New German web interface translation by @luebbermann
+    - Portuguese web interface translation by vinnyamp
+    - Android Wear notification support
+    
 Version: 0.5.2.1 beta
     - Security fix: DROP iptables FORWARD chain to avail Internet usage
+    
 Version: 0.5.2 beta
     - File upload page (fup.xhtml) simplified
     - Higher resolution PirateBox main screen logo

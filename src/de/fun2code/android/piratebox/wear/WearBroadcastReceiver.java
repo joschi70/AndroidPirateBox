@@ -91,8 +91,13 @@ public class WearBroadcastReceiver extends BroadcastReceiver {
 			// Get an instance of the NotificationManager service
 			NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 			
-			// Build the notification and issues it with notification manager.
-			notificationManager.notify(notificationId, notificationBuilder.build());
+			try {
+				// Build the notification and issues it with notification manager.
+				notificationManager.notify(notificationId, notificationBuilder.build());
+			}
+			 catch(Exception e) {
+				 Log.e(TAG, "Unable to send Wear notification: " + e);
+			 }
 			
 			/*
 			 *  Summary builder is needed for vibration support
@@ -105,8 +110,7 @@ public class WearBroadcastReceiver extends BroadcastReceiver {
 				        .setGroupSummary(true)
 				        .setContentTitle(context.getString(R.string.wear_summary_notification_title))
 				        .setContentText(context.getString(R.string.wear_notifications_available))
-				        .setSmallIcon(R.drawable.ic_notification_wear)
-				        .setVibrate(new long[] {0, 1000, 50, 2000} );
+				        .setSmallIcon(R.drawable.ic_notification_wear);
 			 Notification notification = summaryBuilder.build();
 			 notification.defaults |= Notification.DEFAULT_VIBRATE;
 			 
@@ -114,7 +118,7 @@ public class WearBroadcastReceiver extends BroadcastReceiver {
 				 notificationManager.notify(summaryId, notification);
 			 }
 			 catch(Exception e) {
-				 Log.e(TAG, "Unable to send Wear notification: " + e);
+				 Log.e(TAG, "Unable to send Wear summary notification: " + e);
 			 }
 		}
 

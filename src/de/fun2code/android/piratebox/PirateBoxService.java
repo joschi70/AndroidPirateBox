@@ -306,7 +306,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		String maxPost = ServerConfigUtil.getServerSetting("maxPost", this);
 		if(maxPost.length() > 0) {
 			try {
-        		Integer.decode(maxPost).intValue();
+        		Long.decode(maxPost).longValue();
         	}
         	catch(NumberFormatException e) {
         		String msg = new MessageFormat(

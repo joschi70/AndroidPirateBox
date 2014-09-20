@@ -20,11 +20,14 @@ import android.preference.PreferenceManager;
 public class DroopyHandler implements Handler {
 	private String prefix;
 	private SharedPreferences preferences;
-	private String fupURL = "/fup.xhtml";
+	private String fupURL;
+	private static final String FUP_URL = "fup";
+	private static final String FUP_URL_DEFAULT= "/fup.xhtml";
 
 	@Override
 	public boolean init(Server server, String prefix) {
 		this.prefix = prefix;
+		fupURL = server.props.getProperty(prefix + FUP_URL, FUP_URL_DEFAULT);
 		preferences = PreferenceManager.getDefaultSharedPreferences(PirateBoxService.getService());
 		
 		return true;

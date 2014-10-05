@@ -3,7 +3,7 @@ Version: 0.5.4 beta
     - Fixed translation in about section of file list
     - French web interface translation by peelie
     - Finnish web interface translation by eero
-    - Removed 2 GB upload limit (experimetal)
+    - Removed 2 GB upload limit (experimetal) 
 
 Version: 0.5.3 beta
     - Unit of file upload size preference changed to MB

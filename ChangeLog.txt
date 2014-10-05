@@ -97,6 +97,7 @@ Version: 0.3 beta
 Changes:
     - Bug fixes
     - Responsive design taken from PirateBox 1.0 beta3
+    
 Version: 0.2 beta
 Changes:
     - Bug Fixes

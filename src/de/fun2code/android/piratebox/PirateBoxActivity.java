@@ -266,7 +266,7 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 			new File(INSTALL_DIR).mkdirs();
 			
 			final ProgressDialog progress = new ProgressDialog(this);
-			progress.setMessage("Please wait...");
+			progress.setMessage(getString(R.string.please_wait));
 			progress.setCancelable(false);
 			progress.setCanceledOnTouchOutside(false);
 			progress.show();

@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">PirateBox</string>
     <string name="notification_message">PirateBox is running &#8230;</string>
+    <string name="please_wait">Please wait &#8230;</string>
     <string name="menu_preferences">Settings</string>
     <string name="create_directory">Create Directory</string>
     <string name="pref_start_on_boot_title">Start On Boot</string>

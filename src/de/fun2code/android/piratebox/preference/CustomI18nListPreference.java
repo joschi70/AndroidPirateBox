@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -31,13 +32,28 @@ public class CustomI18nListPreference extends ListPreference {
 		
 		
 		if(i18nFiles != null) {
-			Arrays.sort(i18nFiles);
+			final String langRegEx = "^.*_([a-z]{2})\\.properties$";
+			
+			Arrays.sort(i18nFiles, new Comparator<File>(){
+
+				@Override
+				public int compare(File lhs, File rhs) {
+					String lang1 = lhs.getName().replaceAll(langRegEx, "$1");
+					String langDisp1 = new Locale(lang1).getDisplayLanguage(Locale.getDefault());
+					
+					String lang2 = rhs.getName().replaceAll(langRegEx, "$1");
+					String langDisp2 = new Locale(lang2).getDisplayLanguage(Locale.getDefault());
+					
+					return langDisp1.compareTo(langDisp2);
+				}
+				
+			});
 			
 			List<CharSequence> entriesList = new ArrayList<CharSequence>();
 			List<CharSequence> valuesList = new ArrayList<CharSequence>();
 			
 			for(File file : i18nFiles) {
-				String lang = file.getName().replaceAll("^.*_([a-z]{2})\\.properties$", "$1");
+				String lang = file.getName().replaceAll(langRegEx, "$1");
 				String langDisp = new Locale(lang).getDisplayLanguage(Locale.getDefault());
 				
 				entriesList.add(langDisp);

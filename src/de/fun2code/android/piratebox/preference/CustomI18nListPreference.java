@@ -28,8 +28,7 @@ public class CustomI18nListPreference extends ListPreference {
 			public boolean accept(File dir, String name) {
 				return name.toLowerCase().matches("^.*_[a-z]{2}\\.properties$");
 			}
-		});
-		
+		});	
 		
 		if(i18nFiles != null) {
 			final String langRegEx = "^.*_([a-z]{2})\\.properties$";

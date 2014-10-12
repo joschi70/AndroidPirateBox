@@ -7,10 +7,10 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry exported="true" kind="lib" path="libs/android-support-v4.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/brazil.jar"/>
-	<classpathentry exported="true" kind="lib" path="libs/bsh-2.0b4.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/commons-codec.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/jdom-android.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/locale-api.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/paw-server.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/bsh-2.1.8.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

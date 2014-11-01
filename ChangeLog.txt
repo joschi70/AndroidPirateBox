@@ -1,3 +1,9 @@
+Version: 0.5.5 beta
+    - Spanish web interface translation by cirno99
+    - Indonesian web interface translation by Lorem Ipsum
+    - Sort order in language selection fixed
+    - BeanShell updated to 2.1.8
+
 Version: 0.5.4 beta
     - Russian and Ukrainian web interface translation by damien
     - Fixed translation in about section of file list

@@ -1,6 +1,6 @@
 Version: 0.5.5 beta
     - Spanish web interface translation by cirno99
-    - Indonesian web interface translation by Lorem Ipsum
+    - Indonesian web interface translation by ooxyz
     - Sort order in language selection fixed
     - BeanShell updated to 2.1.8
 

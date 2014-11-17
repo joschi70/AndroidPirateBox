@@ -47,7 +47,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	private boolean autoApStartup = true;
 	private boolean emulateDroopy = true;
 	
-	private static List<StateChangedListener> listeners = new ArrayList<StateChangedListener>();;
+	private static List<StateChangedListener> listeners = new ArrayList<StateChangedListener>();
 	private static boolean apRunning, networkRunning, startingUp;
 	
 	/**

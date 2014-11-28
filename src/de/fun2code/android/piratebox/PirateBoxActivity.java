@@ -145,6 +145,9 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 		imgNetwork.setVisibility(PirateBoxService.isNetworkRunning() ? View.VISIBLE : View.INVISIBLE);
 		imgAp.setVisibility(PirateBoxService.isApRunning() ? View.VISIBLE : View.INVISIBLE);
 		
+		imgAp.setAlpha(!PirateBoxService.autoApStartup ? 50 : 255);
+		imgServer.setAlpha(PirateBoxService.externalServerRunning ? 50 : 255);
+		
 		if(!PirateBoxService.isStartingUp()) {
 			btnSwitch.setImageResource(PirateBoxService.isRunning() ?  R.drawable.switch_on : R.drawable.switch_off);
 			

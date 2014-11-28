@@ -50,11 +50,11 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	private ShellUtil shellUtil;
 	private PirateBoxService service;
 	private SharedPreferences preferences;
-	private boolean autoApStartup = true;
 	private boolean emulateDroopy = true;
 	private boolean externalServer = false;
 	private int EXTERNAL_SERVER_NOTIFICATION_ID = PirateBoxService.class.toString().hashCode();
 	public static boolean externalServerRunning = false;
+	public static boolean autoApStartup = true;
 	
 	private static List<StateChangedListener> listeners = new ArrayList<StateChangedListener>();
 	private static boolean apRunning, networkRunning, startingUp;

@@ -50,6 +50,7 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 	private AlphaAnimation  blinkAnimation;
 	private boolean supportedDevice;
 	private Activity activity;
+//	private boolean externalServer = false;
 	
 
 	/** Called when the activity is first created. */
@@ -221,9 +222,9 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 	 */
 	@Override
 	public void stopService() {
-		Intent serviceIntent = new Intent(this.getApplicationContext(),
-				PirateBoxService.class);
-		stopService(serviceIntent);
+			Intent serviceIntent = new Intent(this.getApplicationContext(),
+					PirateBoxService.class);
+			stopService(serviceIntent);
 	}
 
 	/**
@@ -347,6 +348,7 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 	@Override
 	public void serverUp(boolean success) {
 		imgServer.setVisibility(View.VISIBLE);
+		imgServer.setAlpha(!PirateBoxService.externalServerRunning ? 255 : 50);
 		txtInfo.setText(getText(R.string.msg_webserver_down));
 
 		checkStatus();

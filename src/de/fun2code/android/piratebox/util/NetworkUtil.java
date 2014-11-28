@@ -17,8 +17,10 @@ import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import de.fun2code.android.pawserver.PawServerActivity;
+import de.fun2code.android.pawserver.PawServerService;
 import de.fun2code.android.pawserver.util.Utils;
 import de.fun2code.android.piratebox.Constants;
+import de.fun2code.android.piratebox.R;
 
 public class NetworkUtil {
 	
@@ -207,6 +209,7 @@ public class NetworkUtil {
 	 * @return					{@code true} if the operation succeeded
 	 */
 	public boolean redirectPort(IpTablesAction actionType, String apIp, int redirectFrom, int redirectTo) {
+		if(redirectFrom != redirectTo) {
 		  String action = "-" + (actionType == IpTablesAction.IP_TABLES_ADD ? "A" : "D");
 
 		  String[] iptablesCmds = new String[] {
@@ -217,6 +220,9 @@ public class NetworkUtil {
 
 		  ShellUtil shellUtil = new ShellUtil();
 		  return shellUtil.execRootShell(iptablesCmds);
+		}
+		
+		return true;
 	}
 	
 	/**
@@ -394,5 +400,36 @@ public class NetworkUtil {
 			String[] cmd = new String[] {IPTABLES_BIN + " -P " + chain + " ACCEPT"};
 			shellUtil.execRootShell(cmd);
 		}
+	}
+	
+	/**
+	 * Returns the port number of the server
+	 * <br/>
+	 * This can be either the port number of the internal PAW Server
+	 * or an external server.
+	 * 
+	 * @param context Context to use
+	 * 
+	 * @return port number
+	 */
+	public static int getServerPortNumber(Context context) {
+		int port;
+		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+		
+		if(preferences.getBoolean(Constants.PREF_USE_EXTERNAL_SERVER, false)) {
+			String prefPort = preferences.getString(Constants.PREF_EXTERNAL_SERVER_PORT, context.getResources().getString(R.string.pref_external_server_port_default));
+			try {
+				port = Integer.valueOf(prefPort);
+			}
+			catch(NumberFormatException e) {
+				port = Integer.valueOf(context.getResources().getString(R.string.pref_external_server_port_default));
+			}
+		}
+		else {
+			port = Integer.valueOf(PawServerService.getServerPort());
+		}
+		
+		return port;
 	}
 }

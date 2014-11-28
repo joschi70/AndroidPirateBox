@@ -6,11 +6,14 @@ import java.util.List;
 
 import org.paw.server.PawServer;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiManager.WifiLock;
@@ -21,12 +24,15 @@ import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 import de.fun2code.android.pawserver.PawServerService;
+import de.fun2code.android.pawserver.PawServerWidget;
 import de.fun2code.android.pawserver.listener.ServiceListener;
+import de.fun2code.android.pawserver.service.ServiceCompat;
 import de.fun2code.android.piratebox.util.NetworkUtil;
 import de.fun2code.android.piratebox.util.NetworkUtil.IpTablesAction;
 import de.fun2code.android.piratebox.util.NetworkUtil.WrapResult;
 import de.fun2code.android.piratebox.util.ServerConfigUtil;
 import de.fun2code.android.piratebox.util.ShellUtil;
+import de.fun2code.android.piratebox.widget.PirateBoxWidget;
 
 
 /**
@@ -46,6 +52,9 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	private SharedPreferences preferences;
 	private boolean autoApStartup = true;
 	private boolean emulateDroopy = true;
+	private boolean externalServer = false;
+	private int EXTERNAL_SERVER_NOTIFICATION_ID = PirateBoxService.class.toString().hashCode();
+	public static boolean externalServerRunning = false;
 	
 	private static List<StateChangedListener> listeners = new ArrayList<StateChangedListener>();
 	private static boolean apRunning, networkRunning, startingUp;
@@ -160,6 +169,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		autoApStartup = preferences.getBoolean(Constants.PREF_AUTO_AP_STARTUP, true);
 		emulateDroopy = preferences.getBoolean(Constants.PREF_EMULATE_DROOPY, true);
+		externalServer = preferences.getBoolean(Constants.PREF_USE_EXTERNAL_SERVER, false);
 		
 		// If starting the access point is handled by the user
 		if(!autoApStartup) {
@@ -169,13 +179,25 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 				listener.apEnabled(autoApStartup);
 			}
 			
-			Log.d(TAG, "Starting service...");
-			return super.onStartCommand(intent, flags, startId);
+			if(!externalServer) {
+				Log.d(TAG, "Starting service...");
+				return super.onStartCommand(intent, flags, startId);
+			}
+			else {
+				handleExternalServerStart();	
+				return START_NOT_STICKY;
+			}
 		}
 		
 		if(apRunning) {
-			Log.d(TAG, "Starting service...");
-			return super.onStartCommand(intent, flags, startId);
+			if(!externalServer) {
+				Log.d(TAG, "Starting service...");
+				return super.onStartCommand(intent, flags, startId);
+			}
+			else {
+				handleExternalServerStart();	
+				return START_NOT_STICKY;
+			}
 		}
 		else {
 			Log.d(TAG, "Starting AccessPoint...");
@@ -221,7 +243,13 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		}
 		
 		teardownNetworking();
-		super.onDestroy();
+		
+		if(!externalServer) {
+			super.onDestroy();
+		}
+		else {
+			handleExternalServerStop();
+		}
 	}
 	
 	/**
@@ -351,11 +379,11 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	 */
 	public void doRedirect(IpTablesAction action) {
 		// Redirect port 80
-		netUtil.redirectPort(action, NetworkUtil.getApIp(this), NetworkUtil.PORT_HTTP, Integer.valueOf(getServerPort()));
+		netUtil.redirectPort(action, NetworkUtil.getApIp(this), NetworkUtil.PORT_HTTP, NetworkUtil.getServerPortNumber(this));
 		
 		// Redirect port 8080 (Droopy support)
 		if(emulateDroopy) {
-			netUtil.redirectPort(action, NetworkUtil.getApIp(this), NetworkUtil.PORT_DROOPY, Integer.valueOf(getServerPort()));
+			netUtil.redirectPort(action, NetworkUtil.getApIp(this), NetworkUtil.PORT_DROOPY, NetworkUtil.getServerPortNumber(this));
 		}
 		
 	
@@ -473,6 +501,110 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		sendBroadcast(intent);
 		
 		unregisterServiceListener(this);
+	}
+	
+	/**
+	 * Handles the startup if an external server is used
+	 */
+	private void handleExternalServerStart() {
+		externalServerRunning = true;
+		// If external server, skip server start and inform listeners
+		onServiceStart(true);
+		// Show notification
+		String titelExtension = " (" + getString(R.string.msg_external_server) + ")";
+		displayNotification(EXTERNAL_SERVER_NOTIFICATION_ID, notificationDrawableId, appName + titelExtension, notificationTitle  + titelExtension, notificationMessage);
+		
+		// Widget Broadcast
+		Intent msg = new Intent(PirateBoxWidget.WIDGET_INTENT_UPDATE);
+		sendBroadcast(msg);
+	}
+	
+	/**
+	 * Handles the stopping of the external server
+	 */
+	private void handleExternalServerStop() {
+		// If external server call listeners directly
+		for (StateChangedListener listener : listeners) {
+			listener.serverDown(true);
+		}
+		externalServerRunning = false;
+		removeNotification(EXTERNAL_SERVER_NOTIFICATION_ID);
+
+		// Widget Broadcast
+		Intent msg = new Intent(PirateBoxWidget.WIDGET_INTENT_UPDATE);
+		sendBroadcast(msg);
+	}
+	
+	/**
+	 * Displays the server status notification
+	 * 
+	 * @param notificationId 			notification ID to use
+	 * @param notificationDrawableId	Drawable ID to use
+	 * @param appName					application name
+	 * @param notificationTitle			the notification title
+	 * @param notificationMessage		the notification message
+	 */
+	@SuppressWarnings("deprecation")
+	private void displayNotification(int notificationId, int notificationDrawableId, String appName, String notificationTitle, String notificationMessage) {
+		try {
+			int icon = notificationDrawableId;
+			long when = System.currentTimeMillis();
+
+			Notification notification = new Notification(icon, notificationTitle, when);
+
+			Context context = getApplicationContext();
+
+			Intent notificationIntent = new Intent(this,
+					Class.forName(activityClass));
+			notificationIntent.setAction("android.intent.action.MAIN");
+			notificationIntent.addCategory("android.intent.category.LAUNCHER");
+			PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+					notificationIntent, 0);
+
+			
+			notification.setLatestEventInfo(context,
+					appName,
+					notificationMessage,
+					contentIntent);
+
+			notification.flags |= Notification.FLAG_NO_CLEAR;
+			notification.flags |= Notification.FLAG_ONGOING_EVENT;
+
+			//notificationManager.notify(NOTIFICATION_ID, notification);
+			ServiceCompat sc = new ServiceCompat(this);
+			sc.startForegroundCompat(notificationId, notification);
+		} catch (Resources.NotFoundException e) {
+			// shouldn't happen
+		} catch (ClassNotFoundException ec) {
+			Log.e(TAG, "Could not create notification: " + ec.getMessage());
+		}
+	}
+	
+	/**
+	 * Removes the status notification
+	 * 
+	 * @param notificationId 			notification ID to use
+	 */
+	private void removeNotification(int notificationId) {
+		if (hideNotificationIcon) {
+			return;
+		}
+
+		//notificationManager.cancel(NOTIFICATION_ID);
+		ServiceCompat sc = new ServiceCompat(this);
+		sc.stopForegroundCompat(notificationId);
+	
+	}
+	
+	/**
+	 * Indicates if PirateBox is running
+	 * It is running, if PAW server is running or if an external server
+	 * has been started.
+	 * 
+	 * @return  {@code true} if the PirateBox is running, otherwise {@code false}
+	 */
+	public static boolean isRunning() {
+		return PawServerService.isRunning() || externalServerRunning;
 	}
 	
 }

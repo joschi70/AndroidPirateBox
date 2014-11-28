@@ -60,7 +60,13 @@
     <string name="pref_enable_statistics_title">Statistiken aktivieren</string>
     <string name="pref_enable_statistics_summary">Speichert Besucher und Download Informationen in einer Datenbank</string>
     <string name="pref_clear_statistics_title">Statistiken löschen</string>
-    <string name="pref_clear_statistics_summary">Löscht alle Einträge in der Statistikdatenbank</string>
+    <string name="pref_clear_statistics_summary">Löscht alle Einträge in der Statistikdatenbank</string>  
+    <string name="pref_external_server_title">Externer Server</string>
+    <string name="pref_use_external_server_title">Externen Server aktivieren</string>
+    <string name="pref_use_external_server_summary">Einen externen Server anstatt den eingebauten PAW Server verwenden</string>
+    <string name="pref_external_server_port_title">Externer Server Port</string>
+    <string name="pref_external_server_port_summary">Port Nummer des externen Servers (standardmäßig 8080)</string>
+    <string name="pref_external_server_port_default">8080</string>  
     <string name="msg_setting_up_networking">Netzwerk wird initialisiert, bitte warten&#8230;</string>
     <string name="msg_ap_up">Access Point ist gestartet</string>
     <string name="msg_ap_down">Access Point ist nicht aktiv</string>
@@ -71,6 +77,7 @@
     <string name="msg_piratebox_up">PirateBox ist gestartet</string>
     <string name="msg_piratebox_down">PirateBox ist gestoppt</string>
     <string name="msg_max_post_invalid">Ungültige Upload Größe! Größe wird auf {0} gesetzt.</string>
+    <string name="msg_external_server">Externer Server</string>
     <string name="chk_unsupported_device">Nicht unterstütztes Gerät!</string>
     <string name="chk_not_rooted">Gerät ist nicht gerootet</string>
     <string name="chk_missing_dnsmasq">Befehl \"dnsmasq\" nicht gefunden</string>

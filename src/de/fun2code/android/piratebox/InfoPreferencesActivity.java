@@ -78,13 +78,22 @@ public class InfoPreferencesActivity extends PreferenceActivity {
 		
 		// Set PAW version
 		setStringSummary(Constants.PREF_DEV_INFO_PAW_VERSION, PawServer.getServerProperty("version"));
-		
+				
 		// Show IP address an port
 		if(PirateBoxService.isRunning()) {
 			//setStringSummary(Constants.PREF_DEV_INFO_AP_IP_ADDRESS, NetworkUtil.getApIp(activity.getApplicationContext()));
 			setStringSummary(Constants.PREF_DEV_INFO_IP_ADDRESS, NetworkUtil.getLocalIpAddress());
-			setStringSummary(Constants.PREF_DEV_INFO_LOCAL_PORT, PirateBoxService.getServerPort());
-			setStringSummary(Constants.PREF_DEV_INFO_MAX_UPLOAD_SIZE, Formatter.formatFileSize(this, PirateBoxService.getService().getPawServer().server.maxPost));
+			setStringSummary(Constants.PREF_DEV_INFO_LOCAL_PORT, String.valueOf(NetworkUtil.getServerPortNumber(this)) +
+					(preferences.getBoolean(Constants.PREF_USE_EXTERNAL_SERVER, false) ? " (" + getString(R.string.msg_external_server) + ")" : ""));
+			
+			if(PirateBoxService.isRunning() && !PirateBoxService.externalServerRunning) {
+				setStringSummary(Constants.PREF_DEV_INFO_MAX_UPLOAD_SIZE, Formatter.formatFileSize(this, PirateBoxService.getService().getPawServer().server.maxPost));
+			}
+			else if(PirateBoxService.externalServerRunning) {
+				setStringSummary(Constants.PREF_DEV_INFO_MAX_UPLOAD_SIZE, getString(R.string.pref_dev_info_default_summary) +
+						" (" + getString(R.string.msg_external_server) + ")");
+			}
+			
 			calculateConnections();
 		}
 		

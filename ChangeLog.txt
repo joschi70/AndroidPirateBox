@@ -3,13 +3,16 @@ Version: 0.5.5 beta
     - Indonesian web interface translation by ooxyz
     - Sort order in language selection fixed
     - BeanShell updated to 2.1.8
+    - External server support
+    - File list shows file sizes
+    - "Keep device on" is enabled by default
 
 Version: 0.5.4 beta
     - Russian and Ukrainian web interface translation by damien
     - Fixed translation in about section of file list
     - French web interface translation by peelie
     - Finnish web interface translation by eero
-    - Removed 2 GB upload limit (experimetal)
+    - Removed 2 GB upload limit (experimental)
 
 Version: 0.5.3 beta
     - Unit of file upload size preference changed to MB

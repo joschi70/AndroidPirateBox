@@ -65,7 +65,7 @@
             android:summary="@string/pref_emulate_droopy_summary"
             android:title="@string/pref_emulate_droopy_title" />
         <CheckBoxPreference
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="keepDeviceOn"
             android:summary="@string/pref_keep_device_on_summary"
             android:title="@string/pref_keep_device_on_title" />

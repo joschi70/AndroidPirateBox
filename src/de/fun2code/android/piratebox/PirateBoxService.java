@@ -314,8 +314,8 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		isRuntime = false;
 		serverConfig = Constants.getInstallDir(this) + "/conf/server.xml";
 		pawHome = Constants.getInstallDir(this) + "/";
-		useWakeLock = preferences.getBoolean(Constants.PREF_KEEP_DEVICE_ON, false);
-		useWifiLock = preferences.getBoolean(Constants.PREF_KEEP_DEVICE_ON, false);
+		useWakeLock = preferences.getBoolean(Constants.PREF_KEEP_DEVICE_ON, true);
+		useWifiLock = preferences.getBoolean(Constants.PREF_KEEP_DEVICE_ON, true);
 		hideNotificationIcon = false;
 		execAutostartScripts = false;
 		showUrlInNotification = false;

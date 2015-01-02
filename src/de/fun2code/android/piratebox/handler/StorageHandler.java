@@ -33,7 +33,7 @@ public class StorageHandler implements Handler {
 	private DatabaseHandler db;
 	private SharedPreferences prefs;
 	
-	private final static String MIME_OCTET_STREAM = "application/octet-stream";
+	private static final String MIME_OCTET_STREAM = "application/octet-stream";
 	
 	@Override
 	public boolean init(Server server, String prefix) {

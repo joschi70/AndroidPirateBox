@@ -1,3 +1,6 @@
+Version: 0.5.5.1 beta
+    - New PAW Server version 0.95 beta (fixes WakeLock issues)
+
 Version: 0.5.5 beta
     - Spanish web interface translation by cirno99
     - Indonesian web interface translation by ooxyz

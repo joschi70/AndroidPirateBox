@@ -1,6 +1,8 @@
 AndroidPirateBox
 ================
 
+[![Build Status](https://travis-ci.org/gunmetal313/AndroidPirateBox.svg?branch=master)](https://travis-ci.org/gunmetal313/AndroidPirateBox)
+
 Android version of PirateBox
 
 For more details on the Android version of PirateBox see the following links:

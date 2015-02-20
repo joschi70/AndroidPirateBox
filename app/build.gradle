@@ -1,0 +1,29 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 17
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "de.fun2code.android.piratebox"
+        minSdkVersion 9
+        targetSdkVersion 14
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:21.0.0'
+    compile files('libs/brazil.jar')
+    compile files('libs/bsh-2.1.8.jar')
+    compile files('libs/commons-codec.jar')
+    compile files('libs/jdom-android.jar')
+    compile files('libs/locale-api.jar')
+    compile files('libs/paw-server.jar')
+}

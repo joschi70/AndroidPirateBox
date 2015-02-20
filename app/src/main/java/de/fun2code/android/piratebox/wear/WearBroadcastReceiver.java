@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 import de.fun2code.android.piratebox.Constants;

@@ -16,11 +16,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-    
+
     lintOptions {
-      abortOnError false
-  }
+        abortOnError false
+    }
 }
+
+
+task (zipContentSubmodule, type: Zip) {
+    destinationDir new File("$projectDir/src/main/assets/")
+    archiveName 'content.zip'
+    from "$rootDir/AndroidPirateBoxContent"
+    //include '*'
+}
+
+assemble.dependsOn zipContentSubmodule
+assemble.mustRunAfter zipContentSubmodule
 
 dependencies {
     compile 'com.android.support:support-v4:21.0.0'

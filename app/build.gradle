@@ -34,7 +34,7 @@ assemble.dependsOn zipContentSubmodule
 assemble.mustRunAfter zipContentSubmodule
 
 dependencies {
-    compile 'com.android.support:support-v4:21.0.0'
+    compile 'com.android.support:support-v4:21.0.3'
     compile files('libs/brazil.jar')
     compile files('libs/bsh-2.1.8.jar')
     compile files('libs/commons-codec.jar')

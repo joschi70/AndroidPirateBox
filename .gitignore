@@ -34,4 +34,5 @@ proguard/
 *.iml
 
 # Crashlytics configuations
-com_crashlytics_export_strings.xml 
+com_crashlytics_export_strings.xml
+app/src/main/assets/*.zip

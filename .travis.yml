@@ -1,4 +1,5 @@
 language: android
+jdk: oraclejdk7
 android:
   components:
     # Uncomment the lines below if you want to
@@ -21,4 +22,11 @@ android:
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
     #- sys-img-armeabi-v7a-android-19
-    #- sys-img-x86-android-17
+    - sys-img-x86-android-17
+
+# Emulator Management: Create, Start and Wait
+before_script:
+  - echo no | android create avd --force -n test -t android-17 --abi x86
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - adb shell input keyevent 82 &
+

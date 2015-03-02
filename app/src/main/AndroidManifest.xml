@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.fun2code.android.piratebox"
     android:versionCode="23"
-    android:versionName="0.5.5.1 beta" >
+    android:versionName="0.5.5.2 beta" >
 
     <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="14"/>
     

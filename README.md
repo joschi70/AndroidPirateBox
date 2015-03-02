@@ -15,3 +15,5 @@ TODO in my fork
 - [ ] migrate to gradle
 - [ ] write tests
 - [ ] use sqlite3 for chat
+- [ ] change content.zip in application
+- [ ] use opensource libraries

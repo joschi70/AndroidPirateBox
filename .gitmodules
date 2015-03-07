@@ -1,0 +1,3 @@
+[submodule "AndroidPirateBoxContent"]
+	path = AndroidPirateBoxContent
+	url = https://github.com/gunmetal313/AndroidPirateBoxContent.git

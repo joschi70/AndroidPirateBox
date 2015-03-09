@@ -25,7 +25,7 @@ public class ShellUtil {
 	public static String SYSTEM_MOUNT_POINT = "/system";
 	
 	/**
-	 * Execute shell command with norma shell
+	 * Execute shell command with normal shell
 	 * 
 	 * @param commands	command to execute
 	 * @return			{@code true} if the operation succeeded

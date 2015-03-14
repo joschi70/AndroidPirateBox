@@ -353,7 +353,6 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 		imgServer.setVisibility(View.VISIBLE);
 		imgServer.setAlpha(!PirateBoxService.externalServerRunning ? 255 : 50);
 		txtInfo.setText(getText(R.string.msg_webserver_down));
-
 		checkStatus();
 	}
 
@@ -362,7 +361,6 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 		imgServer.setVisibility(View.INVISIBLE);
 		txtInfo.setText(getText(R.string.msg_webserver_down));
 		checkStatus();
-		
 	}
 
 	@Override
@@ -394,6 +392,9 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 			btnSwitch.setEnabled(true);
 			break;
 		}
+		
+		// Need by Android 5 to make images invisible if needed
+		activity.findViewById(R.id.layoutImages).postInvalidate();
 	}
 	
 	/**
@@ -407,7 +408,8 @@ public class PirateBoxActivity extends PawServerActivity implements StateChanged
 		String message = "";
 		
 		checks.put(ShellUtil.SU_BIN, getString(R.string.chk_not_rooted));
-		checks.put(NetworkUtil.DNSMASQ_BIN, getString(R.string.chk_missing_dnsmasq));
+		// Android 5 fix: "su -c" is needed 
+		checks.put(ShellUtil.SU_BIN + " -c " + NetworkUtil.DNSMASQ_BIN, getString(R.string.chk_missing_dnsmasq));
 		checks.put(NetworkUtil.DNSMASQ_BIN_BACKUP, getString(R.string.chk_missing_dnsmasq_backup));
 		checks.put(NetworkUtil.IPTABLES_BIN, getString(R.string.chk_missing_iptables));
 		

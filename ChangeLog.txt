@@ -1,3 +1,7 @@
+Version: 0.5.6 beta
+    - Turkish web interface translation by harald
+    - CyanogenMod 12 (CM12) support
+    
 Version: 0.5.5.1 beta
     - New PAW Server version 0.95 beta (fixes WakeLock issues)
 

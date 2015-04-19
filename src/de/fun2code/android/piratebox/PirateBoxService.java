@@ -91,6 +91,15 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		        			for(StateChangedListener listener : listeners) {
 		            			listener.dnsMasqUnWrapped();
 		            		}
+		        			
+		        			/* 
+		        			 * Check if dnsmasq is running ok.
+		        			 * This might not be the case on Android 5 and up.
+		        			 * In such a case, try to restart dnsmasq manually
+		        			 */
+		        			if(!netUtil.isDnsMasqRunning()) {
+		        				netUtil.restartDnsMasq(NetworkUtil.getApIp(service));
+		        			}
 		            		
 		            		/*
 		            		 * Restore AP state

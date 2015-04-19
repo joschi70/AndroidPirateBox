@@ -1,6 +1,7 @@
 package de.fun2code.android.piratebox.util;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.Inet4Address;
 import java.net.Inet6Address;
@@ -256,6 +257,7 @@ public class NetworkUtil {
 		
 		String[] cmd = new String[] { "echo '#!/system/bin/sh' > " + NetworkUtil.DNSMASQ_BIN,   "echo 'exec " + NetworkUtil.DNSMASQ_BIN_BACKUP + " --address=/#/"
 					+ apIp + " $*' >> " + NetworkUtil.DNSMASQ_BIN};
+		
 		shellUtil.execRootShell(cmd);
 		
 		shellUtil.remountSystem("ro");
@@ -297,6 +299,51 @@ public class NetworkUtil {
 		}
 		
 		return new File(NetworkUtil.DNSMASQ_BIN_BACKUP).exists();
+	}
+	
+	/**
+	 * Checks if dnsmasq is running ok
+	 * If dnsmasq is running as Zobie process this also returns {@code false}.
+	 * 
+	 * @return {@code true} if dnsmasq is running, otherwise {@code false}
+	 */
+	public boolean isDnsMasqRunning() {
+		ShellUtil shellUtil = new ShellUtil();
+		int pid;
+		pid = shellUtil.getProcessPid(NetworkUtil.DNSMASQ_BIN_BACKUP);
+		
+		// Check for short name
+		if(pid == -1) {
+			pid = shellUtil.getProcessPid(NetworkUtil.DNSMASQ_BIN_BACKUP.replaceAll("^.*/",  ""));
+		}
+		
+		// If pid not -1 but cmdLine is zero, this is likely a Zombie process
+		return pid != -1;
+	}
+	
+	/**
+	 * Restart dnsmasq manually if automatic startup did not work.
+	 * 
+	 * @param apIp	AP IP Address
+	 * @return {@code true} on success, otherwise {@code false}
+	 */
+	public boolean restartDnsMasq(String apIp) {
+		String baseApIp = apIp.replaceAll("^(.*)\\.(.*)$", "$1");
+		
+		String cmd = DNSMASQ_BIN + " --address=/#/192.168.43.1 --keep-in-foreground " +
+				"--no-resolv --no-poll --dhcp-authoritative --dhcp-option-force=43,ANDROID_METERED " +
+				"--pid-file --dhcp-range=" + baseApIp + ".2," + baseApIp + ".254,1h &";
+		
+		try {
+			ShellUtil shellUtil = new ShellUtil();
+			shellUtil.execRootShell(new String[] { cmd });
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+		
 	}
 	
 	/**
@@ -432,4 +479,5 @@ public class NetworkUtil {
 		
 		return port;
 	}
+	
 }

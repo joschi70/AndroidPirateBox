@@ -24,7 +24,6 @@ import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 import de.fun2code.android.pawserver.PawServerService;
-import de.fun2code.android.pawserver.PawServerWidget;
 import de.fun2code.android.pawserver.listener.ServiceListener;
 import de.fun2code.android.pawserver.service.ServiceCompat;
 import de.fun2code.android.piratebox.util.NetworkUtil;
@@ -55,6 +54,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	private int EXTERNAL_SERVER_NOTIFICATION_ID = PirateBoxService.class.toString().hashCode();
 	public static boolean externalServerRunning = false;
 	public static boolean autoApStartup = true;
+	public static boolean configureAp = true;
 	
 	private static List<StateChangedListener> listeners = new ArrayList<StateChangedListener>();
 	private static boolean apRunning, networkRunning, startingUp;
@@ -92,8 +92,13 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		            			listener.dnsMasqUnWrapped();
 		            		}
 		            		
-		            		// Restore AP state
-							netUtil.setWifiApConfiguration(orgApConfig);
+		            		/*
+		            		 * Restore AP state
+		            		 * Only restore if configuration was changed.
+		            		 */
+		        			if(configureAp) {
+		        				netUtil.setWifiApConfiguration(orgApConfig);
+		        			}
 		            		
 		            		for(StateChangedListener listener : listeners) {
 		            			listener.apEnabled(autoApStartup);
@@ -168,6 +173,7 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		autoApStartup = preferences.getBoolean(Constants.PREF_AUTO_AP_STARTUP, true);
+		configureAp = preferences.getBoolean(Constants.PREF_CONFIGURE_AP, true);
 		emulateDroopy = preferences.getBoolean(Constants.PREF_EMULATE_DROOPY, true);
 		externalServer = preferences.getBoolean(Constants.PREF_USE_EXTERNAL_SERVER, false);
 		
@@ -265,7 +271,9 @@ public class PirateBoxService extends PawServerService implements ServiceListene
 		registerReceiver(apReceiver, filter);
 
 		String ssid = preferences.getString(Constants.PREF_SSID_NAME, service.getResources().getString(R.string.pref_ssid_name_default));
-		netUtil.setWifiApEnabled(netUtil.createOpenAp(ssid), true);
+		
+		// If AP should be configured, create an open AP configuration, otherwise use existing.
+		netUtil.setWifiApEnabled(configureAp ? netUtil.createOpenAp(ssid) : orgApConfig, true);
 	}
 
 

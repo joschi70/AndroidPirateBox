@@ -45,6 +45,7 @@ public class Constants {
 	public static final String PREF_WEAR_NOTIFICATIONS = "wearNotifications";
 	public static final String PREF_USE_EXTERNAL_SERVER = "useExternalServer";
 	public static final String PREF_EXTERNAL_SERVER_PORT = "externalServerPort";
+	public static final String PREF_CONFIGURE_AP = "configureAp";
 	
 	public static final String AP_IP_DEFAULT = "192.168.43.1"; // Default AP IP address
 	public static final String NAT_TABLE_NAME = "nat";

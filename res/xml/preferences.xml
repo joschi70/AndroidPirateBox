@@ -61,6 +61,11 @@
             android:title="@string/pref_ap_auto_start_title" />
         <CheckBoxPreference
             android:defaultValue="true"
+            android:key="configureAp"
+            android:summary="@string/pref_configure_ap_summary"
+            android:title="@string/pref_configure_ap_title" />
+        <CheckBoxPreference
+            android:defaultValue="true"
             android:key="emulateDroopy"
             android:summary="@string/pref_emulate_droopy_summary"
             android:title="@string/pref_emulate_droopy_title" />

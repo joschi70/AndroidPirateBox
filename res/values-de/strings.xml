@@ -27,6 +27,8 @@
     <string name="pref_wp_ncsi_summary">Antwortet auf Windows Phone NCSI Anfragen</string>
     <string name="pref_ap_auto_start_title">Autostart AP</string>
     <string name="pref_ap_auto_start_summary">Startet den Access Point automatisch, anderenfalls muss dieser manuell gestartet werden</string>
+    <string name="pref_configure_ap_title">AP konfigurieren</string>
+    <string name="pref_configure_ap_summary">Erzeugt einen offenen AP beim Start.\nSollte diese Option nicht aktiviert sein, wird die bestehende AP Konfiguration verwendet.</string>
     <string name="pref_ap_ip_title">AP IP Nummer</string>
     <string name="pref_ap_ip_summary">Ändern der IP Nummer des Access Points</string>
     <string name="pref_upload_size_title">Upload Größe in MB</string>

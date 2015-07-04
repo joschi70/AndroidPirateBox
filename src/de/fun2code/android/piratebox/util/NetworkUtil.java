@@ -114,7 +114,7 @@ public class NetworkUtil {
 	}
 	
 	/**
-	 * Sets the WiFi access point configurtion
+	 * Sets the WiFi access point configuration
 	 * 
 	 * @param config	configuration to use
 	 * @return			{@code true} if the operation succeeded

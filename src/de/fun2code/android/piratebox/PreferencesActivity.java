@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
@@ -57,6 +58,21 @@ public class PreferencesActivity extends PreferenceActivity {
 		activity = this;
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		addPreferencesFromResource(R.xml.preferences);
+		
+		updateExternalServerPreference();
+		
+		CheckBoxPreference extServerCheckBoxPref = (CheckBoxPreference) findPreference(Constants.PREF_USE_EXTERNAL_SERVER);
+		extServerCheckBoxPref.setOnPreferenceClickListener(
+				new OnPreferenceClickListener() {
+
+					@Override
+					public boolean onPreferenceClick(
+							Preference preference) {
+						updateExternalServerPreference();
+
+						return true;
+					}
+				});
 	}
 	
 	@Override
@@ -185,5 +201,14 @@ public class PreferencesActivity extends PreferenceActivity {
 	public void onPause() {
 		super.onPause();
 		preferences.unregisterOnSharedPreferenceChangeListener(prefChangeListener);
+	}
+	
+	/**
+	 * Enables/disables the external server port preference depending on the
+	 * state of the external server preference.
+	 */
+	private void updateExternalServerPreference() {
+		CheckBoxPreference extServerCheckBoxPref = (CheckBoxPreference) findPreference(Constants.PREF_USE_EXTERNAL_SERVER);
+		findPreference(Constants.PREF_EXTERNAL_SERVER_PORT).setEnabled(extServerCheckBoxPref.isChecked());
 	}
 }

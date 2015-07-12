@@ -1,3 +1,9 @@
+Version: 0.5.7 beta
+    - New preference option: Configure AP
+    - CM12 dnsmasq fixes: Restart dnsmasq if not started properly
+    - French web interface translation updated
+    - Material design theme added
+    
 Version: 0.5.6 beta
     - Turkish web interface translation by harald
     - CyanogenMod 12 (CM12) support

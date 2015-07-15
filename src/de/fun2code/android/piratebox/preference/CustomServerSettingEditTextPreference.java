@@ -11,7 +11,7 @@ public class CustomServerSettingEditTextPreference extends EditTextPreference {
 	private static final String PIRATEBOX_NAMESPACE = "http://fun2code.de/apk/res/piratebox";
 	private String pawSetting = null;
 	private boolean isNumeric;
-	private Integer numericDivider;
+	private Long numericDivider;
 
 	// Standard constructors
 	public CustomServerSettingEditTextPreference(Context context) {
@@ -32,9 +32,9 @@ public class CustomServerSettingEditTextPreference extends EditTextPreference {
 	@Override
     protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
 		if(isNumeric && numericDivider != null) {
-			int valueInt = Integer.valueOf(ServerConfigUtil.getServerSetting(pawSetting, getContext()));
-			valueInt /= numericDivider;
-			setText(String.valueOf(valueInt));
+			long longValue = Long.valueOf(ServerConfigUtil.getServerSetting(pawSetting, getContext()));
+			longValue /= numericDivider;
+			setText(String.valueOf(longValue));
 		}
 		else {
 			setText(ServerConfigUtil.getServerSetting(pawSetting, getContext()));
@@ -45,9 +45,9 @@ public class CustomServerSettingEditTextPreference extends EditTextPreference {
 	@Override
 	public boolean persistString(String value) {
 		if(isNumeric && numericDivider != null) {
-			int valueInt = Integer.valueOf(value);
-			valueInt *= numericDivider;
-			ServerConfigUtil.storeServerSetting(pawSetting, String.valueOf(valueInt), getContext());
+			long valueLong = Long.valueOf(value);
+			valueLong *= numericDivider;
+			ServerConfigUtil.storeServerSetting(pawSetting, String.valueOf(valueLong), getContext());
 		}
 		else {
 			ServerConfigUtil.storeServerSetting(pawSetting, value, getContext());
@@ -65,7 +65,7 @@ public class CustomServerSettingEditTextPreference extends EditTextPreference {
 		pawSetting = attrs.getAttributeValue(PIRATEBOX_NAMESPACE, "setting");
 		isNumeric = attrs.getAttributeValue(ANDROID_NAMESPACE, "numeric") != null ? true : false;
 		try {
-			numericDivider = Integer.valueOf(attrs.getAttributeValue(PIRATEBOX_NAMESPACE, "numericDivider"));
+			numericDivider = Long.valueOf(attrs.getAttributeValue(PIRATEBOX_NAMESPACE, "numericDivider"));
 		}
 		catch(Exception e) {
 			numericDivider = null;

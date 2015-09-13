@@ -12,81 +12,234 @@ public final class R {
     }
     public static final class drawable {
         public static final int ap=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int ic_launcher_inv=0x7f020002;
-        public static final int ic_notification=0x7f020003;
-        public static final int logo_big=0x7f020004;
-        public static final int network=0x7f020005;
-        public static final int server=0x7f020006;
-        public static final int switch_off=0x7f020007;
-        public static final int switch_on=0x7f020008;
+        public static final int appwidget_bg=0x7f020001;
+        public static final int back=0x7f020002;
+        public static final int directory=0x7f020003;
+        public static final int file=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int ic_launcher_2=0x7f020006;
+        public static final int ic_launcher_inv=0x7f020007;
+        public static final int ic_notification=0x7f020008;
+        public static final int ic_notification_wear=0x7f020009;
+        public static final int logo_big=0x7f02000a;
+        public static final int network=0x7f02000b;
+        public static final int piratebox_text=0x7f02000c;
+        public static final int server=0x7f02000d;
+        public static final int switch_off=0x7f02000e;
+        public static final int switch_on=0x7f02000f;
+        public static final int twofortyfouram_locale_ic_menu_dontsave=0x7f020010;
+        public static final int twofortyfouram_locale_ic_menu_help=0x7f020011;
+        public static final int twofortyfouram_locale_ic_menu_save=0x7f020012;
+        public static final int widget_info_preview=0x7f020013;
+        public static final int widget_limbo=0x7f020014;
+        public static final int widget_off=0x7f020015;
+        public static final int widget_on=0x7f020016;
     }
     public static final class id {
-        public static final int buttonSwitch=0x7f080002;
-        public static final int imageAp=0x7f080005;
-        public static final int imageLogo=0x7f080000;
-        public static final int imageNetwork=0x7f080006;
-        public static final int imageServer=0x7f080004;
-        public static final int info=0x7f080003;
-        public static final int menu_preferences=0x7f080007;
-        public static final int version=0x7f080001;
+        public static final int ImageView01=0x7f080012;
+        public static final int LinearLayout01=0x7f08000c;
+        public static final int LinearLayout02=0x7f08000d;
+        public static final int LocaleToggleButton=0x7f080015;
+        public static final int TextView01=0x7f080013;
+        public static final int ToggleButton01=0x7f080014;
+        public static final int buttonSwitch=0x7f080018;
+        public static final int buttons=0x7f080003;
+        public static final int buttons2=0x7f080005;
+        public static final int createDirectory=0x7f080004;
+        public static final int currentDirectory=0x7f080009;
+        public static final int devices_progress=0x7f08000b;
+        public static final int directory_dialog_cancel=0x7f080006;
+        public static final int directory_dialog_ok=0x7f080007;
+        public static final int directory_list=0x7f08000a;
+        public static final int fileImageType=0x7f08000e;
+        public static final int frame=0x7f080011;
+        public static final int imageAp=0x7f08001c;
+        public static final int imageLogo=0x7f080016;
+        public static final int imageNetwork=0x7f08001d;
+        public static final int imageServer=0x7f08001b;
+        public static final int imageView1=0x7f080020;
+        public static final int imageView2=0x7f080027;
+        public static final int info=0x7f080019;
+        public static final int layoutImages=0x7f08001a;
+        public static final int listAndProgress=0x7f080008;
+        public static final int main=0x7f08001f;
+        public static final int menu_preferences=0x7f080029;
+        public static final int textConnections=0x7f080022;
+        public static final int textInfo=0x7f080010;
+        public static final int textName=0x7f08000f;
+        public static final int textShouts=0x7f080026;
+        public static final int textUploads=0x7f080024;
+        public static final int titleConnections=0x7f080021;
+        public static final int titleShouts=0x7f080025;
+        public static final int titleUploads=0x7f080023;
+        /**  Menu item to cancel the current Activity 
+         */
+        public static final int twofortyfouram_locale_menu_dontsave=0x7f080001;
+        /**  Menu item to launch the Help 
+         */
+        public static final int twofortyfouram_locale_menu_help=0x7f080000;
+        /**  Menu item to save the current Activity 
+         */
+        public static final int twofortyfouram_locale_menu_save=0x7f080002;
+        public static final int version=0x7f080017;
+        public static final int webView=0x7f08001e;
+        public static final int widgetCanvas=0x7f080028;
+    }
+    public static final class integer {
+        /**  The maximum blurb length in characters.  This value is based on Latin characters. 
+         */
+        public static final int twofortyfouram_locale_maximum_blurb_length=0x7f090000;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
+        public static final int dialog_directory=0x7f030000;
+        public static final int directory_files_row=0x7f030001;
+        public static final int locale=0x7f030002;
+        public static final int main=0x7f030003;
+        public static final int privacy_statement=0x7f030004;
+        public static final int widget_info_layout=0x7f030005;
+        public static final int widget_layout=0x7f030006;
     }
     public static final class menu {
-        public static final int main_menu=0x7f070000;
+        public static final int main_menu=0x7f0a0000;
+        public static final int twofortyfouram_locale_help_save_dontsave=0x7f0a0001;
+    }
+    public static final class raw {
+        public static final int privacy_statement=0x7f050000;
     }
     public static final class string {
-        public static final int app_name=0x7f050000;
-        public static final int chk_missing_dnsmasq=0x7f05002c;
-        public static final int chk_missing_iptables=0x7f05002d;
-        public static final int chk_not_rooted=0x7f05002b;
-        public static final int menu_preferences=0x7f050002;
-        public static final int msg_ap_down=0x7f050024;
-        public static final int msg_ap_up=0x7f050023;
-        public static final int msg_networking_down=0x7f050026;
-        public static final int msg_networking_up=0x7f050025;
-        public static final int msg_piratebox_down=0x7f05002a;
-        public static final int msg_piratebox_up=0x7f050029;
-        public static final int msg_setting_up_networking=0x7f050022;
-        public static final int msg_webserver_down=0x7f050028;
-        public static final int msg_webserver_up=0x7f050027;
-        public static final int notification_message=0x7f050001;
-        public static final int pref_advanced_settings_title=0x7f05000b;
-        public static final int pref_ap_auto_start_summary=0x7f050016;
-        public static final int pref_ap_auto_start_title=0x7f050015;
-        public static final int pref_dev_content_sd_summary=0x7f050018;
-        public static final int pref_dev_content_sd_title=0x7f050017;
-        public static final int pref_dev_info_ap_ip_address=0x7f05001d;
-        public static final int pref_dev_info_default_summary=0x7f050021;
-        public static final int pref_dev_info_local_port_title=0x7f05001e;
-        public static final int pref_dev_info_messages_title=0x7f050020;
-        public static final int pref_dev_info_paw_version_title=0x7f05001c;
-        public static final int pref_dev_info_piratebox_version_title=0x7f05001b;
-        public static final int pref_dev_info_uploads_title=0x7f05001f;
-        public static final int pref_dev_options_title=0x7f05000d;
-        public static final int pref_dev_piratebox_info_summary=0x7f05001a;
-        public static final int pref_dev_piratebox_info_title=0x7f050019;
-        public static final int pref_device_options_title=0x7f05000c;
-        public static final int pref_enable_updates_summary=0x7f050010;
-        public static final int pref_enable_updates_title=0x7f05000f;
-        public static final int pref_info_title=0x7f05000e;
-        public static final int pref_ios_wispr_summary=0x7f050012;
-        public static final int pref_ios_wispr_title=0x7f050011;
-        public static final int pref_ssid_name_default=0x7f050009;
-        public static final int pref_ssid_name_summary=0x7f050006;
-        public static final int pref_ssid_name_title=0x7f050005;
-        public static final int pref_start_on_boot_summary=0x7f050004;
-        public static final int pref_start_on_boot_title=0x7f050003;
-        public static final int pref_storage_dir_default=0x7f05000a;
-        public static final int pref_storage_dir_summary=0x7f050008;
-        public static final int pref_storage_dir_title=0x7f050007;
-        public static final int pref_wp_ncsi_summary=0x7f050014;
-        public static final int pref_wp_ncsi_title=0x7f050013;
+        public static final int app_name=0x7f060000;
+        public static final int chk_missing_dnsmasq=0x7f060054;
+        public static final int chk_missing_dnsmasq_backup=0x7f060055;
+        public static final int chk_missing_iptables=0x7f060056;
+        public static final int chk_not_rooted=0x7f060053;
+        public static final int chk_unsupported_device=0x7f060052;
+        public static final int create_directory=0x7f060004;
+        public static final int dialog_label_directory_name=0x7f060063;
+        public static final int dialog_msg_clear_statistics=0x7f060060;
+        public static final int dialog_msg_dnsmasq_restore_error=0x7f06005d;
+        public static final int dialog_msg_dnsmasq_restore_ok=0x7f06005c;
+        public static final int dialog_msg_network_reset=0x7f06005e;
+        public static final int dialog_msg_wrap_error=0x7f06005b;
+        public static final int dialog_qst_clear_statistics=0x7f06005f;
+        public static final int dialog_title_choose_directory=0x7f060061;
+        public static final int dialog_title_confirm=0x7f060059;
+        public static final int dialog_title_create_directory=0x7f060062;
+        public static final int dialog_title_error=0x7f06005a;
+        public static final int dialog_title_info=0x7f060057;
+        public static final int dialog_title_warning=0x7f060058;
+        public static final int locale_off=0x7f060069;
+        public static final int locale_on=0x7f060068;
+        public static final int menu_preferences=0x7f060003;
+        public static final int msg_ap_down=0x7f060049;
+        public static final int msg_ap_up=0x7f060048;
+        public static final int msg_external_server=0x7f060051;
+        public static final int msg_max_post_invalid=0x7f060050;
+        public static final int msg_networking_down=0x7f06004b;
+        public static final int msg_networking_up=0x7f06004a;
+        public static final int msg_piratebox_down=0x7f06004f;
+        public static final int msg_piratebox_up=0x7f06004e;
+        public static final int msg_setting_up_networking=0x7f060040;
+        public static final int msg_webserver_down=0x7f06004d;
+        public static final int msg_webserver_up=0x7f06004c;
+        public static final int notification_message=0x7f060001;
+        public static final int please_wait=0x7f060002;
+        public static final int pref_advanced_settings_title=0x7f06000f;
+        public static final int pref_ap_auto_start_summary=0x7f06001b;
+        public static final int pref_ap_auto_start_title=0x7f06001a;
+        public static final int pref_ap_ip_default=0x7f060027;
+        public static final int pref_ap_ip_summary=0x7f06001f;
+        public static final int pref_ap_ip_title=0x7f06001e;
+        public static final int pref_clear_statistics_summary=0x7f06003f;
+        public static final int pref_clear_statistics_title=0x7f06003e;
+        public static final int pref_configure_ap_summary=0x7f06001d;
+        public static final int pref_configure_ap_title=0x7f06001c;
+        public static final int pref_dev_content_sd_summary=0x7f060029;
+        public static final int pref_dev_content_sd_title=0x7f060028;
+        public static final int pref_dev_info_ap_ip_address=0x7f06002e;
+        public static final int pref_dev_info_connections_title=0x7f060033;
+        public static final int pref_dev_info_default_summary=0x7f060035;
+        public static final int pref_dev_info_ip_address=0x7f06002f;
+        public static final int pref_dev_info_local_port_title=0x7f060030;
+        public static final int pref_dev_info_max_upload_size_title=0x7f060034;
+        public static final int pref_dev_info_messages_title=0x7f060032;
+        public static final int pref_dev_info_paw_version_title=0x7f06002d;
+        public static final int pref_dev_info_piratebox_version_title=0x7f06002c;
+        public static final int pref_dev_info_uploads_title=0x7f060031;
+        public static final int pref_dev_options_title=0x7f060012;
+        public static final int pref_dev_piratebox_info_summary=0x7f06002b;
+        public static final int pref_dev_piratebox_info_title=0x7f06002a;
+        public static final int pref_dev_reset_networking_summary=0x7f060039;
+        public static final int pref_dev_reset_networking_title=0x7f060038;
+        public static final int pref_dev_restore_dnsmasq_summary=0x7f060037;
+        public static final int pref_dev_restore_dnsmasq_title=0x7f060036;
+        public static final int pref_device_options_title=0x7f060011;
+        public static final int pref_domain_name_default=0x7f060024;
+        public static final int pref_domain_name_summary=0x7f060023;
+        public static final int pref_domain_name_title=0x7f060022;
+        public static final int pref_emulate_droopy_summary=0x7f06003b;
+        public static final int pref_emulate_droopy_title=0x7f06003a;
+        public static final int pref_enable_statistics_summary=0x7f06003d;
+        public static final int pref_enable_statistics_title=0x7f06003c;
+        public static final int pref_enable_updates_summary=0x7f060015;
+        public static final int pref_enable_updates_title=0x7f060014;
+        public static final int pref_external_server_port_default=0x7f060046;
+        public static final int pref_external_server_port_summary=0x7f060045;
+        public static final int pref_external_server_port_title=0x7f060044;
+        public static final int pref_external_server_title=0x7f060041;
+        public static final int pref_info_title=0x7f060013;
+        public static final int pref_ios_wispr_summary=0x7f060017;
+        public static final int pref_ios_wispr_title=0x7f060016;
+        public static final int pref_keep_device_on_summary=0x7f060026;
+        public static final int pref_keep_device_on_title=0x7f060025;
+        public static final int pref_privacy_statement=0x7f060047;
+        public static final int pref_ssid_name_default=0x7f06000d;
+        public static final int pref_ssid_name_summary=0x7f060008;
+        public static final int pref_ssid_name_title=0x7f060007;
+        public static final int pref_start_on_boot_summary=0x7f060006;
+        public static final int pref_start_on_boot_title=0x7f060005;
+        public static final int pref_statistics_title=0x7f060010;
+        public static final int pref_storage_dir_default=0x7f06000e;
+        public static final int pref_storage_dir_summary=0x7f06000a;
+        public static final int pref_storage_dir_title=0x7f060009;
+        public static final int pref_upload_size_summary=0x7f060021;
+        public static final int pref_upload_size_title=0x7f060020;
+        public static final int pref_use_external_server_summary=0x7f060043;
+        public static final int pref_use_external_server_title=0x7f060042;
+        public static final int pref_wear_notifications_summary=0x7f060072;
+        public static final int pref_wear_notifications_title=0x7f060071;
+        public static final int pref_wear_title=0x7f060070;
+        public static final int pref_web_i18n_summary=0x7f06000c;
+        public static final int pref_web_i18n_title=0x7f06000b;
+        public static final int pref_wp_ncsi_summary=0x7f060019;
+        public static final int pref_wp_ncsi_title=0x7f060018;
+        /**  A format string for breadcrumbs in the titlebar.  For left to right languages, such as English, the format will look something like "Main Activity > Sub Activity > Sub Activity 2".  Item #1 is the previous path, item #2 is the separator, and item #3 is the current item.  For most left to right languages, this shouldn't need to be changed. 
+         */
+        public static final int twofortyfouram_locale_breadcrumb_format=0x7f060073;
+        /**  The separator character for breadcrumbs.  For most left to right languages, this shouldn't need to be changed. 
+         */
+        public static final int twofortyfouram_locale_breadcrumb_separator=0x7f060074;
+        /**  The Don't Save button in the menu or Action Bar.  MDPI 21 character maximum 
+         */
+        public static final int twofortyfouram_locale_menu_dontsave=0x7f060075;
+        /**  The Help button in the menu or Action Bar.  MDPI 21 character maximum 
+         */
+        public static final int twofortyfouram_locale_menu_help=0x7f060076;
+        /**  The Save button in the menu or Action Bar.  MDPI 21 character maximum 
+         */
+        public static final int twofortyfouram_locale_menu_save=0x7f060077;
+        public static final int warning_dir_not_writable=0x7f06006a;
+        public static final int wear_notification_shout_title=0x7f06006d;
+        public static final int wear_notification_upload_open_file=0x7f06006c;
+        public static final int wear_notification_upload_title=0x7f06006b;
+        public static final int wear_notifications_available=0x7f06006e;
+        public static final int wear_summary_notification_title=0x7f06006f;
+        public static final int widget_info_connections=0x7f060065;
+        public static final int widget_info_label=0x7f060064;
+        public static final int widget_info_shouts=0x7f060066;
+        public static final int widget_info_uploads=0x7f060067;
     }
     public static final class style {
-        public static final int PirateBoxTheme=0x7f060000;
+        public static final int PirateBoxTheme=0x7f070000;
         /**  
         <item name="android:background">@drawable/actionbar_background</item>
         <item name="android:titleTextStyle">@style/AppTheme.ActionBar.TitleTextStyle</item>
@@ -98,10 +251,12 @@ public final class R {
         <item name="android:indeterminateProgressStyle">@style/IndeterminateProgress</item>
         
          */
-        public static final int PirateBoxTheme_ActionBarStyle=0x7f060001;
+        public static final int PirateBoxTheme_ActionBarStyle=0x7f070001;
     }
     public static final class xml {
         public static final int info_preferences=0x7f040000;
         public static final int preferences=0x7f040001;
+        public static final int widget_configuration=0x7f040002;
+        public static final int widget_info_configuration=0x7f040003;
     }
 }

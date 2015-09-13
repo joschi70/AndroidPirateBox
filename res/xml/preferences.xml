@@ -157,5 +157,9 @@
 	        android:summary="@string/pref_dev_piratebox_info_summary">
 	        <intent android:action=".InfoPreferencesActivity"/>
 	   </PreferenceScreen>
+	   <PreferenceScreen
+        	android:title="@string/pref_privacy_statement">
+        	<intent android:action="de.fun2code.android.piratebox.PrivacyStatementActivity"/>
+	   </PreferenceScreen>
 	 </PreferenceCategory>
 </PreferenceScreen>

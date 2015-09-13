@@ -71,6 +71,7 @@
     <string name="pref_external_server_port_title">External Server Port</string>
     <string name="pref_external_server_port_summary">External server port number (defaults to 8080)</string>
     <string name="pref_external_server_port_default">8080</string>
+    <string name="pref_privacy_statement">Privacy Statement</string>
     <string name="msg_ap_up">AccessPoint is up</string>
     <string name="msg_ap_down">AccessPoint is down</string>
     <string name="msg_networking_up">Networking is up</string>

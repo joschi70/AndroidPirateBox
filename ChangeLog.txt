@@ -1,3 +1,8 @@
+Version: 0.5.8 beta
+    - Fixed: Bug on large upload file size
+    - Italian web interface translation by nilocram
+    - PAW Server updated
+
 Version: 0.5.7 beta
     - New preference option: Configure AP
     - CM12 dnsmasq fixes: Restart dnsmasq if not started properly

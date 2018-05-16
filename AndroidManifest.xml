@@ -39,6 +39,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
+        <activity android:name=".PrivacyStatementActivity" android:label="@string/pref_privacy_statement">
+		    <intent-filter>
+           		<action android:name="de.fun2code.android.piratebox.PrivacyStatementActivity" />
+           		<category android:name="android.intent.category.DEFAULT" />
+       		</intent-filter>
+        </activity>
 
         <service android:name=".PirateBoxService" />
         
